@@ -33,14 +33,14 @@ if(isset($_POST["login"])) {
                     if ($result) {
                         $rpassword = $result["password"];
                         if (password_verify($password, $rpassword)) {
-                            echo "<div>You are logged in.</div>"
+                            echo "<div>You are logged in.</div>";
                         }
                         else {
-                            echo "<div>The email or password that you have entered is incorrect.</div>"
+                            echo "<div>The email or password that you have entered is incorrect.</div>";
                         }
                     }
                     else {
-                        echo "<div>Invalid user</div>"
+                        echo "<div>Invalid user</div>";
                     }
                     #echo "<div>Successfully registered</div>";
                 }
