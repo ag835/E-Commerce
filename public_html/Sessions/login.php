@@ -9,7 +9,6 @@
 </form>
 
 <?php
-session_start();
 #echo var_export($_GET, true);
 #echo var_export($_POST, true);
 #echo var_export($_REQUEST, true);
@@ -35,13 +34,6 @@ if(isset($_POST["login"])) {
                         $rpassword = $result["password"];
                         if (password_verify($password, $rpassword)) {
                             echo "<div>You are logged in.</div>";
-                            $_SESSION["user"] = array(
-                              "id"=>$result["id"],
-                              "email"=>$result["email"],
-                              "first_name"=>$result["first_name"],
-                              "lastname"=>$result["last_name"]
-                            );
-                            echo var_export($_SESSION, true);
                         }
                         else {
                             echo "<div>The email or password that you have entered is incorrect.</div>";
