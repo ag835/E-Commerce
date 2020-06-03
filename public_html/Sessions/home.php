@@ -1,5 +1,5 @@
 <?php
-session.start();
-echo "Hello, " . $_SESSION["user"]["email"] #replace with account name later
+session_start();
+echo "Hello, " . $_SESSION["user"]["email"];
 ?>
 <a href="logout.php">Logout</a>
