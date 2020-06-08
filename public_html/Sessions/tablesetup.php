@@ -7,7 +7,6 @@ try{
 	$stmt = $db->prepare("CREATE TABLE `Users` (
 				`id` int auto_increment not null,
 				`email` varchar(100) not null unique,
-				`account_name` varchar(100) not null unique,
 				`first_name` varchar(100),
 				`last_name` varchar(100),
 				`password` varchar(60),
