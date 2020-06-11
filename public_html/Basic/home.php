@@ -1,5 +1,10 @@
 <?php
-session_start();
+include("header.php");
+
+?>
+<h4>Home</h4>
+
+<?php
 echo "Hello, " . $_SESSION["user"]["email"];
 ?>
-<a href="logout.php">Logout</a>
+

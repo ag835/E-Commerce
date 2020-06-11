@@ -1,3 +1,7 @@
+<?php
+include("header.php");
+?>
+<h4>Login</h4>
 <form method="POST">
     <label for="email">Email address
         <input type="email" id="email" name="email"/>
@@ -17,7 +21,7 @@ if(isset($_POST["login"])) {
     if(isset($_POST["password"]) && isset($_POST["email"])) {
         $password = $_POST["password"];
         $email = $_POST["email"];
-        require("config.php");
+        #require("config.php");
         $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
         try {
             $db = new PDO($connection_string, $dbuser, $dbpass);
@@ -42,7 +46,7 @@ if(isset($_POST["login"])) {
                             "last_name"=>$result["last_name"]
                         );
                         echo var_export($_SESSION, true);
-                        echo "<a href='home.php'>Go to home page</a>";
+                        header( string: "Location: home.php");
                     }
                     else {
                         echo "<div>The email or password that you have entered is incorrect.</div>";
