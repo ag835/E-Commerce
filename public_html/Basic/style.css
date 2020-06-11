@@ -1,5 +1,14 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+li {
+    display: inline;
+}
+
 input {
-    background-color: aquamarine;
+    background-color: white;
 }
 
 label {
