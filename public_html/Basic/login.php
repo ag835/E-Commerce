@@ -13,7 +13,6 @@ include("header.php");
 </form>
 
 <?php
-session_start();
 #echo var_export($_GET, true);
 #echo var_export($_POST, true);
 #echo var_export($_REQUEST, true);
