@@ -21,8 +21,18 @@ include("header.php");
         <option value="canada">Canada</option>
         <option value="new zealand">New Zealand</option>
         <option value="united kingdom">United Kingdom</option>
-        <option value="united states" selected>United States</option>
+        <option value="united states" selected>United States of America</option>
     </select>
+    <br>
+    <hr>
+    <input type="checkbox" id="robot" name="robot">
+    <label for="robot">I'm not a robot</label>
+    <br><hr>
+    <input type="checkbox" id="agree" name="agree">
+    <h2>Terms and Conditions</h2>
+    <p><larem>WIP</larem></p>
+    <br>
+    <label for="agree">I agree to the Terms and Conditions</label>
     <br>
     <input type="submit" name="register" value="Complete sign up"/>
 </form>
