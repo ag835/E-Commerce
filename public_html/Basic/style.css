@@ -1,5 +1,5 @@
 body {
-    background-color: #11216A;
+    background-color: #0B1542;
     color: #c6d4df;
     font-family:  "Motiva Sans", Sans-serif;
 }
@@ -14,20 +14,29 @@ li {
 }
 
 input {
+    padding: 8px;
     background-color: white;
 }
 
+submit {
+    padding: 10px 15px;
+    background-color: #234CFD
+    border: none;
+}
+
 label {
-    border: 1px dotted black;
+    padding-bottom: 20px;
+    display: block;
 }
 
 form {
-    background-color: #0B1542;
-    width: 100%;
+    background-color: #070E2C;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    text-align: center;
 }

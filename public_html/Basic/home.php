@@ -6,6 +6,7 @@ include("header.php");
 <style>
     body {
         background-image: url('andromeda.jpg');
+        background-size:auto;
     }
 </style>
 
