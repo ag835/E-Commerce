@@ -7,7 +7,7 @@ include("header.php");
     body {
         background-image: url('andromeda.jpg');
         background-repeat: no-repeat;
-        background-size: 300px 100px;
+        background-size: cover;
     }
 </style>
 
