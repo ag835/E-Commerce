@@ -6,12 +6,24 @@ include("header.php");
     <label for="email">Email address
     <input type="email" id="email" name="email"/>
     </label>
+    <br>
     <label for="p">Choose password
     <input type="password" id="p" name="password"/>
     </label>
+    <br>
     <label for="cp">Re-enter password
     <input type="password" id="cp" name="cpassword"/>
     </label>
+    <br>
+    <label>Country of Residence</label>
+    <select name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="new zealand">New Zealand</option>
+        <option value="united kingdom">United Kingdom</option>
+        <option value="united states" selected>United States</option>
+    </select>
+    <br>
     <input type="submit" name="register" value="Complete sign up"/>
 </form>
 
