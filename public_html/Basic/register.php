@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <h1>Create an account</h1>
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="POST">
     <label for="email">Email address
     <input type="email" id="email" name="email" required/>
     </label>
