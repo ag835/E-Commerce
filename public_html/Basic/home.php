@@ -7,7 +7,7 @@ include("header.php");
     body {
         background-image: url('signs.png');
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
     }
 </style>
 
