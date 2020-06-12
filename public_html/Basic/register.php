@@ -43,7 +43,7 @@ include("header.php");
 #echo var_export($_POST, true);
 #echo var_export($_REQUEST, true);
 if(isset($_POST["register"])) {
-    if (empty($_POST["login"])) {
+    if (empty($_POST["register"])) {
         echo "<div>Please fill out all input fields.</div>";
     } else {
         if(isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"])) {
