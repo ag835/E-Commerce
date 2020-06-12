@@ -36,7 +36,7 @@ include("header.php");
     <br><br>
     <input type="submit" name="register" value="Complete sign up"/>
 </form>
-
+<footer><p>Copyright &copy 2020, AMO</p></footer>
 <?php
 #include("header.php"); #wrong spot
 #echo var_export($_GET, true);
