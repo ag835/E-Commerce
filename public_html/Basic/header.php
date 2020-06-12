@@ -15,8 +15,3 @@ session_start();
     </ul>
 </nav>
 <hr>
-<style>
-    body {
-        background-color: 11216A;
-    }
-</style>

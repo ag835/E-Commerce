@@ -18,17 +18,6 @@ input {
     background-color: white;
 }
 
-submit {
-    padding: 10px 15px;
-    background-color: #234CFD
-    border: none;
-}
-
-label {
-    padding-bottom: 20px;
-    display: block;
-}
-
 form {
     background-color: #070E2C;
     width: 80%;
@@ -39,4 +28,15 @@ form {
     border-radius: 4px;
     box-sizing: border-box;
     text-align: center;
+}
+
+label {
+    padding-bottom: 20px;
+    display: block;
+}
+
+form input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #234CFD
+    border: none;
 }
