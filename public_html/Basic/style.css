@@ -10,7 +10,6 @@ h1 {
 
 li {
     display: inline;
-    text-align: right;
 }
 
 input {
@@ -32,9 +31,10 @@ form {
 
 label {
     padding-bottom: 20px;
-    display: block;
 }
-
+form input[type="text"] {
+    display:block;
+}
 form input[type="submit"] {
     padding: 10px 15px;
     background-color: #234CFD
