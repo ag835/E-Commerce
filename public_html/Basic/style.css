@@ -1,11 +1,10 @@
 body {
     background-color: black;
-    color: #c6d4df;
+    color: white;
 }
 
 li {
     display: inline;
-    text-align: right;
 }
 
 input {
