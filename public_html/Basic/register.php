@@ -1,7 +1,7 @@
 <?php
 include("header.php");
 ?>
-<h4>Register</h4>
+<h4>Create an account</h4>
 <form method="POST">
     <label for="email">Email address
     <input type="email" id="email" name="email"/>

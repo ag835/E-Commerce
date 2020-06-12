@@ -4,6 +4,10 @@ body {
     font-family:  "Motiva Sans", Sans-serif;
 }
 
+h1 {
+    text-transform: uppercase;
+}
+
 li {
     display: inline;
     text-align: right;
