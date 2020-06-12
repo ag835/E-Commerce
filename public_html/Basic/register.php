@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <h1>Create an account</h1>
-<form method="POST">
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <label for="email">Email address
     <input type="email" id="email" name="email" required/>
     </label>
@@ -25,13 +25,13 @@ include("header.php");
     </select>
     <br>
     <hr>
-    <input type="checkbox" id="robot" name="robot">
+    <input type="checkbox" id="robot" name="robot" required>
     <label for="robot">I'm not a robot</label>
     <br><hr>
     <h2>Terms and Conditions</h2>
     <p>[...terms, conditions...]</p>
     <br>
-    <input type="checkbox" id="agree" name="agree">
+    <input type="checkbox" id="agree" name="agree" required>
     <label for="agree">I agree to the Terms and Conditions</label>
     <br><br>
     <input type="submit" name="register" value="Complete sign up"/>
@@ -73,7 +73,7 @@ if(isset($_POST["register"])) {
                 echo "<div>Passwords do not match</div>";
             }
         } else {
-            echo "<div>Please enter a valid email adress</div>";
+            echo "<div>Please enter a valid email address</div>";
         }
     }
 }
