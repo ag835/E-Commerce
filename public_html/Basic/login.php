@@ -4,11 +4,11 @@ include("header.php");
 <h1>Sign in</h1>
 <form method="POST">
     <label for="email">Email address
-        <input type="email" id="email" name="email"/>
+        <input type="email" id="email" name="email" required/>
     </label>
     <br>
     <label for="p">Password
-        <input type="password" id="p" name="password"/>
+        <input type="password" id="p" name="password" required/>
     </label>
     <input type="submit" name="login" value="Sign in"/>
 </form>
@@ -53,7 +53,7 @@ if(isset($_POST["login"])) {
                     }
                 }
                 else {
-                    echo "<div>Invalid user</div>";
+                    echo "<div>The email or password that you have entered is incorrect.</div>";
                 }
                 #echo "<div>Successfully registered</div>";
             }

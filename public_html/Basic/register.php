@@ -4,15 +4,15 @@ include("header.php");
 <h1>Create an account</h1>
 <form method="POST">
     <label for="email">Email address
-    <input type="email" id="email" name="email"/>
+    <input type="email" id="email" name="email" required/>
     </label>
     <br>
     <label for="p">Choose password
-    <input type="password" id="p" name="password"/>
+    <input type="password" id="p" name="password" required/>
     </label>
     <br>
     <label for="cp">Re-enter password
-    <input type="password" id="cp" name="cpassword"/>
+    <input type="password" id="cp" name="cpassword" required/>
     </label>
     <br>
     <label>Country of Residence</label>
@@ -36,7 +36,7 @@ include("header.php");
     <br><br>
     <input type="submit" name="register" value="Complete sign up"/>
 </form>
-<footer><p>Copyright &copy 2020, AMO</p></footer>
+<footer><p>Copyright &copy 2020, amo</p></footer>
 <?php
 #include("header.php"); #wrong spot
 #echo var_export($_GET, true);
