@@ -46,7 +46,7 @@ if(isset($_POST["register"])) {
     if (empty($_POST["register"])) {
         echo "<div>Please fill out all input fields.</div>";
     } else {
-        if(isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"])) {
+        if (isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"])) {
             $password = $_POST["password"];
             $cpassword = $_POST["cpassword"];
             $email = $_POST["email"];
@@ -79,5 +79,6 @@ if(isset($_POST["register"])) {
                 echo "<div>Please enter a valid email address</div>";
             }
         }
+    }
 }
 ?>
