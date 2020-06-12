@@ -48,7 +48,7 @@ if(isset($_POST["register"])) {
         $cpassword = $_POST["cpassword"];
         $email = $_POST["email"];
         if (!filter_var(!$email, FILTER_VALIDATE_EMAIL)) {
-            echo "<div>Please enter a valid email</div>"
+            echo "<div>Please enter a valid email</div>";
         }
         else {
             if ($password == $cpassword) {
