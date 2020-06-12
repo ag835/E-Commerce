@@ -15,3 +15,5 @@ session_start();
     </ul>
 </nav>
 <hr>
+
+<footer><p>Copyright &copy 2020, AMO</p></footer>

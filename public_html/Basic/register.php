@@ -21,7 +21,7 @@ include("header.php");
         <option value="canada">Canada</option>
         <option value="new zealand">New Zealand</option>
         <option value="united kingdom">United Kingdom</option>
-        <option value="united states" selected>United States of America</option>
+        <option value="united states" selected>United States</option>
     </select>
     <br>
     <hr>
