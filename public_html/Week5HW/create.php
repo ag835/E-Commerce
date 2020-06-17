@@ -17,12 +17,12 @@
         <input type="number" id="q" name="quantity" />
     </label>
     <label for="p">Price
-        <input type="number" id="p" name="price" value = "0.00" />
+        <input type="number" step="0.01" min="0" id="p" name="price" value = "0.00" />
     </label>
     <label for="description">Description
         <input type="text" id="description" name="description" />
     </label>
-    <input type="submit" name="created" value="Create Thing"/>
+    <input type="submit" name="created" value="Create Product"/>
 </form>
 
 <?php
