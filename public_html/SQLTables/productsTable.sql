@@ -9,4 +9,4 @@ CREATE TABLE Products (
     Modified datetime default current_timestamp on update current_timestamp,
     Created datetime default current_timestamp,
     PRIMARY KEY(ID)
-);
+)
