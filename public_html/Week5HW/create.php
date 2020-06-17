@@ -26,6 +26,8 @@
 </form>
 
 <?php
+require("common.inc.php");
+$db = getDB();
 if(isset($_POST["created"])){
     $name = $_POST["name"];
     $category = $_POST["category"];
@@ -39,7 +41,7 @@ if(isset($_POST["created"])){
         #$db = getDB();
         try{
             #$db = new PDO($connection_string, $dbuser, $dbpass);
-            db = getDB();
+            #$db = getDB();
             $stmt = $db->prepare("INSERT INTO Products (name, category, quantity, price, description) 
                                  VALUES (:name, :category, :quantity, :price, :description)");
             $result = $stmt->execute(array(
