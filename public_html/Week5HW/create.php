@@ -1,11 +1,3 @@
-<?php
-#require("common.inc.php");
-#$db = getDB();
-//example usage, change/move as needed
-#$stmt = $db->prepare("SELECT * FROM Things");
-#$stmt->execute();
-?>
-
 <form method="POST">
     <label for="title">Title
         <input type="text" id="title" name="name" />
@@ -35,13 +27,7 @@ if(isset($_POST["created"])){
     $price = $_POST["price"];
     $description = $POST_["description"];
     if(!empty($name) && !empty($category) && !empty($price)){
-        #require("config.php");
-        #$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
-        #require("common.inc.php");
-        #$db = getDB();
         try{
-            #$db = new PDO($connection_string, $dbuser, $dbpass);
-            #$db = getDB();
             $stmt = $db->prepare("INSERT INTO Products (name, category, quantity, price, description) 
                                  VALUES (:name, :category, :quantity, :price, :description)");
             $result = $stmt->execute(array(
