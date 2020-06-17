@@ -36,10 +36,10 @@ if(isset($_POST["created"])){
         #require("config.php");
         #$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
         require("common.inc.php");
-        $db = getDB();
+        #$db = getDB();
         try{
             #$db = new PDO($connection_string, $dbuser, $dbpass);
-            #db = getDB();
+            db = getDB();
             $stmt = $db->prepare("INSERT INTO Products (name, category, quantity, price, description) 
                                  VALUES (:name, :category, :quantity, :price, :description)");
             $result = $stmt->execute(array(
