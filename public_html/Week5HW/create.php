@@ -33,9 +33,9 @@ if(isset($_POST["created"])){
     $category = $_POST["category"];
     $quantity = $_POST["quantity"];
     $price = $_POST["price"];
-    $description = $POST_["description"]
+    $description = $POST_["description"];
     if(!empty($name) && !empty($category) && !empty($price)){
-        require("config.php");
+        #require("config.php");
         #$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
         #require("common.inc.php");
         #$db = getDB();
