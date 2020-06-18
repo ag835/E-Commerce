@@ -25,7 +25,7 @@ if(isset($_POST["created"])){
     $category = $_POST["category"];
     $quantity = $_POST["quantity"];
     $price = $_POST["price"];
-    $description = $POST_["description"];
+    $description = $_POST["description"];
     if(!empty($name) && !empty($category) && !empty($price)){
         try{
             $stmt = $db->prepare("INSERT INTO Products (name, category, quantity, price, description) 

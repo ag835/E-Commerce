@@ -27,7 +27,7 @@ if(isset($_GET["productId"])){
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 else{
-    echo "No productId provided in url, don't forget this or sample won't work.";
+    echo "No productId provided in url.";
 }
 ?>
 
@@ -56,7 +56,7 @@ if(isset($_POST["updated"])){
     $category = $_POST["category"];
     $quantity = $_POST["quantity"];
     $price = $_POST["price"];
-    $description = $POST_["description"];
+    $description = $_POST["description"];
     if(!empty($name) && !empty($category) && !empty($price)){ #check to make sure prexsiting values are there so it doesn't wipe it if empty
         try{
             $stmt = $db->prepare("UPDATE Products set name = :name, category=:category, 
