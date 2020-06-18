@@ -1,25 +1,10 @@
 <?php
 require("common.inc.php");
 $db = getDB();
-//example usage, change/move as needed
-#$stmt = $db->prepare("SELECT * FROM Things");
-#$stmt->execute();
-#$result = $stmt->fetch(PDO::FETCH_ASSOC);
-#echo var_export($result, true);
-?>
 
-<?php
-#require("config.php");
-#$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
-#$db = new PDO($connection_string, $dbuser, $dbpass);
 $productId = -1;
 $result = array();
-#function get($arr, $key){
-    #if(isset($arr[$key])){
-        #return $arr[$key];
-   # }
-    #return "";
-#}
+
 if(isset($_GET["productId"])){
     $productId = $_GET["productId"];
     $stmt = $db->prepare("SELECT * FROM Products where id = :id");
