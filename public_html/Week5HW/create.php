@@ -1,6 +1,6 @@
 <form method="POST">
-    <label for="title">Title
-        <input type="text" id="title" name="name" />
+    <label for="pname">Name
+        <input type="text" id="pname" name="name" />
     </label>
     <label for="category">Category
         <input type="text" id="category" name="category" value="Game" />
