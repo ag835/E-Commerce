@@ -57,8 +57,7 @@ if(isset($_POST["updated"]) || isset($_POST["created"])){
     if(!empty($name) && !empty($category) && !empty($price)){
         try{
             if($productId > 0) {
-                $stmt = $db->prepare("UPDATE Products set name = :name, category=:category, 
-            quantity=:quantity, price=:price, description=:description where id=:id");
+                $stmt = $db->prepare("UPDATE Products set name = :name, category=:category, quantity=:quantity, price=:price, description=:description where id=:id");
                 $result = $stmt->execute(array(
                     ":name" => $name,
                     ":category" => $category,
