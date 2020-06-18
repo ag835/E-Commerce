@@ -13,7 +13,7 @@ $db = getDB();
 #$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
 #$db = new PDO($connection_string, $dbuser, $dbpass);
 $productId = -1;
-#$result = array();
+$result = array();
 #function get($arr, $key){
     #if(isset($arr[$key])){
         #return $arr[$key];
@@ -32,8 +32,8 @@ else{
 ?>
 
 <form method="POST">
-    <label for="title">Product Name
-        <input type="text" id="title" name="name" value="<?php echo get($result, "name");?>" />
+    <label for="pname">Name
+        <input type="text" id="pname" name="name" value="<?php echo get($result, "name");?>" />
     </label>
     <label for="category">Category
         <input type="text" id="category" name="category" value="<?php echo get($result, "category");?>" />
@@ -66,7 +66,7 @@ if(isset($_POST["updated"])){
                 ":category" => $category,
                 ":quantity" => $quantity,
                 ":price" => $price,
-                ":description" => $description
+                ":description" => $description,
                 ":id" => $productId
             ));
             $e = $stmt->errorInfo();
