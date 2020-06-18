@@ -2,7 +2,7 @@
 require("config.php");
 $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
 $db = new PDO($connection_string, $dbuser, $dbpass);
-$thingId = -1;
+$productId = -1;
 $result = array();
 function get($arr, $key){
     if(isset($arr[$key])){
@@ -16,7 +16,7 @@ if(isset($_GET["productId"])){
     $stmt->execute([":id"=>$productId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!$result){
-        $thingId = -1;
+        $productId = -1;
     }
 }
 else{
@@ -57,20 +57,26 @@ if(isset($_POST["updated"]) || isset($_POST["created"])){
     if(!empty($name) && !empty($category) && !empty($price)){
         try{
             if($productId > 0) {
-                $stmt = $db->prepare("UPDATE Products set name = :name, quantity=:quantity where id=:id");
+                $stmt = $db->prepare("UPDATE Products set name = :name, category=:category, 
+            quantity=:quantity, price=:price, description=:description where id=:id");
                 $result = $stmt->execute(array(
                     ":name" => $name,
                     ":category" => $category,
                     ":quantity" => $quantity,
-                    ":id" => $thingId
+                    ":price" => $price,
+                    ":description" => $description,
+                    ":id" => $productId
                 ));
             }
             else{
-                $stmt = $db->prepare("INSERT INTO Products (name, quantity) VALUES (:name, :quantity)");
+                $stmt = $db->prepare("INSERT INTO Products (name, category, quantity, price, description) 
+                                 VALUES (:name, :category, :quantity, :price, :description)");
                 $result = $stmt->execute(array(
                     ":name" => $name,
                     ":category" => $category,
-                    ":quantity" => $quantity
+                    ":quantity" => $quantity,
+                    ":price" => $price,
+                    ":description" => $description,
                 ));
             }
             $e = $stmt->errorInfo();
