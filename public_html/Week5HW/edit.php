@@ -22,7 +22,7 @@ $result = array();
 #}
 if(isset($_GET["productId"])){
     $productId = $_GET["productId"];
-    $stmt = $db->prepare("SELECT * FROM Products where ID = :id");
+    $stmt = $db->prepare("SELECT * FROM Products where id = :id");
     $stmt->execute([":id"=>$productId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -60,7 +60,7 @@ if(isset($_POST["updated"])){
     if(!empty($name) && !empty($category) && !empty($price)){ #check to make sure prexsiting values are there so it doesn't wipe it if empty
         try{
             $stmt = $db->prepare("UPDATE Products set name = :name, category=:category, 
-            quantity=:quantity, price=:price, description=:description where ID=:id");
+            quantity=:quantity, price=:price, description=:description where id=:id");
             $result = $stmt->execute(array(
                 ":name" => $name,
                 ":category" => $category,
