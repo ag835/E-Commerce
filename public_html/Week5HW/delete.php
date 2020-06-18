@@ -1,15 +1,6 @@
-<?php/*
-require("common.inc.php");
-$db = getDB();
-//example usage, change/move as needed
-$stmt = $db->prepare("SELECT * FROM Products");
-$stmt->execute();
-*/?>
-
 <?php
 require("common.inc.php");
 $db = getDB();
-
 $productId = -1;
 $result = array();
 
@@ -57,15 +48,6 @@ if(isset($_POST["delete"])){
             $result = $stmt->execute(array(
                 ":id" => $productId
             ));
-            /*$stmt = $db->prepare("UPDATE Products set Name = :name, category=:category, quantity=:quantity, price=:price, description=:description where id=:id");
-            $result = $stmt->execute(array(
-                ":name" => $name,
-                ":category" => $category,
-                ":quantity" => $quantity,
-                ":price" => $price,
-                ":description" => $description,
-                ":id" => $productId
-            ));*/
             $e = $stmt->errorInfo();
             if($e[0] != "00000"){
                 echo var_export($e, true);
@@ -76,7 +58,7 @@ if(isset($_POST["delete"])){
                     echo "Successfully deleted product: " . $name;
                 }
                 else{
-                    echo "Error updating record";
+                    echo "Error deleting record";
                 }
             }
         }
