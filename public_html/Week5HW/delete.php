@@ -41,8 +41,8 @@ if(isset($_POST["delete"])){
     $category = $_POST["category"];
     $quantity = $_POST["quantity"];
     $price = $_POST["price"];
-    $description = $_POST["description"];
-    if(!empty($name) && !empty($category) && !empty($price)){
+    $description = $_POST["description"]; #maybe these can be deleted?
+    if(!empty($name) && !empty($category) && !empty($price)){ #this too
         try{
             $stmt = $db->prepare("DELETE from Products where id=:id");
             $result = $stmt->execute(array(
