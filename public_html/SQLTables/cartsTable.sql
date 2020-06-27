@@ -1,11 +1,11 @@
 CREATE TABLE Cart (
-    ID int AUTO_INCREMENT,
-    ProductID int,
-    Quantity int,
-    UserID int,
+    id int AUTO_INCREMENT,
+    productID int,
+    quantity int,
+    userID int,
     created datetime DEFAULT current_timestamp,
     modified datetime DEFAULT current_timestamp on update current_timestamp,
-    PRIMARY KEY(ID),
-    FOREIGN KEY(ProductID) references Products.ID,
-    FOREIGN KEY(UserID) references Users.id
+    PRIMARY KEY(id),
+    FOREIGN KEY(productID) references Products.id,
+    FOREIGN KEY(userID) references Users.id
 )
