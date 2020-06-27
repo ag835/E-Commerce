@@ -1,12 +1,11 @@
 <?php
 $productId = -1;
-if(isset($_GET["$productId"]) && !empty($_GET["$productId"])){
-    $productId = $_GET["$productId"];
+if(isset($_GET["productId"]) && !empty($_GET["productId"])){
+    $productId = $_GET["productId"];
 }
 $result = array();
 require("common.inc.php");
 ?>
-
 <?php
 if(isset($_POST["updated"])){
     $name = "";
@@ -87,7 +86,6 @@ if($productId > -1){
     }
 }
 else{
-    echo $productId;
     echo "No productId provided in url.";
 }
 ?>
