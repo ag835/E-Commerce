@@ -26,7 +26,7 @@ if(isset($_POST["created"])) {
         $name = $_POST["name"];
     }
     if(isset($_POST["category"]) && !empty($_POST["category"])){
-        $name = $_POST["category"];
+        $category = $_POST["category"];
     }
     if(isset($_POST["quantity"]) && !empty($_POST["quantity"])){
         if(is_numeric($_POST["quantity"])){
@@ -35,7 +35,7 @@ if(isset($_POST["created"])) {
     }
     if(isset($_POST["price"]) && !empty($_POST["price"])){
         if(is_numeric($_POST["price"])){
-            $quantity = (float)$_POST["price"];
+            $price = (float)$_POST["price"];
         }
     }
     if(empty($name) || empty($category) || $quantity < 0 || $price < 0){
