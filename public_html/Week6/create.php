@@ -40,6 +40,10 @@ if(isset($_POST["created"])) {
     }
     if(empty($name) || empty($category) || $quantity < 0 || $price < 0){
         echo "Name, category must not be empty and quantity, price must be greater than or equal to 0";
+        echo $name
+        echo $category
+        echo $quantity
+        echo $price
         die();//terminates the rest of the script
     }
     try {
