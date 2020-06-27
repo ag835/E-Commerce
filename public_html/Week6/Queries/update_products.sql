@@ -1,0 +1,1 @@
+UPDATE Products set name = :name, category=:category, quantity=:quantity, price=:price, description=:description where id=:id

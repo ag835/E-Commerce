@@ -10,7 +10,7 @@
         <input type="number" id="q" name="quantity" required min="0"/>
     </label>
     <label for="p">Price
-        <input type="number" step="0.01" min="0" id="p" name="price" value = "0.00" required min="0"/>
+        <input type="number" step="0.01" min="0" id="p" name="price" value = "0.00" required min="0.00"/>
     </label>
     <label for="description">Description
         <input type="text" id="description" name="description" />
@@ -40,10 +40,6 @@ if(isset($_POST["created"])) {
     }
     if(empty($name) || empty($category) || $quantity < 0 || $price < 0){
         echo "Name, category must not be empty and quantity, price must be greater than or equal to 0";
-        echo $name;
-        echo $category;
-        echo $quantity;
-        echo $price;
         die();//terminates the rest of the script
     }
     try {
