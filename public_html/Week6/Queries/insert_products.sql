@@ -1,0 +1,2 @@
+
+INSERT INTO Products (name, category, quantity, price, description) VALUES (:name, :category, :quantity, :price, :description)
