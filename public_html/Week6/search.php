@@ -38,7 +38,6 @@ if(isset($search)) {
         <?php foreach($results as $row):?>
             <li>
                 <?php echo get($row, "name")?>
-                <?php echo get($row, "quantity")?>
                 <?php echo get($row, "price");?>
                 <a href="delete.php?productId=<?php echo get($row, "id");?>">Delete</a>
             </li>
