@@ -87,6 +87,7 @@ if($productId > -1){
     }
 }
 else{
+    echo $productId;
     echo "No productId provided in url.";
 }
 ?>
