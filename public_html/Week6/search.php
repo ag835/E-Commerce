@@ -8,15 +8,21 @@ if(isset($_POST["search"])){
         <input type="text" name="search" placeholder="Search for Product"
                value="<?php echo $search;?>"/>
         <label>Sort by</label>
-        <select name="sort">
-            <a href="Queries/search_price_asc.sql">Lowest Price</a>
-            <a href="Queries/search_price_desc.sql">Highest Price</a>
-        </select>
+        <div class="dropdown">
+            <button class="dropdown-button">Dropdown</button>
+            <div class="dropdown-list">
+                <a href="Queries/search_price_asc.sql">Lowest Price</a>
+                <a href="Queries/search_price_desc.sql">Highest Price</a>
+            </div>
+        </div>
+
         <input type="submit" value="Search"/>
     </form>
 <?php
+        #<select name="sort">
             #<option value="lowPrice">Lowest Price</option>
             #<option value="highPrice">Highest Price</option>
+       # </select>
 if(isset($search)) {
     require("common.inc.php");
     $query = file_get_contents(__DIR__ . "/Queries/search_products.sql");
