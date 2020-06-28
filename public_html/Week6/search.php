@@ -18,21 +18,25 @@ if(isset($_POST["search"])){
 if(isset($search)) {
     require("common.inc.php");
     if(isset($_POST["sort"])){
-        echo $_POST["sort"];
         $sort = " " . $_POST["sort"];
     }
     $query = file_get_contents(__DIR__ . "/Queries/search_products.sql");
     $query .= $sort;
     if (isset($query) && !empty($query)) {
         try {
-            echo $query;
             $stmt = getDB()->prepare($query);
             $stmt->execute([":product"=>$search]);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if($e[0] == "00000"){
+                die(header("Location: search.php"));
+            }
+            else{
+                echo var_export($e, true);
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-    } //move all this in sort
+    }
 }
 ?>
 
