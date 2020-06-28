@@ -25,7 +25,7 @@ if(isset($search)) {
     #$query .= $sort
     if (isset($query) && !empty($query)) {
         try {
-            $stmt = getDB()->prepare($query);
+            $stmt = getDB()->prepare($query . $sort);
             $stmt->execute([":product"=>$search]);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
