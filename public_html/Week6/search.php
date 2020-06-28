@@ -27,12 +27,6 @@ if(isset($search)) {
             $stmt = getDB()->prepare($query);
             $stmt->execute([":product"=>$search]);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if($e[0] == "00000"){
-                die(header("Location: search.php"));
-            }
-            else{
-                echo var_export($e, true);
-            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
