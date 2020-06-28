@@ -9,8 +9,8 @@ if(isset($_POST["search"])){
                value="<?php echo $search;?>"/>
         <label>Sort by</label>
         <select name="sort">
-            <option value="asc">Lowest Price</option>
-            <option value="desc">Highest Price</option>
+            <option value="ASC">Lowest Price</option>
+            <option value="DESC">Highest Price</option>
         </select>
         <input type="submit" value="Search"/>
     </form>
@@ -19,7 +19,7 @@ if(isset($search)) {
     require("common.inc.php");
     if(isset($_POST["sort"])){
         echo $_POST["sort"];
-        $sort = $_POST["sort"];
+        $sort = " " . $_POST["sort"];
     }
     $query = file_get_contents(__DIR__ . "/Queries/search_products.sql");
     $query .= $sort;
