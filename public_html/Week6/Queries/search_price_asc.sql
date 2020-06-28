@@ -1,1 +1,1 @@
-SELECT * FROM Products ORDER BY price ASC;
+SELECT * FROM Products ORDER BY price;

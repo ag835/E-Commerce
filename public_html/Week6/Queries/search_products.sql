@@ -1,1 +1,3 @@
-SELECT * FROM Products WHERE name LIKE CONCAT('%', :product, '%')
+SELECT * FROM Products
+WHERE name LIKE CONCAT('%', :product, '%')
+ORDER BY price;

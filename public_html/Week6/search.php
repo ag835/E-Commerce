@@ -9,15 +9,20 @@ if(isset($_POST["search"])){
                value="<?php echo $search;?>"/>
         <label>Sort by</label>
         <select name="sort">
-            <option value="Queries/search_price_asc.sql">Lowest Price</option>
-            <option value="Queries/search_price_desc.sql">Highest Price</option>
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
         </select>
         <input type="submit" value="Search"/>
     </form>
 <?php
 if(isset($search)) {
     require("common.inc.php");
+    if(isset($_POST["sort"])){
+        echo $_POST["sort"];
+        #$sort = SELECT * FROM Products ORDER BY price . $_POST["sort"];
+    }
     $query = file_get_contents(__DIR__ . "/Queries/search_products.sql");
+    #$query .= $sort
     if (isset($query) && !empty($query)) {
         try {
             $stmt = getDB()->prepare($query);
@@ -26,7 +31,7 @@ if(isset($search)) {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-    }
+    } //move all this in sort
 }
 ?>
 
@@ -37,7 +42,6 @@ if(isset($search)) {
             <li>
                 <?php echo get($row, "name")?>
                 <?php echo get($row, "price");?>
-                <a href="delete.php?productId=<?php echo get($row, "id");?>">Delete</a>
             </li>
         <?php endforeach;?>
     </ul>
