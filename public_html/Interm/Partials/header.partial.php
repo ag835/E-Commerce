@@ -1,7 +1,3 @@
-<head>
-    <title>Work in Progress</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
 <?php
 require_once (__DIR__."/../includes/common.inc.php");
 $logged_in = Common::is_logged_in(false);

@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+<head>
+    <title>Work in Progress</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 class Common {
     private $db;
     public static function is_logged_in($redirect = true){
