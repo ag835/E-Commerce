@@ -40,10 +40,10 @@ class DBH{
                     $user["roles"] = $roles;
                     return DBH::response($user);
                 } else {
-                    return DBH::response(NULL, 403, "he email or password that you have entered is incorrect.");
+                    return DBH::response(NULL, 403, "The email or password that you have entered is incorrect.");
                 }
             } else {
-                return DBH::response(NULL, 403, "he email or password that you have entered is incorrect.");
+                return DBH::response(NULL, 403, "The email or password that you have entered is incorrect.");
             }
         }
         catch(Exception $e){
