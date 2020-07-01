@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include_once(__DIR__."/Partials/header.partial.php");
 ?>
 <h1>Create an account</h1>
@@ -38,7 +41,7 @@ include_once(__DIR__."/Partials/header.partial.php");
 </form>
 <footer><p>Copyright &copy 2020, amo</p></footer>
 <?php
-//have to adjust this for additonal requirements, username and country (also adjust db_helper)
+//might have to adjust this (also adjust db_helper)
 if (Common::get($_POST, "submit", false)){
     $email = Common::get($_POST, "email", false);
     $password = Common::get($_POST, "password", false);
