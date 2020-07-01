@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__."/../includes/common.inc.php");
+require_once (__DIR__."/../Includes/common.inc.php");
 $logged_in = Common::is_logged_in(false);
 ?>
 <nav>
@@ -7,9 +7,6 @@ $logged_in = Common::is_logged_in(false);
         <?php if($logged_in):?>
             <li>
                 <a href="<?php echo Common::url_for("home");?>">Home</a>
-            </li>
-            <li>
-                <a href="<?php echo Common::url_for("game");?>">Game</a>
             </li>
         <?php endif; ?>
         <?php if(!$logged_in):?>
