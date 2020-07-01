@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__."/partials/header.partial.php");
+include_once(__DIR__."/Partials/header.partial.php");
 session_unset();
 session_destroy();
 //get session cookie and delete/clear it for this session

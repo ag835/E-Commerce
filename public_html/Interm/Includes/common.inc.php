@@ -37,7 +37,7 @@ class Common {
             return $r[1];
         }
         Common::flash("Error finding path", "danger");
-        return "/project/index.php";
+        return "/Interm/index.php";
     }
     /*** Attempts to safely retrieve a key from an array, otherwise returns the default
      * @param $arr

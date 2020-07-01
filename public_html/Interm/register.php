@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__."/partials/header.partial.php");
+include_once(__DIR__."/Partials/header.partial.php");
 ?>
 <h1>Create an account</h1>
 <form method="POST">

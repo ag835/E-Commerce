@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__."/partials/header.partial.php");
+include_once(__DIR__."/Partials/header.partial.php");
 ?>
     <div>
         <h1>Sign in</h1>
