@@ -2,6 +2,10 @@
 require_once (__DIR__."/../Includes/common.inc.php");
 $logged_in = Common::is_logged_in(false);
 ?>
+<head>
+    <title>Work in Progress</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <nav>
     <ul>
         <?php if($logged_in):?>
