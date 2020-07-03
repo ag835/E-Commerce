@@ -1,0 +1,1 @@
+SELECT * FROM Products where id = :id LIMIT 1

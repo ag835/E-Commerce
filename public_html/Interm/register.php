@@ -1,8 +1,5 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-include_once(__DIR__."/Partials/header.partial.php");
+include("header.php");
 ?>
 <h1>Create an account</h1>
 <form method="POST">
@@ -11,11 +8,11 @@ include_once(__DIR__."/Partials/header.partial.php");
     </label>
     <br>
     <label for="p">Choose password
-    <input type="password" id="p" name="password" required min="3"/>
+    <input type="password" id="p" name="password" required/>
     </label>
     <br>
     <label for="cp">Re-enter password
-    <input type="password" id="cp" name="cpassword" required min="3"/>
+    <input type="password" id="cp" name="cpassword" required/>
     </label>
     <br>
     <label>Country of Residence</label>
@@ -41,25 +38,47 @@ include_once(__DIR__."/Partials/header.partial.php");
 </form>
 <footer><p>Copyright &copy 2020, amo</p></footer>
 <?php
-//might have to adjust this (also adjust db_helper)
-if (Common::get($_POST, "submit", false)){
-    $email = Common::get($_POST, "email", false);
-    $password = Common::get($_POST, "password", false);
-    $confirm_password = Common::get($_POST, "cpassword", false);
-    if($password != $confirm_password){
-        Common::flash("Passwords must match", "warning");
-        die(header("Location: register.php"));
-    }
-    if(!empty($email) && !empty($password)){
-        $result = DBH::register($email, $password);
-        echo var_export($result, true);
-        if(Common::get($result, "status", 400) == 200){
-            Common::flash("Successfully registered, please login", "success");
-            die(header("Location: " . Common::url_for("login")));
+#include("header.php"); #wrong spot
+#echo var_export($_GET, true);
+#echo var_export($_POST, true);
+#echo var_export($_REQUEST, true);
+if(isset($_POST["register"])) {
+    if (empty($_POST["register"])) {
+        echo "<div>Please fill out all input fields.</div>";
+    } else {
+        if (isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"])) {
+            $password = $_POST["password"];
+            $cpassword = $_POST["cpassword"];
+            $email = $_POST["email"];
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if ($password == $cpassword) {
+                    #echo "<div>Passwords Match</div>";
+                    #require("config.php");
+                    $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
+                    try {
+                        $db = new PDO($connection_string, $dbuser, $dbpass);
+                        $hash = password_hash($password, PASSWORD_BCRYPT);
+                        $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
+                        $stmt->execute(array(
+                            ":email" => $email,
+                            ":password" => $hash #Don't save the raw password $password
+                        ));
+                        $e = $stmt->errorInfo();
+                        if ($e[0] != "00000") {
+                            echo var_export($e, true);
+                        } else {
+                            echo "<div>Successfully registered</div>";
+                        }
+                    } catch (Exception $e) {
+                        echo $e->getMessage();
+                    }
+                } else {
+                    echo "<div>Passwords do not match</div>";
+                }
+            } else {
+                echo "<div>Please enter a valid email address</div>";
+            }
         }
     }
-    else{
-        Common::flash("Email and password must not be empty", "warning");
-        die(header("Location: register.php"));
-    }
 }
+?>

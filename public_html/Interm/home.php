@@ -1,11 +1,17 @@
 <?php
-include_once(__DIR__."/Partials/header.partial.php");
+include("header.php");
 
-if(Common::is_logged_in()){
-    //this will auto redirect if user isn't logged in
-}
+?>
+<h4>Home</h4>
+<style>
+    body {
+        background-image: url('signs.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<?php
+echo "Hello, " . $_SESSION["user"]["email"];
 ?>
 
-<div>
-    <p>Welcome, <?php echo Common::get_username();?></p>
-</div>
