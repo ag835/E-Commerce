@@ -5,14 +5,11 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])){
         $userId = $_SESSION["user"]["id"];
         $query = file_get_contents(__DIR__ . "/Queries/insert_into_cart.sql");
         if(isset($query) && !empty($query)) {
-            echo $userId;
             require("common.inc.php");
             $stmt = getDB()->prepare($query);
             $stmt->execute([":productID"=>$productId, ":userID"=>$userId]); //:id -> :productID, added user id stuff
             $e = $stmt->errorInfo();
             if($e[0] == "00000"){
-                echo $userId;
-                #echo "Successfully added to cart.";
                 die(header("Location: store.php"));
             }
             else{

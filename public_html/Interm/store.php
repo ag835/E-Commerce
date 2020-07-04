@@ -5,7 +5,8 @@ error_reporting(E_ALL);
 include("header.php");
 ?>
 <?php
-//echo "Hello, " . $_SESSION["user"]["id"];
+$userId = $_SESSION["user"]["id"];
+echo "Hello, " . $userId;
 $search = "";
 if(isset($_POST["search"])){
     $search = $_POST["search"];
