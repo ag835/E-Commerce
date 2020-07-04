@@ -5,12 +5,13 @@ error_reporting(E_ALL);
 include("header.php");
 ?>
 <?php
-echo "Hello, " . $_SESSION["user"]["id"];
+//echo "Hello, " . $_SESSION["user"]["id"];
 $search = "";
 if(isset($_POST["search"])){
     $search = $_POST["search"];
 }
 ?>
+<h1>Store</h1>
     <form method="POST">
         <input type="text" name="search" placeholder="Search for Product"
                value="<?php echo $search;?>"/>

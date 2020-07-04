@@ -2,7 +2,7 @@
 include("header.php");
 
 ?>
-<h4>Home</h4>
+<h1>Home</h1>
 <style>
     body {
         background-image: url('signs.png');
