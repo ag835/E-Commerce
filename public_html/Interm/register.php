@@ -58,7 +58,7 @@ if(isset($_POST["register"])) {
                     try {
                         #$db = new PDO($connection_string, $dbuser, $dbpass);
                         $hash = password_hash($password, PASSWORD_BCRYPT);
-                        $stmt = getDB()->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
+                        $stmt = getDB()->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)"); #$db to getDB()
                         $stmt->execute(array(
                             ":email" => $email,
                             ":password" => $hash #Don't save the raw password $password
