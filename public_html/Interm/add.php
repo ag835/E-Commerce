@@ -10,7 +10,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])){
             $e = $stmt->errorInfo();
             if($e[0] == "00000"){
                 die(header("Location: store.php"));
-                echo "Successfully added to cart."
+                echo "Successfully added to cart.";
             }
             else{
                 echo var_export($e, true);
