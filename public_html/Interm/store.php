@@ -1,5 +1,5 @@
 <?php
-//include("header.php");
+include("header.php");
 ?>
 <?php
 echo "Hello, " . $_SESSION["user"]["id"];
