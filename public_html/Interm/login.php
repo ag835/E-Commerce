@@ -43,9 +43,9 @@ if(isset($_POST["login"])) {
                             echo "<div>You are logged in.</div>";
                             $_SESSION["user"] = array(
                                 "id" => $result["id"],
-                                "email" => $result["email"],
-                                "first_name" => $result["first_name"],
-                                "last_name" => $result["last_name"]
+                                "email" => $result["email"]
+                               #"first_name" => $result["first_name"],
+                                #"last_name" => $result["last_name"]
                             );
                             echo var_export($_SESSION, true);
                             header("Location: home.php");
