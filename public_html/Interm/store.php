@@ -41,7 +41,7 @@ if(isset($search)) {
             <li>
                 <?php echo get($row, "name")?>
                 <?php echo get($row, "price");?>
-                <a href="add.php?thingId=<?php echo get($row, "id");?>">Add to cart</a>
+                <a href="add.php?productId=<?php echo get($row, "id");?>">Add to cart</a>
             </li>
         <?php endforeach;?>
     </ul>
