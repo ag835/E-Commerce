@@ -1,10 +1,9 @@
 <?php
-include("header.php");
+//include("header.php");
 ?>
 <?php
 echo "Hello, " . $_SESSION["user"]["id"];
 $search = "";
-echo var_export($_SESSION, true);
 if(isset($_POST["search"])){
     $search = $_POST["search"];
 }
