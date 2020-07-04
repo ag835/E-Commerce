@@ -2,7 +2,7 @@
 if (isset($_GET["productId"]) && !empty($_GET["productId"])){
     if(is_numeric($_GET["productId"])){
         $productId = (int)$_GET["productId"];
-        $userId = $_SESSION["user"]["id"]; //added
+        $userId = $_SESSION["user"]["id"]; //added, might not work like this?
         $query = file_get_contents(__DIR__ . "/Queries/insert_into_cart.sql");
         if(isset($query) && !empty($query)) {
             require("common.inc.php");
