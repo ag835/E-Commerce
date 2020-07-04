@@ -24,7 +24,7 @@ if(isset($_POST["search"])){
     </form>
 <?php
 if(isset($search)) {
-    require("common.inc.php");
+    #require("common.inc.php");
     if(isset($_POST["sort"])){
         $sort = " " . $_POST["sort"];
     }

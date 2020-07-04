@@ -25,10 +25,10 @@ if(isset($_POST["login"])) {
             $password = $_POST["password"];
             $email = $_POST["email"];
             #require("config.php");
-            $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
+            #$connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4"; 07/04
             try {
-                $db = new PDO($connection_string, $dbuser, $dbpass);
-                $stmt = $db->prepare("SELECT * FROM Users where email = :email LIMIT 1");
+                #$db = new PDO($connection_string, $dbuser, $dbpass); 07/04
+                $stmt = getDB()->prepare("SELECT * FROM Users where email = :email LIMIT 1");
                 $stmt->execute(array(
                     ":email" => $email
                 ));
