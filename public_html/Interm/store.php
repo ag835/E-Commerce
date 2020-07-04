@@ -1,5 +1,7 @@
 <?php
-include("header.php");
+//include("header.php");
+?>
+<?php
 $search = "";
 echo var_export($_SESSION, true);
 if(isset($_POST["search"])){
