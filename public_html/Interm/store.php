@@ -1,12 +1,8 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+#ini_set('display_errors',1);
+#ini_set('display_startup_errors', 1);
+#error_reporting(E_ALL);
 include("header.php");
-?>
-<?php
-$userId = $_SESSION["user"]["id"];
-echo "Hello, " . $userId;
 $search = "";
 if(isset($_POST["search"])){
     $search = $_POST["search"];

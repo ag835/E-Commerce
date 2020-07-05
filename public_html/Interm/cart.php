@@ -30,5 +30,25 @@ if(isset($query) && !empty($query)){
     <p>No results</p>
 <?php endif;?>
 
-<input type="submit" value="Purchase"/>
+<form method="POST">
+    <input type="submit" name="purchase" value="Purchase"/>
+</form>
+
+<?php
+if(isset($_POST["purchase"])){
+    $query = file_get_contents(__DIR__ . "/Queries/purchase_cart.sql");
+    if (isset($query) && !empty($query)) {
+        try {
+            $stmt = getDB()->prepare($query);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+}
+?>
+
+
+
 
