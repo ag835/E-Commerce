@@ -1,1 +1,1 @@
-SELECT * FROM Products WHERE id = productID LIMIT 1
+SELECT * FROM Products INNER JOIN Carts ON (Products.id = Carts.productID)
