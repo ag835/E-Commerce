@@ -9,7 +9,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])){
             $stmt = getDB()->prepare($query);
             $stmt->execute(array(
                 ":productID"=>$productId,
-                ":userID"=>$_SESSION["user"]["id"]
+                ":userID"=>$userId
             )); //:id -> :productID, added user id stuff
             $e = $stmt->errorInfo();
             if($e[0] == "00000"){

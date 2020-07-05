@@ -1,5 +1,5 @@
 <?php
-require("common.inc.php");
+include("header.php");
 $query = file_get_contents(__DIR__ . "/Queries/select_cart.sql");
 if(isset($query) && !empty($query)){
     try {
@@ -13,6 +13,7 @@ if(isset($query) && !empty($query)){
 }
 ?>
 <?php if(isset($results)):?>
+<h1>Cart</h1>
     <p>Results:</p>
     <ul>
         <?php foreach($results as $row):?>
@@ -20,10 +21,14 @@ if(isset($query) && !empty($query)){
                 <?php echo get($row, "name")?>
                 <?php echo get($row, "quantity")?>
                 <?php echo get($row, "price");?>
-                <a href="delete.php?productId=<?php echo get($row, "id");?>">Delete from cart</a>
+                <a href="delete.php?productId=<?php echo get($row, "id");?>">Remove from cart</a>
             </li>
         <?php endforeach;?>
     </ul>
 <?php else:?>
     <p>No results</p>
 <?php endif;?>
+
+
+<input type="submit" value="Purchase"/>
+
