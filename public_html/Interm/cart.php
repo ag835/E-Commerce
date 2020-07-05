@@ -14,7 +14,7 @@ if(isset($query) && !empty($query)){
 ?>
 <?php if(isset($results)):?>
 <h1>Cart</h1>
-    <p>Results:</p>
+    <p>Your items:</p>
     <ul>
         <?php foreach($results as $row):?>
             <li>
@@ -28,7 +28,6 @@ if(isset($query) && !empty($query)){
 <?php else:?>
     <p>No results</p>
 <?php endif;?>
-
 
 <input type="submit" value="Purchase"/>
 

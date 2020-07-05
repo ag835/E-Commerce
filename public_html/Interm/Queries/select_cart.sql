@@ -1,1 +1,1 @@
-SELECT * FROM Carts --WHERE userID = Users.Id
+SELECT * FROM Carts
