@@ -21,6 +21,7 @@ if(isset($query) && !empty($query)){
                 <?php echo get($row, "name")?>
                 <?php echo get($row, "quantity")?>
                 <?php echo get($row, "price");?>
+                <br>
                 <a href="delete.php?productId=<?php echo get($row, "id");?>">Remove from cart</a>
             </li>
         <?php endforeach;?>
