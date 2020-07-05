@@ -1,1 +1,1 @@
-SELECT * FROM Carts
+SELECT * FROM Products WHERE id = productID LIMIT 1
