@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 if (isset($_GET["productId"]) && !empty($_GET["productId"])){
     if(is_numeric($_GET["productId"])){
         $productId = (int)$_GET["productId"];
