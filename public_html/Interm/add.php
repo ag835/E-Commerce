@@ -7,7 +7,10 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])){
         if(isset($query) && !empty($query)) {
             require("common.inc.php");
             $stmt = getDB()->prepare($query);
-            $stmt->execute([":productID"=>$productId, ":userID"=>$userId]); //:id -> :productID, added user id stuff
+            $stmt->execute(array(
+                ":productID"=>$productId,
+                ":userID"=>$userId
+            )); //:id -> :productID, added user id stuff
             $e = $stmt->errorInfo();
             if($e[0] == "00000"){
                 die(header("Location: store.php"));
