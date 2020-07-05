@@ -1,6 +1,6 @@
 <?php
 include("header.php");
-echo $_SESSION["user"]["id"]; //debug
+#echo $_SESSION["user"]["id"]; //debug
 $query = file_get_contents(__DIR__ . "/Queries/select_cart.sql");
 if(isset($query) && !empty($query)){
     try {
@@ -22,7 +22,7 @@ if(isset($query) && !empty($query)){
                 <?php echo get($row, "name")?>
                 <?php echo get($row, "quantity")?>
                 <?php echo get($row, "price");?>
-                <a href="delete.php?productId=<?php echo get($row, "id");?>">Remove from cart</a>
+                <a href="remove.php?productId=<?php echo get($row, "id");?>">Remove from cart</a>
                 <br>
             </li>
         <?php endforeach;?>
