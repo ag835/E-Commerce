@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+echo $_SESSION["user"]["id"]; //debug
 $query = file_get_contents(__DIR__ . "/Queries/select_cart.sql");
 if(isset($query) && !empty($query)){
     try {
