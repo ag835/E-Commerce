@@ -1,3 +1,3 @@
 UPDATE Carts
    SET quantity = quantity + 1
- WHERE productID = :id
+ WHERE id = :id
