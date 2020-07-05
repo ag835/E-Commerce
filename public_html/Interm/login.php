@@ -18,7 +18,7 @@ include("header.php");
 #echo var_export($_POST, true);
 #echo var_export($_REQUEST, true);
 if(isset($_POST["login"])) {
-    if (empty($_POST["login"])) {
+    if (empty($_POST["email"]) || empty($_POST["password"])) {
         echo "<div>Please fill out all input fields.</div>";
     } else {
         if (isset($_POST["password"]) && isset($_POST["email"])) {
