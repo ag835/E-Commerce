@@ -5,11 +5,56 @@
         // Arcade Shooter game
 
         // Get a reference to the canvas DOM element
-        var canvas = document.getElementById('canvas');
+        //-var canvas = document.getElementById('canvas');
         // Get the canvas drawing context
-        var context = canvas.getContext('2d');
+        //-var context = canvas.getContext('2d');
+
+        var canvas;
+        var context;
+        // The bulled shot from the ship
+        var ship;
+        // Flags to tracked which keys are pressed
+        var up = false;
+        var down = false;
+        var space = false;
+        // The bulled shot from the ship
+        var bullet;
+        // An array for enemies (in case there are more than one)
+        var enemies = [];
+        var drawables = [];
+
+        // Add an enemy object to the array
+        var enemyBaseSpeed = 2;
+
+        // Track the user's score
+        var score = 0;
+        // The delay between enemies (in milliseconds)
+        var timeBetweenEnemies = 5 * 1000;
+        // ID to track the spawn timeout
+        var timeoutId = null;
 
 
+        function init() {
+            canvas = document.getElementById("board");
+            if (canvas.getContext) {
+                context = canvas.getContext("2d");
+                ship = makeSquare(50, canvas.height / 2 - 25, 50, 5);
+                bullet = makeSquare(0, 0, 10, 10);
+                //-leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
+                //-rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
+                //-ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#000000');
+                drawables.push(ship);
+                drawables.push(bullet);
+                //drawables.push(ball);
+                console.log(drawables);
+                //-resetBall();
+                attachKeyListeners();
+                //-loop = window.setInterval(gameLoop, 16); //16ms
+                //Start the game
+                menu();
+                canvas.focus();
+            }
+        }
 
         // Create an object representing a square on the canvas
         function makeSquare(x, y, length, speed) {
@@ -24,24 +69,11 @@
             };
         }
 
-        // The ship the user controls
-        var ship = makeSquare(50, canvas.height / 2 - 25, 50, 5);
-
-        // Flags to tracked which keys are pressed
-        var up = false;
-        var down = false;
-        var space = false;
-
-        // Is a bullet already on the canvas?
-        var shooting = false;
-        // The bulled shot from the ship
-        var bullet = makeSquare(0, 0, 10, 10);
-
         // An array for enemies (in case there are more than one)
-        var enemies = [];
+        //-var enemies = [];
 
         // Add an enemy object to the array
-        var enemyBaseSpeed = 2;
+        //-var enemyBaseSpeed = 2;
         function makeEnemy() {
             var enemyX = canvas.width;
             var enemySize = Math.round((Math.random() * 15)) + 15;
@@ -65,13 +97,6 @@
             }
             return result;
         }
-
-        // Track the user's score
-        var score = 0;
-        // The delay between enemies (in milliseconds)
-        var timeBetweenEnemies = 5 * 1000;
-        // ID to track the spawn timeout
-        var timeoutId = null;
 
         // Show the game menu and instructions
         function menu() {
@@ -112,30 +137,33 @@
             context.fillText('Game Over. Final Score: ' + score, canvas.width / 2, canvas.height / 2);
         }
 
-        // Listen for keydown events
-        canvas.addEventListener('keydown', function(event) {
-            event.preventDefault();
-            if (event.keyCode === 38) { // UP
-                up = true;
-            }
-            if (event.keyCode === 40) { // DOWN
-                down = true;
-            }
-            if (event.keyCode === 32) { // SPACE
-                shoot();
-            }
-        });
+        function attachKeyListeners() {
+            // Listen for keydown events
+            canvas.addEventListener('keydown', function(event) {
+                event.preventDefault();
+                if (event.keyCode === 38) { // UP
+                    up = true;
+                }
+                if (event.keyCode === 40) { // DOWN
+                    down = true;
+                }
+                if (event.keyCode === 32) { // SPACE
+                    shoot();
+                }
+            });
 
-        // Listen for keyup events
-        canvas.addEventListener('keyup', function(event) {
-            event.preventDefault();
-            if (event.keyCode === 38) { // UP
-                up = false;
-            }
-            if (event.keyCode === 40) { // DOWN
-                down = false;
-            }
-        });
+            // Listen for keyup events
+            canvas.addEventListener('keyup', function(event) {
+                event.preventDefault();
+                if (event.keyCode === 38) { // UP
+                    up = false;
+                }
+                if (event.keyCode === 40) { // DOWN
+                    down = false;
+                }
+            });
+        }
+
 
         // Clear the canvas
         function erase() {
@@ -217,10 +245,13 @@
                 bullet.draw();
             }
             // Draw the score
-            context.fillStyle = '#000000';
-            context.font = '24px Arial';
-            context.textAlign = 'left';
-            context.fillText('Score: ' + score, 1, 25)
+            function drawScores() {
+                context.fillStyle = '#000000';
+                context.font = '24px Arial';
+                context.textAlign = 'left';
+                context.fillText('Score: ' + score, 1, 25)
+            }
+
             // End or continue the game
             if (gameOver) {
                 endGame();
@@ -230,8 +261,8 @@
         }
 
         // Start the game
-        menu();
-        canvas.focus();
+        //-menu();
+        //-canvas.focus();
     </script>
 </head>
 <body onload="init();">
