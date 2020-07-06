@@ -16,6 +16,7 @@
         var bullet;
         // An array for enemies (in case there are more than one)
         var enemies = [];
+        var gameOver;
         var drawables = [];
         var loop;
 
@@ -45,7 +46,7 @@
                 console.log(drawables);
                 //-resetBall();
                 attachKeyListeners();
-                loop = window.setInterval(gameLoop, 16); //16ms
+                //-loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
                 menu();
                 canvas.focus();
@@ -164,7 +165,6 @@
             });
         }
 
-
         // Clear the canvas
         function erase() {
             context.fillStyle = '#FFFFFF';
@@ -185,7 +185,7 @@
             //-erase();
             var gameOver = false;
             // Move and draw the enemies
-            enemies.forEach(function(enemy) {
+            /*enemies.forEach(function(enemy) {
                 enemy.x -= enemy.s;
                 if (enemy.x < 0) {
                     gameOver = true;
@@ -198,7 +198,7 @@
                 if (isColliding(enemy, ship)) {
                     gameOver = true;
                 }
-            });
+            }); */
             // Move the ship
             /*if (down) {
                 ship.y += ship.s;
@@ -217,6 +217,83 @@
             //-context.fillStyle = '#FF0000';
             ship.draw();
             // Move and draw the bullet
+            /*if (shooting) {
+                // Move the bullet
+                bullet.x += bullet.s;
+                // Collide the bullet with enemies
+                enemies.forEach(function(enemy, i) {
+                    if (isColliding(bullet, enemy)) {
+                        enemies.splice(i, 1);
+                        score++;
+                        shooting = false;
+                        // Make the game harder
+                        if (score % 10 === 0 && timeBetweenEnemies > 1000) {
+                            clearInterval(timeoutId);
+                            timeBetweenEnemies -= 1000;
+                            timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
+                        } else if (score % 5 === 0) {
+                            enemyBaseSpeed += 1;
+                        }
+                    }
+                });
+                // Collide with the wall
+                if (bullet.x > canvas.width) {
+                    shooting = false;
+                }
+                // Draw the bullet
+                //-context.fillStyle = '#0000FF';
+                bullet.draw();
+            }*/
+        // Draw the score
+        /*function drawScores() {
+            context.fillStyle = '#000000';
+            context.font = '24px Arial';
+            context.textAlign = 'left';
+            context.fillText('Score: ' + score, 1, 25)
+        }*/
+
+            // End or continue the game
+            /*if (gameOver) {
+                endGame();
+            } else {
+                window.requestAnimationFrame(draw);
+            }*/
+        }
+        function enemies() {
+            // Move and draw the enemies
+            enemies.forEach(function(enemy) {
+                enemy.x -= enemy.s;
+                if (enemy.x < 0) {
+                    gameOver = true;
+                }
+                //-context.fillStyle = '#00FF00';
+                enemy.draw();
+            });
+            // Collide the ship with enemies
+            enemies.forEach(function(enemy, i) {
+                if (isColliding(enemy, ship)) {
+                    gameOver = true;
+                }
+            });
+        }
+        function moveShip() {
+            // Move the ship
+            if (down) {
+                ship.y += ship.s;
+            }
+            if (up) {
+                ship.y -= ship.s;
+            }
+            // Don't go out of bounds
+            if (ship.y < 0) {
+                ship.y = 0;
+            }
+            if (ship.y > canvas.height - ship.l) {
+                ship.y = canvas.height - ship.l;
+            }
+        }
+
+        function bullets() {
             if (shooting) {
                 // Move the bullet
                 bullet.x += bullet.s;
@@ -244,36 +321,6 @@
                 //-context.fillStyle = '#0000FF';
                 bullet.draw();
             }
-        // Draw the score
-        /*function drawScores() {
-            context.fillStyle = '#000000';
-            context.font = '24px Arial';
-            context.textAlign = 'left';
-            context.fillText('Score: ' + score, 1, 25)
-        }*/
-
-            // End or continue the game
-            if (gameOver) {
-                endGame();
-            } else {
-                window.requestAnimationFrame(draw);
-            }
-        }
-        function moveShip() {
-            // Move the ship
-            if (down) {
-                ship.y += ship.s;
-            }
-            if (up) {
-                ship.y -= ship.s;
-            }
-            // Don't go out of bounds
-            if (ship.y < 0) {
-                ship.y = 0;
-            }
-            if (ship.y > canvas.height - ship.l) {
-                ship.y = canvas.height - ship.l;
-            }
         }
 
         // Draw the score
@@ -284,22 +331,33 @@
             context.fillText('Score: ' + score, 1, 25)
         }
 
+        function status() {
+            // End or continue the game
+            if (gameOver) {
+                endGame();
+            } else {
+                window.setInterval(gameLoop, 16); //16ms
+            }
+        }
+
         function gameLoop() {
             erase();
-            draw();
+            gameOver = false;
+            enemies();
             moveShip();
+            bullets();
             //-doAI();
             //-moveBall();
 
             //-checkPaddleCollision();
             //-checkScore();
             drawScores();
+            status();
             //draw stuff
             for (let i = 0; i < drawables.length; i++) {
                 drawables[i].draw();
             }
         }
-
 
     </script>
 </head>
