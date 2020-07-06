@@ -46,7 +46,7 @@
                 console.log(drawables);
                 //-resetBall();
                 attachKeyListeners();
-                loop = window.setInterval(gameLoop, 16); //16ms
+                //loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
                 menu();
                 canvas.focus();
@@ -335,9 +335,9 @@
             // End or continue the game
             if (gameOver) {
                 endGame();
-            }/* else {
-                loop = window.setInterval(gameLoop, 16); //16ms
-            }*/
+            } else {
+                window.requestAnimationFrame(draw);
+            }
         }
 
         function gameLoop() {
