@@ -4,11 +4,6 @@
     <script>
         // Arcade Shooter game
 
-        // Get a reference to the canvas DOM element
-        //-var canvas = document.getElementById('canvas');
-        // Get the canvas drawing context
-        //-var context = canvas.getContext('2d');
-
         var canvas;
         var context;
         // The bulled shot from the ship
@@ -39,8 +34,8 @@
             canvas = document.getElementById("board");
             if (canvas.getContext) {
                 context = canvas.getContext("2d");
-                ship = makeSquare(50, canvas.height / 2 - 25, 50, 5);
-                bullet = makeSquare(0, 0, 10, 10);
+                ship = makeSquare(50, canvas.height / 2 - 25, 50, 5, '#FF0000');
+                bullet = makeSquare(0, 0, 10, 10, '#0000FF');
                 //-leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
                 //-rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
                 //-ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#000000');
@@ -58,13 +53,17 @@
         }
 
         // Create an object representing a square on the canvas
-        function makeSquare(x, y, length, speed) {
+        function makeSquare(x, y, length, speed, color) {
+            if (!color)
+                color = '#000000';
             return {
                 x: x,
                 y: y,
                 l: length,
                 s: speed,
+                c: color,
                 draw: function() {
+                    context.fillStyle = this.c;
                     context.fillRect(this.x, this.y, this.l, this.l);
                 }
             };
@@ -80,7 +79,7 @@
             var enemySize = Math.round((Math.random() * 15)) + 15;
             var enemyY = Math.round(Math.random() * (canvas.height - enemySize * 2)) + enemySize;
             var enemySpeed = Math.round(Math.random() * enemyBaseSpeed) + enemyBaseSpeed;
-            enemies.push(makeSquare(enemyX, enemyY, enemySize, enemySpeed));
+            enemies.push(makeSquare(enemyX, enemyY, enemySize, enemySpeed, '#00FF00'));
         }
 
         // Check if number a is in the range b to c (exclusive)
@@ -183,7 +182,7 @@
 
         // The main draw loop
         function draw() {
-            erase();
+            //-erase();
             var gameOver = false;
             // Move and draw the enemies
             enemies.forEach(function(enemy) {
@@ -191,7 +190,7 @@
                 if (enemy.x < 0) {
                     gameOver = true;
                 }
-                context.fillStyle = '#00FF00';
+                //-context.fillStyle = '#00FF00';
                 enemy.draw();
             });
             // Collide the ship with enemies
@@ -201,7 +200,7 @@
                 }
             });
             // Move the ship
-            if (down) {
+            /*if (down) {
                 ship.y += ship.s;
             }
             if (up) {
@@ -213,9 +212,9 @@
             }
             if (ship.y > canvas.height - ship.l) {
                 ship.y = canvas.height - ship.l;
-            }
+            }*/
             // Draw the ship
-            context.fillStyle = '#FF0000';
+            //-context.fillStyle = '#FF0000';
             ship.draw();
             // Move and draw the bullet
             if (shooting) {
@@ -242,22 +241,62 @@
                     shooting = false;
                 }
                 // Draw the bullet
-                context.fillStyle = '#0000FF';
+                //-context.fillStyle = '#0000FF';
                 bullet.draw();
             }
-            // Draw the score
-            function drawScores() {
-                context.fillStyle = '#000000';
-                context.font = '24px Arial';
-                context.textAlign = 'left';
-                context.fillText('Score: ' + score, 1, 25)
-            }
+        // Draw the score
+        /*function drawScores() {
+            context.fillStyle = '#000000';
+            context.font = '24px Arial';
+            context.textAlign = 'left';
+            context.fillText('Score: ' + score, 1, 25)
+        }*/
 
             // End or continue the game
             if (gameOver) {
                 endGame();
             } else {
                 window.requestAnimationFrame(draw);
+            }
+        }
+        function moveShip() {
+            // Move the ship
+            if (down) {
+                ship.y += ship.s;
+            }
+            if (up) {
+                ship.y -= ship.s;
+            }
+            // Don't go out of bounds
+            if (ship.y < 0) {
+                ship.y = 0;
+            }
+            if (ship.y > canvas.height - ship.l) {
+                ship.y = canvas.height - ship.l;
+            }
+        }
+
+        // Draw the score
+        function drawScores() {
+            context.fillStyle = '#000000';
+            context.font = '24px Arial';
+            context.textAlign = 'left';
+            context.fillText('Score: ' + score, 1, 25)
+        }
+
+        function gameLoop() {
+            erase();
+            draw();
+            //moveShip();
+            //-doAI();
+            //-moveBall();
+
+            //-checkPaddleCollision();
+            //-checkScore();
+            drawScores();
+            //draw stuff
+            for (let i = 0; i < drawables.length; i++) {
+                drawables[i].draw();
             }
         }
 
