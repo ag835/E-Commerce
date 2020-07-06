@@ -22,6 +22,7 @@
         // An array for enemies (in case there are more than one)
         var enemies = [];
         var drawables = [];
+        var loop;
 
         // Add an enemy object to the array
         var enemyBaseSpeed = 2;
@@ -49,7 +50,7 @@
                 console.log(drawables);
                 //-resetBall();
                 attachKeyListeners();
-                //-loop = window.setInterval(gameLoop, 16); //16ms
+                loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
                 menu();
                 canvas.focus();
@@ -139,7 +140,7 @@
 
         function attachKeyListeners() {
             // Listen for keydown events
-            canvas.addEventListener('keydown', function(event) {
+            window.addEventListener('keydown', function(event) {
                 event.preventDefault();
                 if (event.keyCode === 38) { // UP
                     up = true;
@@ -153,7 +154,7 @@
             });
 
             // Listen for keyup events
-            canvas.addEventListener('keyup', function(event) {
+            window.addEventListener('keyup', function(event) {
                 event.preventDefault();
                 if (event.keyCode === 38) { // UP
                     up = false;
@@ -260,9 +261,7 @@
             }
         }
 
-        // Start the game
-        //-menu();
-        //-canvas.focus();
+
     </script>
 </head>
 <body onload="init();">
