@@ -105,13 +105,13 @@
             context.fillStyle = '#000000';
             context.font = '36px Arial';
             context.textAlign = 'center';
-            context.fillText('Shoot \'Em!', canvas.width / 2, canvas.height / 4);
+            context.fillText('Missile Defense System', canvas.width / 2, canvas.height / 4);
             context.font = '24px Arial';
             context.fillText('Click to Start', canvas.width / 2, canvas.height / 2);
             context.font = '18px Arial';
             context.fillText('Up/Down to move, Space to shoot.', canvas.width / 2, (canvas.height / 4) * 3);
             // Start the game on a click
-            canvas.addEventListener('click', startGame);
+            window.addEventListener('click', startGame);
         }
 
         // Start the game
@@ -123,7 +123,7 @@
             // Kick off the draw loop
             gameLoop();
             // Stop listening for click events
-            canvas.removeEventListener('click', startGame);
+            window.removeEventListener('click', startGame);
         }
 
         // Show the end game screen
