@@ -4,50 +4,84 @@
     <script>
         // Arcade Shooter game
 
-        // Get a reference to the canvas DOM element
-        var canvas = document.getElementById('canvas');
-        // Get the canvas drawing context
-        var context = canvas.getContext('2d');
+        var canvas;
+        var context;
+        // The bulled shot from the ship
+        var ship;
+        // Flags to tracked which keys are pressed
+        var up = false;
+        var down = false;
+        var left;
+        var space = false;
+        // The bulled shot from the ship
+        var bullet;
+        // An array for enemies (in case there are more than one)
+        var enemies = [];
+        var gameOver;
+        var drawables = [];
+        var loop;
+        var timer = 0;
+        // ID to track the setInterval
+        var id = null;
+
+        // Add an enemy object to the array
+        var enemyBaseSpeed = 2;
+
+        // Track the user's score
+        var score = 0;
+        // The delay between enemies (in milliseconds)
+        var timeBetweenEnemies = 5 * 1000;
+        // ID to track the spawn timeout
+        var timeoutId = null;
 
 
+        function init() {
+            canvas = document.getElementById("board");
+            if (canvas.getContext) {
+                context = canvas.getContext("2d");
+                ship = makeSquare(50, canvas.height / 2 - 25, 50, 5, '#FF0000');
+                bullet = makeSquare(0, 0, 10, 10, '#0000FF');
+                drawables.push(ship);
+                drawables.push(bullet);
+                console.log(drawables);
+                attachKeyListeners();
+                //timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
+                //setTimeout(makeEnemy, 1000);
+                //loop = window.setInterval(gameLoop, 16); //16ms
+                //Start the game
+                menu();
+                canvas.focus();
+            }
+        }
 
         // Create an object representing a square on the canvas
-        function makeSquare(x, y, length, speed) {
+        function makeSquare(x, y, length, speed, color) {
+            if (!color)
+                color = '#000000';
             return {
                 x: x,
                 y: y,
                 l: length,
                 s: speed,
+                c: color,
                 draw: function() {
+                    context.fillStyle = this.c;
                     context.fillRect(this.x, this.y, this.l, this.l);
                 }
             };
         }
 
-        // The ship the user controls
-        var ship = makeSquare(50, canvas.height / 2 - 25, 50, 5);
-
-        // Flags to tracked which keys are pressed
-        var up = false;
-        var down = false;
-        var space = false;
-
-        // Is a bullet already on the canvas?
-        var shooting = false;
-        // The bulled shot from the ship
-        var bullet = makeSquare(0, 0, 10, 10);
-
         // An array for enemies (in case there are more than one)
-        var enemies = [];
+        //-var enemies = [];
 
         // Add an enemy object to the array
-        var enemyBaseSpeed = 2;
+        //-var enemyBaseSpeed = 2;
         function makeEnemy() {
             var enemyX = canvas.width;
             var enemySize = Math.round((Math.random() * 15)) + 15;
             var enemyY = Math.round(Math.random() * (canvas.height - enemySize * 2)) + enemySize;
             var enemySpeed = Math.round(Math.random() * enemyBaseSpeed) + enemyBaseSpeed;
-            enemies.push(makeSquare(enemyX, enemyY, enemySize, enemySpeed));
+            enemies.push(makeSquare(enemyX, enemyY, enemySize, enemySpeed, '#00FF00'));
         }
 
         // Check if number a is in the range b to c (exclusive)
@@ -66,42 +100,42 @@
             return result;
         }
 
-        // Track the user's score
-        var score = 0;
-        // The delay between enemies (in milliseconds)
-        var timeBetweenEnemies = 5 * 1000;
-        // ID to track the spawn timeout
-        var timeoutId = null;
-
         // Show the game menu and instructions
         function menu() {
             erase();
             context.fillStyle = '#000000';
             context.font = '36px Arial';
             context.textAlign = 'center';
-            context.fillText('Shoot \'Em!', canvas.width / 2, canvas.height / 4);
+            context.fillText('Arcade Shooter', canvas.width / 2, canvas.height / 4);
             context.font = '24px Arial';
             context.fillText('Click to Start', canvas.width / 2, canvas.height / 2);
             context.font = '18px Arial';
-            context.fillText('Up/Down to move, Space to shoot.', canvas.width / 2, (canvas.height / 4) * 3);
+            context.fillText('Arrow keys or WSAD to move, Space to shoot.', canvas.width / 2, (canvas.height / 4) * 3);
             // Start the game on a click
-            canvas.addEventListener('click', startGame);
+            window.addEventListener('click', startGame);
         }
 
         // Start the game
         function startGame() {
+            // Increase the timer every second
+            id = setInterval(function() {
+                timer++;
+            }, 1000)
             // Kick off the enemy spawn interval
             timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
             // Make the first enemy
             setTimeout(makeEnemy, 1000);
             // Kick off the draw loop
-            draw();
+            gameLoop();
+            //window.setInterval(gameLoop, 16); //16ms
             // Stop listening for click events
-            canvas.removeEventListener('click', startGame);
+            window.removeEventListener('click', startGame);
         }
 
         // Show the end game screen
         function endGame() {
+            // Stop the timer
+            clearInterval(id);
             // Stop the spawn interval
             clearInterval(timeoutId);
             // Show the final score
@@ -112,30 +146,44 @@
             context.fillText('Game Over. Final Score: ' + score, canvas.width / 2, canvas.height / 2);
         }
 
-        // Listen for keydown events
-        canvas.addEventListener('keydown', function(event) {
-            event.preventDefault();
-            if (event.keyCode === 38) { // UP
-                up = true;
-            }
-            if (event.keyCode === 40) { // DOWN
-                down = true;
-            }
-            if (event.keyCode === 32) { // SPACE
-                shoot();
-            }
-        });
+        function attachKeyListeners() {
+            // Listen for keydown events
+            window.addEventListener('keydown', function(event) {
+                event.preventDefault();
+                if (event.keyCode === 38) { // UP
+                    up = true;
+                }
+                if (event.keyCode === 40) { // DOWN
+                    down = true;
+                }
+                if (event.keyCode === 37) { // LEFT
+                    left = true;
+                }
+                if (event.keyCode === 39) { // RIGHT
+                    right = true;
+                }
+                if (event.keyCode === 32) { // SPACE
+                    shoot();
+                }
+            });
 
-        // Listen for keyup events
-        canvas.addEventListener('keyup', function(event) {
-            event.preventDefault();
-            if (event.keyCode === 38) { // UP
-                up = false;
-            }
-            if (event.keyCode === 40) { // DOWN
-                down = false;
-            }
-        });
+            // Listen for keyup events
+            window.addEventListener('keyup', function(event) {
+                event.preventDefault();
+                if (event.keyCode === 38) { // UP
+                    up = false;
+                }
+                if (event.keyCode === 40) { // DOWN
+                    down = false;
+                }
+                if (event.keyCode === 37) { // LEFT
+                    left = false;
+                }
+                if (event.keyCode === 39) { // RIGHT
+                    right = false;
+                }
+            });
+        }
 
         // Clear the canvas
         function erase() {
@@ -145,24 +193,20 @@
 
         // Shoot the bullet (if not already on screen)
         function shoot() {
-            if (!shooting) {
-                shooting = true;
-                bullet.x = ship.x + ship.l;
-                bullet.y = ship.y + ship.l / 2;
-            }
+            //if (!shooting) {
+            shooting = true;
+            bullet.x = ship.x + ship.l;
+            bullet.y = ship.y + ship.l / 2;
+            // }
         }
 
-        // The main draw loop
-        function draw() {
-            erase();
-            var gameOver = false;
+        function enemies() {
             // Move and draw the enemies
             enemies.forEach(function(enemy) {
                 enemy.x -= enemy.s;
                 if (enemy.x < 0) {
                     gameOver = true;
                 }
-                context.fillStyle = '#00FF00';
                 enemy.draw();
             });
             // Collide the ship with enemies
@@ -171,6 +215,8 @@
                     gameOver = true;
                 }
             });
+        }
+        function moveShip() {
             // Move the ship
             if (down) {
                 ship.y += ship.s;
@@ -185,10 +231,16 @@
             if (ship.y > canvas.height - ship.l) {
                 ship.y = canvas.height - ship.l;
             }
-            // Draw the ship
-            context.fillStyle = '#FF0000';
-            ship.draw();
-            // Move and draw the bullet
+            if (ship.x < 0) {
+                ship.x = 0;
+            }
+            if (ship.x > canvas.width - ship.l) {
+                ship.x = canvas.width - ship.l;
+            }
+
+        }
+
+        function bullets() {
             if (shooting) {
                 // Move the bullet
                 bullet.x += bullet.s;
@@ -213,29 +265,52 @@
                     shooting = false;
                 }
                 // Draw the bullet
-                context.fillStyle = '#0000FF';
-                bullet.draw();
+                //bullet.draw();
             }
-            // Draw the score
+        }
+
+        // Draw the score
+        function drawScores() {
             context.fillStyle = '#000000';
             context.font = '24px Arial';
             context.textAlign = 'left';
-            context.fillText('Score: ' + score, 1, 25)
+            context.fillText('Score: ' + score, 1, 25);
+            context.fillText('Time: ' + timer, 10, 50);
+        }
+
+        function status() {
             // End or continue the game
             if (gameOver) {
                 endGame();
             } else {
-                window.requestAnimationFrame(draw);
+                window.requestAnimationFrame(gameLoop);
             }
         }
 
-        // Start the game
-        menu();
-        canvas.focus();
+        function gameLoop() {
+            erase();
+            gameOver = false;
+            enemies();
+            moveShip();
+            bullets();
+            //-doAI();
+            //-moveBall();
+
+            //-checkPaddleCollision();
+            //-checkScore();
+            drawScores();
+            status();
+            //draw objects
+            for (let i = 0; i < drawables.length; i++) {
+                drawables[i].draw();
+            }
+        }
+
     </script>
 </head>
 <body onload="init();">
 <a href="http://bencentra.com/2017-07-11-basic-html5-canvas-games.html">Collection of Canvas based games by Ben Centra</a>
+<h1>ARCADE SHOOTER</h1>
 <main>
     <canvas id="board" width="600px" height="600px" style="border: 1px solid black;">
 
