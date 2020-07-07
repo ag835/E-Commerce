@@ -258,7 +258,7 @@
                 });*/
                 // Collide the bullet with enemies
                 enemies.forEach(function(enemy, i) {
-                    if (isColliding(bullet, enemy)) {
+                    if (isColliding(bullet, enemy)) { //foreach bullet?
                         enemies.splice(i, 1);
                         score++;
                         shooting = false;
