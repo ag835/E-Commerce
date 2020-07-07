@@ -181,9 +181,9 @@
         }
 
         // The main draw loop
-        function draw() {
+        //*function draw() {
             //-erase();
-            var gameOver = false;
+            //-var gameOver = false;
             // Move and draw the enemies
             /*enemies.forEach(function(enemy) {
                 enemy.x -= enemy.s;
@@ -259,6 +259,7 @@
                 window.requestAnimationFrame(draw);
             }*/
         }
+
         function enemies() {
             // Move and draw the enemies
             enemies.forEach(function(enemy) {
@@ -267,7 +268,7 @@
                     gameOver = true;
                 }
                 //-context.fillStyle = '#00FF00';
-                enemy.draw();
+                //#enemy.draw();
             });
             // Collide the ship with enemies
             enemies.forEach(function(enemy, i) {
@@ -319,7 +320,7 @@
                 }
                 // Draw the bullet
                 //-context.fillStyle = '#0000FF';
-                bullet.draw();
+                //#bullet.draw();
             }
         }
 
