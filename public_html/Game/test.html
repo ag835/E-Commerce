@@ -19,6 +19,9 @@
         var gameOver;
         var drawables = [];
         var loop;
+        var timer = 0;
+        // ID to track the setInterval
+        var id = null;
 
         // Add an enemy object to the array
         var enemyBaseSpeed = 2;
@@ -37,21 +40,15 @@
                 context = canvas.getContext("2d");
                 ship = makeSquare(50, canvas.height / 2 - 25, 50, 5, '#FF0000');
                 bullet = makeSquare(0, 0, 10, 10, '#0000FF');
-                //-leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
-                //-rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
-                //-ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#000000');
                 drawables.push(ship);
                 drawables.push(bullet);
-                //drawables.push(ball);
                 console.log(drawables);
-                //-resetBall();
                 attachKeyListeners();
-                timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
-                setTimeout(makeEnemy, 1000);
-                loop = window.setInterval(gameLoop, 16); //16ms
+                //timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
+                //setTimeout(makeEnemy, 1000);
+                //loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
-                //menu();
-                //startGame();
+                menu();
                 canvas.focus();
             }
         }
@@ -119,19 +116,25 @@
 
         // Start the game
         function startGame() {
+            // Increase the timer every second
+            id = setInterval(function() {
+                timer++;
+            }, 1000)
             // Kick off the enemy spawn interval
             timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
             // Make the first enemy
             setTimeout(makeEnemy, 1000);
             // Kick off the draw loop
-            //-gameLoop();
-            window.setInterval(gameLoop, 16); //16ms
+            gameLoop();
+            //window.setInterval(gameLoop, 16); //16ms
             // Stop listening for click events
             window.removeEventListener('click', startGame);
         }
 
         // Show the end game screen
         function endGame() {
+            // Stop the timer
+            clearInterval(id);
             // Stop the spawn interval
             clearInterval(timeoutId);
             // Show the final score
@@ -152,6 +155,12 @@
                 if (event.keyCode === 40) { // DOWN
                     down = true;
                 }
+                if (event.keyCode === 37) { // LEFT
+                    left = true;
+                }
+                if (event.keyCode === 39) { // RIGHT
+                    right = true;
+                }
                 if (event.keyCode === 32) { // SPACE
                     shoot();
                 }
@@ -166,6 +175,12 @@
                 if (event.keyCode === 40) { // DOWN
                     down = false;
                 }
+                if (event.keyCode === 37) { // LEFT
+                    left = false;
+                }
+                if (event.keyCode === 39) { // RIGHT
+                    right = false;
+                }
             });
         }
 
@@ -177,11 +192,11 @@
 
         // Shoot the bullet (if not already on screen)
         function shoot() {
-            if (!shooting) {
-                shooting = true;
-                bullet.x = ship.x + ship.l;
-                bullet.y = ship.y + ship.l / 2;
-            }
+            //if (!shooting) {
+            shooting = true;
+            bullet.x = ship.x + ship.l;
+            bullet.y = ship.y + ship.l / 2;
+           // }
         }
 
         function enemies() {
@@ -216,6 +231,13 @@
             if (ship.y > canvas.height - ship.l) {
                 ship.y = canvas.height - ship.l;
             }
+            if (ship.x < 0) {
+                ship.x = 0;
+            }
+            if (ship.x > canvas.width - ship.l) {
+                ship.x = canvas.width - ship.l;
+            }
+
         }
 
         function bullets() {
@@ -254,6 +276,7 @@
             context.font = '24px Arial';
             context.textAlign = 'left';
             context.fillText('Score: ' + score, 1, 25);
+            context.fillText('Time: ' + timer, 10, 50);
         }
 
         function status() {
