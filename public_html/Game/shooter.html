@@ -11,15 +11,17 @@
         // Flags to tracked which keys are pressed
         var up = false;
         var down = false;
-        var left;
+        var left = false;
+        var right = false;
         var space = false;
         // The bulled shot from the ship
         var bullet;
+        //var bullets = [];
         // An array for enemies (in case there are more than one)
         var enemies = [];
         var gameOver;
         var drawables = [];
-        var loop;
+        //var loop;
         var timer = 0;
         // ID to track the setInterval
         var id = null;
@@ -77,6 +79,10 @@
             enemies.push(makeSquare(enemyX, enemyY, enemySize, enemySpeed, '#00FF00'));
         }
 
+        /*function makeBullet() {
+           bullets.push(makeSquare(0, 0, 10, 10, '#0000FF');)
+        }*/
+
         // Check if number a is in the range b to c (exclusive)
         function isWithin(a, b, c) {
             return (a > b && a < c);
@@ -103,7 +109,7 @@
             context.font = '24px Arial';
             context.fillText('Click to Start', canvas.width / 2, canvas.height / 2);
             context.font = '18px Arial';
-            context.fillText('Arrow keys or WSAD to move, Space to shoot.', canvas.width / 2, (canvas.height / 4) * 3);
+            context.fillText('Arrow keys to move, Space to shoot.', canvas.width / 2, (canvas.height / 4) * 3);
             // Start the game on a click
             window.addEventListener('click', startGame);
         }
@@ -188,8 +194,10 @@
         function shoot() {
             //if (!shooting) {
             shooting = true;
+            //bullets.forEach(function(bullet) {
             bullet.x = ship.x + ship.l;
             bullet.y = ship.y + ship.l / 2;
+            //});
             // }
         }
 
@@ -217,6 +225,12 @@
             if (up) {
                 ship.y -= ship.s;
             }
+            if (left) {
+                ship.x -= ship.s;
+            }
+            if (right) {
+                ship.x += ship.s;
+            }
             // Don't go out of bounds
             if (ship.y < 0) {
                 ship.y = 0;
@@ -230,13 +244,18 @@
             if (ship.x > canvas.width - ship.l) {
                 ship.x = canvas.width - ship.l;
             }
-
         }
 
         function bullets() {
             if (shooting) {
                 // Move the bullet
                 bullet.x += bullet.s;
+                // Move and draw the bullets
+                /*bullets.forEach(function(bullet) {
+                    bullet.x += bullet.s;
+                    context.fillStyle = '#0000FF';
+                    bullet.draw();
+                });*/
                 // Collide the bullet with enemies
                 enemies.forEach(function(enemy, i) {
                     if (isColliding(bullet, enemy)) {
