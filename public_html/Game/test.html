@@ -46,9 +46,11 @@
                 console.log(drawables);
                 //-resetBall();
                 attachKeyListeners();
-                //loop = window.setInterval(gameLoop, 16); //16ms
+                timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
+                setTimeout(makeEnemy, 1000);
+                loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
-                menu();
+                //menu();
                 //startGame();
                 canvas.focus();
             }
