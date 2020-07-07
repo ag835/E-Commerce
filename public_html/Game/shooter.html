@@ -30,7 +30,7 @@
         // Track the user's score
         var score = 0;
         // The delay between enemies (in milliseconds)
-        var timeBetweenEnemies = 5 * 1000;
+        var timeBetweenEnemies = 3 * 1000;
         // ID to track the spawn timeout
         var timeoutId = null;
 
@@ -45,9 +45,6 @@
                 drawables.push(bullet);
                 console.log(drawables);
                 attachKeyListeners();
-                //timeoutId = setInterval(makeEnemy, timeBetweenEnemies);
-                //setTimeout(makeEnemy, 1000);
-                //loop = window.setInterval(gameLoop, 16); //16ms
                 //Start the game
                 menu();
                 canvas.focus();
@@ -71,11 +68,7 @@
             };
         }
 
-        // An array for enemies (in case there are more than one)
-        //-var enemies = [];
-
         // Add an enemy object to the array
-        //-var enemyBaseSpeed = 2;
         function makeEnemy() {
             var enemyX = canvas.width;
             var enemySize = Math.round((Math.random() * 15)) + 15;
@@ -127,7 +120,7 @@
             setTimeout(makeEnemy, 1000);
             // Kick off the draw loop
             gameLoop();
-            //window.setInterval(gameLoop, 16); //16ms
+            //loop = window.setInterval(gameLoop, 16);
             // Stop listening for click events
             window.removeEventListener('click', startGame);
         }
@@ -191,7 +184,7 @@
             context.fillRect(0, 0, 600, 400);
         }
 
-        // Shoot the bullet (if not already on screen)
+        // Shoot the bullet
         function shoot() {
             //if (!shooting) {
             shooting = true;
@@ -264,8 +257,6 @@
                 if (bullet.x > canvas.width) {
                     shooting = false;
                 }
-                // Draw the bullet
-                //bullet.draw();
             }
         }
 
@@ -293,11 +284,7 @@
             enemies();
             moveShip();
             bullets();
-            //-doAI();
-            //-moveBall();
 
-            //-checkPaddleCollision();
-            //-checkScore();
             drawScores();
             status();
             //draw objects
@@ -310,7 +297,7 @@
 </head>
 <body onload="init();">
 <a href="http://bencentra.com/2017-07-11-basic-html5-canvas-games.html">Collection of Canvas based games by Ben Centra</a>
-<h1>ARCADE SHOOTER</h1>
+<h3>ARCADE SHOOTER</h3>
 <main>
     <canvas id="board" width="600px" height="600px" style="border: 1px solid black;">
 
