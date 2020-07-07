@@ -258,7 +258,7 @@
             } else {
                 window.requestAnimationFrame(draw);
             }*/
-        }
+        //}
 
         function enemies() {
             // Move and draw the enemies
@@ -268,7 +268,7 @@
                     gameOver = true;
                 }
                 //-context.fillStyle = '#00FF00';
-                //#enemy.draw();
+                enemy.draw();
             });
             // Collide the ship with enemies
             enemies.forEach(function(enemy, i) {
@@ -320,7 +320,7 @@
                 }
                 // Draw the bullet
                 //-context.fillStyle = '#0000FF';
-                //#bullet.draw();
+                bullet.draw();
             }
         }
 
@@ -355,9 +355,9 @@
             drawScores();
             status();
             //draw stuff
-            for (let i = 0; i < drawables.length; i++) {
+            //*for (let i = 0; i < drawables.length; i++) {
                 drawables[i].draw();
-            }
+            }*/
         }
 
     </script>
