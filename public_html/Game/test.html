@@ -122,7 +122,8 @@
             // Make the first enemy
             setTimeout(makeEnemy, 1000);
             // Kick off the draw loop
-            gameLoop();
+            //-gameLoop();
+            loop = window.setInterval(gameLoop, 16); //16ms
             // Stop listening for click events
             window.removeEventListener('click', startGame);
         }
