@@ -7,6 +7,10 @@ include("header.php");
     <input type="email" id="email" name="email" required/>
     </label>
     <br>
+    <label for="email">Username
+        <input type="username" id="name" name="username" required/>
+    </label>
+    <br>
     <label for="p">Choose password
     <input type="password" id="p" name="password" required/>
     </label>
@@ -46,10 +50,12 @@ if(isset($_POST["register"])) {
     if (empty($_POST["register"])) {
         echo "<div>Please fill out all input fields.</div>";
     } else {
-        if (isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"])) {
+        if (isset($_POST["password"]) && isset($_POST["cpassword"]) && isset($_POST["email"]) && isset($_POST["username"]) && isset($_POST["country"])) {
             $password = $_POST["password"];
             $cpassword = $_POST["cpassword"];
             $email = $_POST["email"];
+            $name = $_POST["username"];
+            $country = $_POST["country"];
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 if ($password == $cpassword) {
                     #echo "<div>Passwords Match</div>";
@@ -58,10 +64,12 @@ if(isset($_POST["register"])) {
                     try {
                         #$db = new PDO($connection_string, $dbuser, $dbpass);
                         $hash = password_hash($password, PASSWORD_BCRYPT);
-                        $stmt = getDB()->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)"); #$db to getDB()
+                        $stmt = getDB()->prepare("INSERT INTO Users (email, username, password, country) VALUES(:email, :username, :password, :country)"); #$db to getDB()
                         $stmt->execute(array(
                             ":email" => $email,
-                            ":password" => $hash #Don't save the raw password $password
+                            ":username" => $name,
+                            ":password" => $hash, #Don't save the raw password $password
+                            ":country" => $country
                         ));
                         $e = $stmt->errorInfo();
                         if ($e[0] != "00000") {

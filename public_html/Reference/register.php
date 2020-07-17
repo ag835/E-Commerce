@@ -5,7 +5,7 @@ include_once(__DIR__."/partials/header.partial.php");
         <h4>Register</h4>
         <form method="POST">
             <div>
-                <label for="email">Email</label>
+                <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required/>
             </div>
             <div>
