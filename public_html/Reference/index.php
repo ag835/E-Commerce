@@ -1,3 +1,2 @@
 <?php
-include_once(__DIR__."/Partials/header.partial.php");
-//no closing tag?
+include_once(__DIR__."/partials/header.partial.php");

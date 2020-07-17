@@ -4,7 +4,7 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //pull in config.php so we can access the variables from it
-require_once (__DIR__ . "/../includes/common.inc.php");
+require_once (__DIR__ . "/../Includes/common.inc.php");
 $count = 0;
 try{
     //name each sql file in a way that it'll sort correctly to run in the correct order
@@ -13,7 +13,7 @@ try{
      * Finds all .sql files in structure directory.
      * Generates an array keyed by filename and valued as raw SQL from file
      */
-    foreach(glob(__DIR__ . "/structure/*.sql") as $filename){
+    foreach(glob(__DIR__ . "/Structure/*.sql") as $filename){
         $sql[$filename] = file_get_contents($filename);
     }
     if(isset($sql) && $sql){
