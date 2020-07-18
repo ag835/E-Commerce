@@ -8,7 +8,6 @@ include_once(__DIR__."/partials/header.partial.php");
 }
 //$last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
-<div class="container-fluid">
-    <h4>Home</h4>
-    <p>Welcome, <?php echo Common::get_username();?></p>
-</div>
+<?php
+echo "Hello, " . $_SESSION["user"]["username"];
+?>
