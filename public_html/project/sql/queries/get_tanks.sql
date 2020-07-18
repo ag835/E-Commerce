@@ -1,1 +1,0 @@
-SELECT * FROM Tanks where user_id = :user_id

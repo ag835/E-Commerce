@@ -1,1 +1,0 @@
-ALTER TABLE Users ADD COLUMN experience BIGINT default 0;

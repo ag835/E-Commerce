@@ -1,1 +1,0 @@
-SELECT id from Questions where questionnaire_id = :qid
