@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS  `Orders`
     `item_id` int,
     `user_id` int,
     `quantity` int,
-    `price` int,
+    `cost` decimal(6,2),
     `created`    timestamp default current_timestamp,
     `modified`   timestamp default current_timestamp on update current_timestamp,
     PRIMARY KEY (`id`),

@@ -1,6 +1,6 @@
 CREATE TABLE Products (
     ID int AUTO_INCREMENT,
-    Title varchar(100) NOT NULL UNIQUE,
+    `Name` varchar(100) NOT NULL UNIQUE,
     Category varchar(20) DEFAULT 'Game',
     Quantity int,
     Price decimal(6,2) DEFAULT 0.00,
