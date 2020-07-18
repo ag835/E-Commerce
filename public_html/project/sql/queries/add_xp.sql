@@ -1,1 +1,0 @@
-INSERT INTO Experience (user_id, amount, type, note) VALUES(:uid, :amount, :type, :note)

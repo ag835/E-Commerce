@@ -1,1 +1,0 @@
-ALTER TABLE Experience ADD COLUMN `note` varchar(300) default '';

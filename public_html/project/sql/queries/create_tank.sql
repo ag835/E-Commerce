@@ -1,1 +1,0 @@
-INSERT INTO Tanks (name, user_id) VALUES(:name, :user_id)
