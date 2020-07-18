@@ -48,12 +48,12 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                                             <?php echo Common::get($item, "description");?>
                                         </p>
                                         <p class="card-text">
-                                            Cost: <?php echo Common::get($item,"cost", 0);?>
+                                            Price: <?php echo Common::get($item,"price", 0);?>
                                         </p>
                                         <button class="btn btn-sm btn-secondary"
                                         data-id="<?php echo Common::get($item, "id", -1);?>"
                                         data-type="<?php echo Common::get($item, "stat","");?>"
-                                        data-cost="<?php echo Common::get($item, "cost", 0);?>"
+                                        data-price="<?php echo Common::get($item, "price", 0);?>"
                                         data-name="<?php echo Common::get($item, "name");?>"
                                         onclick="addToCart(this);">Add</button>
                                     </div>
@@ -85,11 +85,11 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     //and will be the expected value by the time JS gets to this
     let points = <?php echo Common::get($_SESSION["user"], "points", 0);?>;
     let total = 0;
-    function updateCost(){
+    function updatePrice(){
         let sum = 0;
         $cart.find("li").each(function (index, item) {
             let q = $(item).data("quantity");
-            let c = $(item).data("cost");
+            let c = $(item).data("price");
             sum += (q * c);
 
         });
@@ -100,10 +100,10 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     function addToCart(ele){
 
         let itemType = $(ele).data("type");
-        let itemCost = $(ele).data("cost");
+        let itemPrice = $(ele).data("price");
         let itemName = $(ele).data("name");
         let itemId = $(ele).data("id");
-        if(total + itemCost > points){
+        if(total + itemPrice > points){
             alert("You can't afford that");
             return;
         }
@@ -125,27 +125,27 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $li.append("<span></span><button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
             $li.data("type", itemType);
             $li.data("quantity", 1);
-            $li.data("cost", itemCost);
+            $li.data("price", itemPrice);
             $li.data("name", itemName);
             $li.data("id", itemId);
             $li.find("span").text(itemName + ": " + 1);
 
             $cart.append($li);
         }
-        updateCost();
+        updatePrice();
     }
     function removeFromCart(ele){
         $(ele).closest("li").remove();
-        updateCost();
+        updatePrice();
     }
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
             let itemType = $(item).data("type");
             let itemQuantity = $(item).data("quantity");
-            let itemCost = $(item).data("cost");
+            let itemPrice = $(item).data("Price");
             let itemId = $(item).data("id");
-            data.push({type: itemType, quantity: itemQuantity, cost: itemCost, id: itemId});
+            data.push({type: itemType, quantity: itemQuantity, price: itemPrice, id: itemId});
         });
         console.log(data);
         console.log(JSON.stringify(data));
