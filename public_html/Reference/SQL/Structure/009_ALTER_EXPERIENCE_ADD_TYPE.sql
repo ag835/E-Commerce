@@ -1,1 +1,0 @@
-ALTER TABLE Experience ADD COLUMN `type` varchar(15) default 'system';
