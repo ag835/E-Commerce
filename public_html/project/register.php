@@ -37,7 +37,7 @@ include_once(__DIR__."/partials/header.partial.php");
         </form>
     </div>
 <?php
-if (Common::get($_POST, "submit", false)){ #HAVE TO MODIFY COMMON FUNCTION
+if (Common::get($_POST, "submit", false)){
     $email = Common::get($_POST, "email", false);
     $username = Common::get($_POST, "username", false);
     $password = Common::get($_POST, "password", false);
