@@ -101,7 +101,7 @@ class Common {
         $user = Common::get($_SESSION, "user", false);
         $name = "";
         if($user){
-            $name = Common::get($user, "first_name", false);
+            $name = Common::get($user, "userName", false); #CHANGED: first_name -> userName
             if(!$name){
                 $name = Common::get($user, "email", false);//if this is false we have a bigger problem
                 //or we didn't check if the user is logged in first
@@ -136,7 +136,7 @@ class Common {
         if($user){
             $roles = Common::get($user, "roles", []);
             foreach($roles as $r){
-                if($r["name"] == $role){
+                if($r["name"] == $role){ #should this be userName?
                     return true;
                 }
             }
