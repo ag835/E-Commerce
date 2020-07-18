@@ -12,6 +12,6 @@ include("header.php");
 </style>
 
 <?php
-echo "Hello, " . $_SESSION["user"]["userName"];
+echo "Hello, " . $_SESSION["user"]["username"];
 ?>
 
