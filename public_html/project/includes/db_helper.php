@@ -428,7 +428,7 @@ class DBH{
             ]);
             DBH::verify_sql($stmt);
             //get id
-            /*$questionnaire_id = DBH::getDB()->lastInsertId();
+            $questionnaire_id = DBH::getDB()->lastInsertId();
             //batch insert questions
             $query = file_get_contents(__DIR__ . "/../sql/queries/create_question.sql");
             $params = [];
@@ -483,7 +483,7 @@ class DBH{
                     $aIndex++;
                 }
 
-                $qIndex++;*/
+                $qIndex++;
 
             } #might have to cross check this with create.php again but it should be fine?
             error_log(var_export($query, true));
