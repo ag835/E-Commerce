@@ -101,7 +101,7 @@ class Common {
         $user = Common::get($_SESSION, "user", false);
         $name = "";
         if($user){
-            $name = Common::get($user, "userName", false); #CHANGED: first_name -> userName
+            $name = Common::get($user, "username", false); #CHANGED: first_name -> username
             if(!$name){
                 $name = Common::get($user, "email", false);//if this is false we have a bigger problem
                 //or we didn't check if the user is logged in first
