@@ -401,6 +401,108 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function save_product($product){
+        try {
+            //Steps
+            //create questionnaire
+            /*
+             * $questionnaire = [
+                    "name"=>$questionnaire_name,
+                    "description"=>$questionnaire_desc,
+                    "attempts_per_day"=>$attempts_per_day,
+                    "max_attempts"=>$max_attempts,
+                    "use_max"=>$use_max,
+                    "questions"=>$questions
+                    ];
+             */
+            $query = file_get_contents(__DIR__ . "/../sql/queries/insert_product.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $stmt->execute([
+                ":name"=>Common::get($product, "name", null),
+                ":category"=>Common::get($product, "category", null),
+                ":quantity"=>Common::get($product, "quantity", 1),
+                ":price"=>Common::get($product, "price", 1),
+                ":description"=>Common::get($product, "description", null),
+                ":active"=>Common::get($product, "active", false)?1:0//convert to tinyint
+                #":uid"=>Common::get_user_id() don't know if this is useful to me
+            ]);
+            DBH::verify_sql($stmt);
+            //get id
+            /*$questionnaire_id = DBH::getDB()->lastInsertId();
+            //batch insert questions
+            $query = file_get_contents(__DIR__ . "/../sql/queries/create_question.sql");
+            $params = [];
+            $questions = Common::get($questionnaire, "questions", []);
+            $qt = count($questions);
+            $params[":user_id"] = Common::get_user_id();
+            $params[":questionnaire_id"] = $questionnaire_id;
+            //this is the only placeholder we need to loop over
+            for($i = 0; $i < $qt; $i++){
+                $params[":question$i"] = Common::get($questions[$i], "question", '');
+                if(($i+1) < $qt) {
+                    $ni = $i + 1;
+                    $query .= ", (:question$ni, :user_id, :questionnaire_id)";
+                }
+            }
+            error_log(var_export($query));
+            $stmt = DBH::getDB()->prepare($query);
+            $stmt->execute($params);
+            DBH::verify_sql($stmt);
+            //fetch ids
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_question_ids_for_questionnaire.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $stmt->execute([":qid"=>$questionnaire_id]);
+            DBH::verify_sql($stmt);
+            $question_ids = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //batch insert answers
+            $qIndex = 0;
+            $params = [];
+            //$params[":user_id"] = Common::get_user_id();
+            $query = file_get_contents(__DIR__ . "/../sql/queries/create_answer.partial.sql");
+            foreach($questions as $question){
+                $answers = Common::get($question, "answers", []);
+                //$params[":question_id$qIndex"] = Common::get($results[$qIndex], "id", -1);
+                $aIndex = 0;
+                foreach($answers as $answer){
+                    //TODO attempted named params. This would work, but I felt it was a bit messier to setup
+                    // $params[":answer-$qIndex-$aIndex"] = Common::get($answer, "answer",'');
+                    //$params[":oe-$qIndex-$aIndex"] = Common::get($answer, "open_ended", false)?1:0;
+                    if($qIndex > 0 || $aIndex > 0){
+                        $query .= ",";
+                    }
+                    //TODO switched to using positional placeholders instead
+                    $query .= "(?, ?, ?, ?)";
+                    array_push($params,
+                        Common::get($answer, "answer",""),
+                        Common::get($answer, "open_ended", false)?1:0,
+                        Common::get_user_id(),
+                        Common::get($question_ids[$qIndex], "id", -1)
+                    );
+
+                    //$query .= "(:answer-$qIndex-$aIndex, :oe-$qIndex-$aIndex, :user_id, :question_id$qIndex)";
+                    $aIndex++;
+                }
+
+                $qIndex++;*/
+
+            } #might have to cross check this with create.php again but it should be fine?
+            error_log(var_export($query, true));
+            error_log(var_export($params, true)); #might not need the $params and new stmt
+            $stmt = DBH::getDB()->prepare($query);
+            $result = $stmt->execute($params);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
     public static function save_questionnaire($questionnaire){
         try {
             //Steps

@@ -136,7 +136,7 @@ class Common {
         if($user){
             $roles = Common::get($user, "roles", []);
             foreach($roles as $r){
-                if($r["name"] == $role){ #should this be userName?
+                if($r["name"] == $role){ #should this be username?
                     return true;
                 }
             }

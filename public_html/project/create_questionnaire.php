@@ -35,7 +35,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <label for="active">Active?</label>
         <input class="form-control" type="checkbox" id="active" name="active"/>
     </div>
-    <div class="list-group">
+   <!-- <div class="list-group">
         <div class="list-group-item">
             <div class="form-group">
                 <label for="question_0">Question</label>
@@ -58,7 +58,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Answer</button>
         </div>
     </div>
-    <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Question</button>
+    <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Question</button> -->
 
     <div class="form-group">
         <input type="submit" name="submit" class="btn btn-primary" value="Create Product"/>
@@ -71,34 +71,35 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         //so just use this as an example rather than what you should do.
         //this is based off of naming conversions used in Python WTForms (I like to try to see if I can get some
         //php equivalents implemented (to a very, very basic degree))
-        $questionnaire_name = Common::get($_POST, "questionnaire_name", '');
+        $product_name = Common::get($_POST, "product_name", '');
         $is_valid = true;
-        if(strlen($questionnaire_name) > 0) {
+        if(strlen($product_name) > 0) {
             //make sure we have a name
-            $questionnaire_desc = Common::get($_POST, "questionnaire_desc", '');
-            $attempts_per_day = Common::get($_POST, "attempts_per_day", 0);
+            $product_desc = Common::get($_POST, "product_desc", ''); #q_desc -> product_desc
+            $product_quantity = Common::get($_POST, "product_quantity", 0); #attempts_per_day -> product_quantity
             //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
             //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
             //so here we're just going to default to false if it's not present in $_POST
-            $use_max = Common::get($_POST, "use_max", false);//used to hard limit the number of attempts
-            if(is_numeric($attempts_per_day) && (int)$attempts_per_day > 0){
-                $attempts_per_day = (int)$attempts_per_day;
+            $active = Common::get($_POST, "active", false);//used to hard limit the number of attempts
+            #use_max -> active, idk if this will do what I want it too
+            if(is_numeric($product_quantity) && (int)$$product_quantity > 0){
+                $product_quantity = (int)$product_quantity;
             }
             else{
                 $is_valid = false;
-                Common::flash("Attempts per day must be a numerical value greater than zero", "danger");
+                Common::flash("Product quantity must be a numerical value greater than zero", "danger");
             }
-            $max_attempts = Common::get($_POST, "max_attempts", 0);
-            if(is_numeric($max_attempts) && (int)$max_attempts >= 0){
-                $max_attempts = (int)$max_attempts;
+            $product_price = Common::get($_POST, "product_price", 0); #max_attempts -> product_price
+            if(is_numeric($product_price) && (int)$product_price >= 0){
+                $product_price = (int)$product_price;
             }
             else{
                 $is_valid = false;
-                Common::flash("Max attempts must be a numerical value greater than or equal to zero, even if not used", "danger");
-            }
+                Common::flash("Price must be a numerical value greater than or equal to zero, even if not used", "danger");
+            } #don't think I need the below, just for questions & answers
             if($is_valid){
                 //TODO here's where it gets a tad hacky and there are better ways to do it.
-                $index = 0;
+                /*$index = 0;
                 $assumed_max_questions = 100;//this isn't a realistic limit, it's just to ensure
                 $questions = [];
                 //we don't get stuck in an infinite loop since while(true) is dangerous if not handled appropriately
@@ -138,31 +139,32 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                         //we don't have anymore questions in post, early terminate the loop
                         break;
                     }
-                }
+                }*/
                 //echo "<pre>" . var_export($questions, true) . "</pre>";
                 //echo "<pre>" . var_export($answers, true) . "</pre>";
                 //TODO going to try to do this with as few db calls as I can
                 //wrap it up so we can just pass one param to DBH
-                $questionnaire = [
-                    "name"=>$questionnaire_name,
-                    "description"=>$questionnaire_desc,
-                    "attempts_per_day"=>$attempts_per_day,
-                    "max_attempts"=>$max_attempts,
-                    "use_max"=>$use_max,
-                    "questions"=>$questions//contains answers
+                $product = [ #questionnaire -> product
+                    "name"=>$product_name,
+                    "category"=>$product_category,
+                    "quantity"=>$product_quantity,
+                    "price"=>$product_price,
+                    "description"=>$product_desc,
+                    "active"=>$active,
+                    #"questions"=>$questions//contains answers
                 ];
-                $response = DBH::save_questionnaire($questionnaire);
+                $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){
-                    Common::flash("Successfully saved questionnaire", "success");
+                    Common::flash("Successfully saved product", "success");
                 }
                 else{
-                    Common::flash("There was an error creating the questionnaire", "danger");
+                    Common::flash("There was an error creating the product", "danger");
                 }
             }
         }
         else{
             $is_valid = false;
-            Common::flash("A Questionnaire name must be provided", "danger");
+            Common::flash("A product name must be provided", "danger");
         }
         if(!$is_valid){
             //this will erase the form since it's a page refresh, but we need it to show the session messages
