@@ -16,14 +16,17 @@ $logged_in = Common::is_logged_in(false);
                 <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("game");?>">Game</a>
+                <a class="nav-link" href="<?php echo Common::url_for("game");?>">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Shop</a>
+                <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Store</a>
             </li>
             <?php if (Common::has_role("Admin")):?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo Common::url_for("create_questionnaire");?>">Create Questionnaire</a>
+                    <a class="nav-link" href="<?php echo Common::url_for("create_questionnaire");?>">Manage Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo Common::url_for("create_questionnaire");?>">View Orders</a>
                 </li>
             <?php endif;?>
             <li class="nav-item">

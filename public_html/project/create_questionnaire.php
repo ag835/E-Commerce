@@ -12,24 +12,28 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 <div class="container-fluid">
 <form method="POST">
     <div class="form-group">
-        <label for="questionnaire_name">Questionnaire Name</label>
-        <input class="form-control" type="text" id="questionnaire_name" name="questionnaire_name" required/>
+        <label for="product_name">Product Name</label>
+        <input class="form-control" type="text" id="product_name" name="product_name" required/>
     </div>
     <div class="form-group">
-        <label for="questionnaire_desc">Questionnaire Description</label>
-        <textarea class="form-control" type="text" id="questionnaire_desc" name="questionnaire_desc"></textarea>
+        <label for="product_category">Category</label>
+        <input class="form-control" type="text" id="product_category" name="product_category" required/>
     </div>
     <div class="form-group">
-        <label for="attempts_per_day">Attempts per day</label>
-        <input class="form-control" type="number" id="attempts_per_day" name="attempts_per_day" value="1" min="1"/>
+        <label for="product_quantity">Quantity</label>
+        <input class="form-control" type="number" id="product_quantity" name="product_quantity" required min="0"/>
     </div>
     <div class="form-group">
-        <label for="max_attempts">Max Attempts</label>
-        <input class="form-control" type="number" id="max_attempts" name="max_attempts" value="1" min="0" />
+        <label for="product_price">Price</label>
+        <input class="form-control" type="number" id="product_price" name="product_price" step="0.01" min="0.00"/>
     </div>
     <div class="form-group">
-        <label for="use_max">Use Max?</label>
-        <input class="form-control" type="checkbox" id="use_max" name="use_max"/>
+        <label for="product_desc">Product Description</label>
+        <textarea class="form-control" type="text" id="product_desc" name="product_desc"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="active">Active?</label>
+        <input class="form-control" type="checkbox" id="active" name="active"/>
     </div>
     <div class="list-group">
         <div class="list-group-item">
@@ -57,7 +61,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Question</button>
 
     <div class="form-group">
-        <input type="submit" name="submit" class="btn btn-primary" value="Create Questionnaire"/>
+        <input type="submit" name="submit" class="btn btn-primary" value="Create Product"/>
     </div>
 </form>
 <?php
@@ -237,14 +241,14 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
            });
         });
     }
-    function cloneThis(ele){
+    function cloneThis(ele){ //creates additional text boxes?
         let $lg = $(ele).siblings(".list-group");
         let $li = $lg.find(".list-group-item:first");
         let $clone = $li.clone();
         $lg.append($clone);
         update_names_and_ids($(".list-group:first"));
     }
-    function deleteMe(ele){
+    function deleteMe(ele){ //deletes additional text boxes?
         let $li = $(ele).closest(".list-group-item");
         let $lg = $li.closest(".list-group");
         let $children = $lg.children(".list-group-item");
