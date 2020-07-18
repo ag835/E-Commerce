@@ -1,35 +1,54 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 ?>
     <div>
-        <h4>Register</h4>
+        <h4>Create an account</h4>
         <form method="POST">
             <div>
-                <label for="email">Email</label>
+                <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required/>
             </div>
             <div>
-                <label for="password">Password</label>
+                <label for="username">Account Name</label>
+                <input type="username" id="username" name="username" required min="2"/>
+            </div>
+            <div>
+                <label for="password">Choose password</label>
                 <input type="password" id="password" name="password" required min="3"/>
             </div>
             <div>
-                <label for="cpassword">Confirm Password</label>
+                <label for="cpassword">Re-enter password</label>
                 <input type="password" id="cpassword" name="cpassword" required min="3"/>
+            </div>
+            <div>
+                <label>Country of Residence</label>
+                <select name="country">
+                    <option value="Australia">Australia</option>
+                    <option value="Canada">Canada</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States" selected>United States</option>
+                </select>
             </div>
             <input type="submit" name="submit" value="Register"/>
         </form>
     </div>
 <?php
-if (Common::get($_POST, "submit", false)){
+if (Common::get($_POST, "submit", false)){ #HAVE TO MODIFY COMMON FUNCTION
     $email = Common::get($_POST, "email", false);
+    $username = Common::get($_POST, "username", false);
     $password = Common::get($_POST, "password", false);
     $confirm_password = Common::get($_POST, "cpassword", false);
+    $country = Common::get($_POST, "country", false);
     if($password != $confirm_password){
         Common::flash("Passwords must match", "warning");
         die(header("Location: register.php"));
     }
-    if(!empty($email) && !empty($password)){
-        $result = DBH::register($email, $password);
+    if(!empty($email) && !empty($username) && !empty($password) && !empty($country)){
+        $result = DBH::register($email, $username, $password, $country);
         echo var_export($result, true);
         if(Common::get($result, "status", 400) == 200){
             //Note to self: Intentionally didn't add tank creation here
@@ -40,7 +59,7 @@ if (Common::get($_POST, "submit", false)){
         }
     }
     else{
-        Common::flash("Email and password must not be empty", "warning");
+        Common::flash("Email, username, and password must not be empty", "warning");
         die(header("Location: register.php"));
     }
 }

@@ -124,7 +124,7 @@ class Common {
             return $r[1];
         }
         Common::flash("Error finding path", "danger");
-        return "/project/index.php";
+        return "/Reference/index.php";
     }
 
     /*** Pass a single role to check if the logged in user has the role applied
