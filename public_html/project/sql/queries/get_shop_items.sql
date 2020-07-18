@@ -1,1 +1,1 @@
-SELECT * FROM Items where quantity > 0
+SELECT * FROM Products where quantity > 0
