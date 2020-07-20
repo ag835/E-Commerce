@@ -2,9 +2,10 @@
 require_once (__DIR__."/../includes/common.inc.php");
 $logged_in = Common::is_logged_in(false);
 ?>
-<!-- Bootstrap 4 CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<!-- Include jQuery 3.5.1 (ACTUALLY MORE THAN THAT)-->
+<!-- Bootstrap 4 CSS only (CHANGED LINK)-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- Include jQuery 3.5.1 (ACTUALLY MORE THAN THAT, AND VERSION IS DIFFERENT TOO)-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@ $logged_in = Common::is_logged_in(false);
                 <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("profile");?>">Profile</a>
+                <a class="nav-link" href="<?php echo Common::url_for("profile");?>"><?php echo Common::get_username();?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Store</a>
