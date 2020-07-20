@@ -5,6 +5,12 @@ if(Common::is_logged_in()){
     if(!Common::has_role("Admin")){
         die(header("Location: home.php"));
     }
+    $result = DBH::get_shop_items();
+    $_items = Common::get($result, "data", false);
+    if($_items){
+        $items = $_items;
+        //echo var_export($items);
+    }
 }
 ?>
 <h2>Edit or delete products</h2>
