@@ -415,7 +415,7 @@ class DBH{
                     "questions"=>$questions
                     ];
              */
-            $query = file_get_contents(__DIR__ . "/../sql/queries/insert_product.sql");
+            $query = file_get_contents(__DIR__ . "/../sql/queries/insert_products.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute([
                 ":name"=>Common::get($product, "name", null),
