@@ -26,7 +26,7 @@ $logged_in = Common::is_logged_in(false);
                     <a class="nav-link dropdown-toggle" href="<?php echo Common::url_for("create_questionnaire");?>">Manage Products</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo Common::url_for("create_questionnaire");?>">Add a product</a>
-                        <a class="dropdown-item" href="#">Edit products</a>
+                        <a class="dropdown-item" href="<?php echo Common::url_for("edit_products");?>">Edit products</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
