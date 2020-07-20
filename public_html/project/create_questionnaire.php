@@ -150,7 +150,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                     "quantity"=>$product_quantity,
                     "price"=>$product_price,
                     "description"=>$product_desc,
-                    "active"=>$active,
+                    "active"=>$active
                     #"questions"=>$questions//contains answers
                 ];
                 $response = DBH::save_product($product);

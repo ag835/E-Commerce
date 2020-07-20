@@ -9,20 +9,20 @@ if(isset($_POST["order"])){
             //regarding Note below: I could call the aggregate stats to refresh the points here
             //if I'm concerned about the points not being accurate/updated
             $points = (int)Common::get($_SESSION["user"], "points", 0);
-            $cost = 0;
+            $price = 0;
             $quantity = 0;
             foreach ($order as $item) {
-                $c = (int)$item["cost"];
+                $c = (int)$item["price"];
                 $q = (int)$item["quantity"];
                 $quantity += $q;
-                $cost += ($c * $q);
+                $price += ($c * $q);
             }
             //make sure cost is not free or negative
             //make sure it's at least the same as quantity (helps reduce, not eliminates, the need to check our Items table for confirmation)
             //make sure we can afford
             //Note: technically should check db for user's points, but I'm assuming session should be accurate enough
             //your projects shouldn't make such assumptions
-            if ($cost > 0 && $cost >= $quantity && $cost <= $points) {
+            if ($price > 0 && $price >= $quantity && $price <= $points) {
                 //do purchase
                 //TODO should really validate that the ordered items match what's in the DB
                 //can be done either 1 by 1 or by using an IN clause, but it requires special crafting for PDO
@@ -32,9 +32,9 @@ if(isset($_POST["order"])){
                 if(Common::get($response, "status", 400) == 200) {
                     $sysid = Common::get_system_id();
                     //negative cost since we're spending
-                    $response = DBH::changePoints($user_id, -$cost, $sysid, "purchase", "shop");
+                    $response = DBH::changePoints($user_id, -$price, $sysid, "purchase", "shop");
                     if(Common::get($response, "status", 400) == 200) {
-                        $points -= $cost;
+                        $points -= $price;
                         //update tank
                         $playerTanks = Common::get($_SESSION["user"], "tanks", []);
                         if (count($playerTanks) > 0) {
