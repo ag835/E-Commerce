@@ -103,10 +103,10 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         let itemPrice = $(ele).data("price");
         let itemName = $(ele).data("name");
         let itemId = $(ele).data("id");
-        if(total + itemPrice > points){
-            alert("You can't afford that");
-            return;
-        }
+        //if(total + itemPrice > points){
+            //alert("You can't afford that");
+            //return;
+        //}
         let updated = false;
         $cart.find("li").each(function (index, item) {
             let _itemType = $(item).data("type");

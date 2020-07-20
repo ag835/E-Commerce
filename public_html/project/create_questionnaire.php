@@ -265,4 +265,4 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         }
     }
 </script>
-</div>
+</div> <!-- Why the heck is there a div tag here -->

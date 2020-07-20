@@ -13,7 +13,7 @@ if(Common::is_logged_in()){
     }
 }
 ?>
-<h2>Edit or delete products</h2>
+<h2>Update or delete products</h2>
 
 <div class="row">
     <div class="col-8">
@@ -52,7 +52,7 @@ if(Common::is_logged_in()){
                                                     data-type="<?php echo Common::get($item, "stat","");?>"
                                                     data-price="<?php echo Common::get($item, "price", 0);?>"
                                                     data-name="<?php echo Common::get($item, "name");?>"
-                                                    onclick="addToCart(this);">Edit</button>
+                                                    onclick="addToCart(this);">Update</button>
                                             <button class="btn btn-sm btn-secondary"
                                                     data-id="<?php echo Common::get($item, "id", -1);?>"
                                                     data-type="<?php echo Common::get($item, "stat","");?>"
