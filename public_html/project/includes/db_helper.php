@@ -428,7 +428,7 @@ class DBH{
             ]);
             DBH::verify_sql($stmt);
             //get id
-            $questionnaire_id = DBH::getDB()->lastInsertId();
+            /*$questionnaire_id = DBH::getDB()->lastInsertId();
             //batch insert questions
             $query = file_get_contents(__DIR__ . "/../sql/queries/create_question.sql");
             $params = [];
@@ -496,7 +496,7 @@ class DBH{
             }
             else{
                 return DBH::response(NULL, 400, "error");
-            }
+            }*/
         }
         catch(Exception $e){
             error_log($e->getMessage());
