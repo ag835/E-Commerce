@@ -52,13 +52,13 @@ if(Common::is_logged_in()){
                                                     data-type="<?php echo Common::get($item, "stat","");?>"
                                                     data-price="<?php echo Common::get($item, "price", 0);?>"
                                                     data-name="<?php echo Common::get($item, "name");?>"
-                                                    onclick="addToCart(this);">Update</button>
+                                                    onclick="updateProduct(this);">Update</button>
                                             <button class="btn btn-sm btn-secondary"
                                                     data-id="<?php echo Common::get($item, "id", -1);?>"
                                                     data-type="<?php echo Common::get($item, "stat","");?>"
                                                     data-price="<?php echo Common::get($item, "price", 0);?>"
                                                     data-name="<?php echo Common::get($item, "name");?>"
-                                                    onclick="addToCart(this);">Delete</button>
+                                                    onclick="deleteProduct(this);">Delete</button>
                                         </div>
 
                                     </div>
@@ -72,3 +72,8 @@ if(Common::is_logged_in()){
         </table>
     </div>
 </div>
+<script>
+    function updateProduct(target) {
+        location.href='update_product.php';
+    };
+</script>
