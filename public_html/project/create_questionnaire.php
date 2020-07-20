@@ -85,7 +85,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             //so here we're just going to default to false if it's not present in $_POST
             $active = Common::get($_POST, "active", false);//used to hard limit the number of attempts
             #use_max -> active, idk if this will do what I want it too
-            if(is_numeric($product_quantity) && (int)$$product_quantity > 0){
+            if(is_numeric($product_quantity) && (int)$product_quantity > 0){
                 $product_quantity = (int)$product_quantity;
             }
             else{
