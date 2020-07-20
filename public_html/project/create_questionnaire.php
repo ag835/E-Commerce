@@ -21,7 +21,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     </div>
     <div class="form-group">
         <label for="product_category">Category</label>
-        <input class="form-control" type="text" id="product_category" name="product_category" default="Game" required/>
+        <input class="form-control" type="text" id="product_category" name="product_category" value="Game" required/>
     </div>
     <div class="form-group">
         <label for="product_quantity">Quantity</label>
@@ -29,7 +29,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     </div>
     <div class="form-group">
         <label for="product_price">Price</label>
-        <input class="form-control" type="number" id="product_price" name="product_price" step="0.01" min="0.00"/>
+        <input class="form-control" type="number" id="product_price" name="product_price" value="0.00" step="0.01" min="0.00"/>
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>
