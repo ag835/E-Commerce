@@ -79,7 +79,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $is_valid = true;
         if(strlen($product_name) > 0) {
             //make sure we have a name
-            $product_category = Common::get($_POST, "product_category", '');
+            $product_category = Common::get($_POST, "product_category", 'Game');
             $product_desc = Common::get($_POST, "product_desc", ''); #q_desc -> product_desc
             $product_quantity = Common::get($_POST, "product_quantity", 0); #attempts_per_day -> product_quantity
             //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
