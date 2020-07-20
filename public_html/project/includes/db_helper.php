@@ -417,7 +417,7 @@ class DBH{
              */
             $query = file_get_contents(__DIR__ . "/../sql/queries/insert_product.sql");
             $stmt = DBH::getDB()->prepare($query);
-            $stmt->execute([
+            $result = $stmt->execute([
                 ":name"=>Common::get($product, "name", null),
                 ":category"=>Common::get($product, "category", null),
                 ":quantity"=>Common::get($product, "quantity", 1),
@@ -490,13 +490,13 @@ class DBH{
             error_log(var_export($params, true)); #might not need the $params and new stmt
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute($params);
-            DBH::verify_sql($stmt);
+            DBH::verify_sql($stmt);*/
             if($result){
                 return DBH::response(NULL,200, "success");
             }
             else{
                 return DBH::response(NULL, 400, "error");
-            }*/
+            }
         }
         catch(Exception $e){
             error_log($e->getMessage());
