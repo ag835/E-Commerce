@@ -12,7 +12,7 @@ if(Common::is_logged_in()){
     <h1>Home</h1>
     <p>Welcome, <?php echo Common::get_username();?></p>
 </div>
-<p><strong>FEATURE AND RECOMMENDED</strong></p>
+<p><strong>FEATURED AND RECOMMENDED</strong></p>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
