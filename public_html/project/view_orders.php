@@ -7,4 +7,4 @@ if(Common::is_logged_in()){
     }
 }
 ?>
-<h1>Customer Orders</h1>
+<h2>Customer Orders</h2>

@@ -22,8 +22,14 @@ $logged_in = Common::is_logged_in(false);
                 <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Store</a>
             </li>
             <?php if (Common::has_role("Admin")):?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo Common::url_for("create_questionnaire");?>">Manage Products</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="<?php echo Common::url_for("create_questionnaire");?>">Manage Products</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?php echo Common::url_for("create_questionnaire");?>">Add a product</a>
+                        <a class="dropdown-item" href="#">Edit products</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo Common::url_for("view_orders");?>">View Orders</a>
