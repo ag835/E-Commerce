@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 $items = array();
 if(Common::is_logged_in()){
@@ -13,11 +16,11 @@ if(Common::is_logged_in()){
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand">Store</a>
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">search the store</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="Search the store" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search the store</button>
     </form>
 </nav>
 <div>
@@ -150,7 +153,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $cart.find("li").each(function(index, item){
             let itemType = $(item).data("type");
             let itemQuantity = $(item).data("quantity");
-            let itemPrice = $(item).data("Price");
+            let itemPrice = $(item).data("price");
             let itemId = $(item).data("id");
             data.push({type: itemType, quantity: itemQuantity, price: itemPrice, id: itemId});
         });
