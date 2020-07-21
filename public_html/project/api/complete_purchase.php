@@ -22,7 +22,7 @@ if(isset($_POST["order"])){
             //make sure we can afford
             //Note: technically should check db for user's points, but I'm assuming session should be accurate enough
             //your projects shouldn't make such assumptions
-            if ($price > 0 && $price >= $quantity) { //} && $price <= $points) {
+            if ($price > 0 && $price >= $quantity) { //&& $price <= $points) {
                 //do purchase
                 //TODO should really validate that the ordered items match what's in the DB
                 //can be done either 1 by 1 or by using an IN clause, but it requires special crafting for PDO
@@ -32,9 +32,9 @@ if(isset($_POST["order"])){
                 if(Common::get($response, "status", 400) == 200) {
                     $sysid = Common::get_system_id();
                     //negative cost since we're spending
-                    $response = DBH::changePoints($user_id, -$price, $sysid, "purchase", "shop");
+                    //$response = DBH::changePoints($user_id, -$price, $sysid, "purchase", "shop");
                     if(Common::get($response, "status", 400) == 200) {
-                        $points -= $price;
+                        /*$points -= $price;
                         //update tank
                         $playerTanks = Common::get($_SESSION["user"], "tanks", []);
                         if (count($playerTanks) > 0) {
@@ -81,8 +81,8 @@ if(isset($_POST["order"])){
                                     $_SESSION["user"]["tanks"] = $tanks;
                                 }
                             }
-                        }
-                        $_SESSION["user"]["points"] = $points;//update this live, if out of sync it'll be handled later
+                        }*/
+                        //$_SESSION["user"]["points"] = $points;//update this live, if out of sync it'll be handled later
                         $response["status"] = 200;
                         $response["message"] = "Purchase complete";
                     }
