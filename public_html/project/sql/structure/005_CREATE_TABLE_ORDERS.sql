@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS  `Orders`
     `product_id` int,
     `user_id` int,
     `quantity` int,
-    `price` int,
+    `cost` int,
     `created`    timestamp default current_timestamp,
     `modified`   timestamp default current_timestamp on update current_timestamp,
     PRIMARY KEY (`id`),

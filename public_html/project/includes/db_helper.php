@@ -342,7 +342,7 @@ class DBH{
     }
     public static function save_order($data){
         try {
-            $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql");
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql"); #max bc we're processing the newest order which will have the greatest value?
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute();
             DBH::verify_sql($stmt);
@@ -359,7 +359,7 @@ class DBH{
                         ":item_id"=>$item["id"],
                         ":user_id"=>$user_id,
                         ":quantity"=>$item["quantity"],
-                        ":price"=>$item["cost"]
+                        ":cost"=>$item["price"] #switched cost and price bc I did so in my sql tables
                     ]);
                 }
                 return DBH::response($result,200, "success");
