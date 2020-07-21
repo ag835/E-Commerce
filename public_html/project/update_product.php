@@ -10,6 +10,7 @@ if(Common::is_logged_in()){
         die(header("Location: home.php"));
     }
 }
+?>
 <h5>Back to products</h5>
 <h2>Update a product</h2>
 <div class="container-fluid">
@@ -64,6 +65,6 @@ if(Common::is_logged_in()){
     <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Question</button> -->
 
     <div class="form-group">
-        <input type="submit" name="submit" class="btn btn-primary" value="Create Product"/>
+        <input type="submit" name="submit" class="btn btn-primary" value="Update Product"/>
     </div>
 </form>
