@@ -120,7 +120,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $cart.find("li").each(function (index, item) {
             let _itemType = $(item).data("type");
             let _itemName = $(item).data("name");
-            if(_itemType == itemType){
+            if(_itemName == itemName){ //itemType -> itemName
                 let q = $(item).data("quantity");
                 q++;
                 $(item).data("quantity", q);
