@@ -61,7 +61,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                                         </p>
                                         <button class="btn btn-sm btn-secondary"
                                         data-id="<?php echo Common::get($item, "id", -1);?>"
-                                        data-type="<?php echo Common::get($item, "stat","");?>"
+                                        <!-- data-type="<?php echo Common::get($item, "stat","");?>" -->
                                         data-price="<?php echo Common::get($item, "price", 0);?>"
                                         data-name="<?php echo Common::get($item, "name");?>"
                                         onclick="addToCart(this);">Add</button>
