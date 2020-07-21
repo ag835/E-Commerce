@@ -13,6 +13,7 @@ if(Common::is_logged_in()){
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
 <h2>Add a product</h2>
+<hr>
 <div class="container-fluid">
 <form method="POST">
     <div class="form-group">

@@ -16,8 +16,17 @@ $logged_in = Common::is_logged_in(false);
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("profile");?>"><?php echo Common::get_username();?></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="<?php echo Common::url_for("profile");?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php echo Common::get_username();?>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo Common::url_for("create_questionnaire");?>">Order History</a>
+                    <a class="dropdown-item" href="<?php echo Common::url_for("edit_products");?>">Friends</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Edit Details</a>
+                </div>
+            </li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Store</a>
