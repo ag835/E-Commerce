@@ -102,7 +102,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             sum += (q * c);
 
         });
-        total = sum;
+        total = (sum).toFixed(2);
         let $used = $("#used");
         $used.text(total);
     }
