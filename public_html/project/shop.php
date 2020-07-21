@@ -13,6 +13,13 @@ if(Common::is_logged_in()){
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Store</a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">search the store</button>
+    </form>
+</nav>
 <div>
     <h4>Store</h4>
     <?php if($last_updated):?>
