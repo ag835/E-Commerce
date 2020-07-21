@@ -16,7 +16,7 @@ if(Common::is_logged_in()){
 <h2>Update or delete products</h2>
 
 <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <table class="table">
             <tbody>
             <?php $total = count($items);

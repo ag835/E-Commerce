@@ -24,7 +24,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     </form>
 </nav>
 <div>
-    <h4>Store</h4>
     <?php if($last_updated):?>
         <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');;?></p>
     <?php endif;?>
