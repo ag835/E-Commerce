@@ -17,7 +17,7 @@ if(Common::is_logged_in()){
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand" style="FFFFFF">Store</a>
+    <a class="navbar-brand text-white">Store</a>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="search the store" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search the store</button>
