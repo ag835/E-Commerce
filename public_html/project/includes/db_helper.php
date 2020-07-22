@@ -403,18 +403,6 @@ class DBH{
     }
     public static function save_product($product){
         try {
-            //Steps
-            //create questionnaire
-            /*
-             * $questionnaire = [
-                    "name"=>$questionnaire_name,
-                    "description"=>$questionnaire_desc,
-                    "attempts_per_day"=>$attempts_per_day,
-                    "max_attempts"=>$max_attempts,
-                    "use_max"=>$use_max,
-                    "questions"=>$questions
-                    ];
-             */
             $query = file_get_contents(__DIR__ . "/../sql/queries/insert_products.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute([
@@ -427,8 +415,45 @@ class DBH{
                 #":uid"=>Common::get_user_id() don't know if this is useful to me
             ]);
             DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
+    public static function save_questionnaire($questionnaire){
+        try {
+            //Steps
+            //create questionnaire
+            /*
+             * $questionnaire = [
+                    "name"=>$questionnaire_name,
+                    "description"=>$questionnaire_desc,
+                    "attempts_per_day"=>$attempts_per_day,
+                    "max_attempts"=>$max_attempts,
+                    "use_max"=>$use_max,
+                    "questions"=>$questions
+                    ];
+             */
+            $query = file_get_contents(__DIR__ . "/../sql/queries/create_questionnaire.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $stmt->execute([
+                ":name"=>Common::get($questionnaire, "name", null),
+                ":desc"=>Common::get($questionnaire, "description", null),
+                ":apd"=>Common::get($questionnaire, "attempts_per_day", 1),
+                ":ma"=>Common::get($questionnaire, "max_attempts", 1),
+                ":um"=>Common::get($questionnaire, "use_max", false)?1:0,//convert to tinyint
+                ":uid"=>Common::get_user_id()
+            ]);
+            DBH::verify_sql($stmt);
             //get id
-            /*$questionnaire_id = DBH::getDB()->lastInsertId();
+            $questionnaire_id = DBH::getDB()->lastInsertId();
             //batch insert questions
             $query = file_get_contents(__DIR__ . "/../sql/queries/create_question.sql");
             $params = [];
@@ -485,12 +510,12 @@ class DBH{
 
                 $qIndex++;
 
-            } #might have to cross check this with create.php again but it should be fine?
+            }
             error_log(var_export($query, true));
-            error_log(var_export($params, true)); #might not need the $params and new stmt
+            error_log(var_export($params, true));
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute($params);
-            DBH::verify_sql($stmt);*/
+            DBH::verify_sql($stmt);
             if($result){
                 return DBH::response(NULL,200, "success");
             }
@@ -503,7 +528,6 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
-
     public static function get_available_surveys(){
         try {
             //need to use a workaround for PDO

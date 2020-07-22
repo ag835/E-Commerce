@@ -91,7 +91,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     let $cart = $("#cart");
     //this is fine because php is executed first on the server then the result is sent to the browser
     //and will be the expected value by the time JS gets to this
-    //let points = <?php //echo Common::get($_SESSION["user"], "points", 0);?>;
     let total = 0;
     function updatePrice(){
         let sum = 0;
