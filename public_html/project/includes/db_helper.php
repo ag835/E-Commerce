@@ -359,7 +359,7 @@ class DBH{
                         ":item_id"=>$item["id"],
                         ":user_id"=>$user_id,
                         ":quantity"=>$item["quantity"],
-                        ":cost"=>$item["price"] #switched cost and price bc I did so in my sql tables
+                        ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
                     ]);
                 }
                 return DBH::response($result,200, "success");

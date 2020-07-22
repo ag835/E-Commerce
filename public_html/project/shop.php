@@ -6,7 +6,6 @@ include_once(__DIR__."/partials/header.partial.php");
 $items = array();
 if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in
-    #Common::aggregate_stats_and_refresh();
     $result = DBH::get_shop_items();
     $_items = Common::get($result, "data", false);
     if($_items){
@@ -25,7 +24,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 </nav>
 <div>
     <?php if($last_updated):?>
-        <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');;?></p>
+        <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');?></p>
     <?php endif;?>
     <div class="row">
         <div class="col-8">
@@ -79,7 +78,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         </div>
         <div class="col-4">
             <h5>Cart</h5>
-            <h6 class="row">Points: <div id="used">0</div>/<div><?php echo Common::get($_SESSION["user"], "points", 0);?></div></h6>
+            <h6 class="row">Total: <div id="used">0</div></h6>
             <ul class="list-group" id="cart">
 
             </ul>
@@ -92,30 +91,26 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     let $cart = $("#cart");
     //this is fine because php is executed first on the server then the result is sent to the browser
     //and will be the expected value by the time JS gets to this
-    let points = <?php echo Common::get($_SESSION["user"], "points", 0);?>;
+    //let points = <?php //echo Common::get($_SESSION["user"], "points", 0);?>;
     let total = 0;
     function updatePrice(){
         let sum = 0;
         $cart.find("li").each(function (index, item) {
             let q = $(item).data("quantity");
-            let c = $(item).data("price");
-            sum += (q * c);
+            let p = $(item).data("price");
+            sum += (q * p);
 
         });
-        total = (sum); //.toFixed(2); //!!CAUTION: RETURNS STRING!!
+        total = (sum); //.toFixed(2); //CAUTION: RETURNS STRING
         let $used = $("#used");
         $used.text(total);
     }
     function addToCart(ele){
 
-        //let itemType = $(ele).data("type");
         let itemPrice = $(ele).data("price");
         let itemName = $(ele).data("name");
         let itemId = $(ele).data("id");
-        //if(total + itemPrice > points){
-            //alert("You can't afford that");
-            //return;
-        //}
+
         let updated = false;
         $cart.find("li").each(function (index, item) {
             //let _itemType = $(item).data("type");
