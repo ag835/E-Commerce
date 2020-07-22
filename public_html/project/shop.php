@@ -50,6 +50,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                         <?php if(isset($item)):?>
                             <td>
                                 <div class="card">
+                                    <img class="card-img-top" src="/images/hellblade.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <?php echo Common::get($item,"name");?></h5>
