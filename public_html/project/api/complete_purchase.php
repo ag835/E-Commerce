@@ -83,13 +83,15 @@ if(isset($_POST["order"])){
                             }
                         }*/
                         //$_SESSION["user"]["points"] = $points;//update this live, if out of sync it'll be handled later
-                        $response["status"] = 200;
-                        $response["message"] = "Purchase complete";
+                        #$response["status"] = 200;
+                        #$response["message"] = "Purchase complete";
                     }
+                    $response["status"] = 200;
+                    $response["message"] = "Purchase complete";
                 }
             }
             else {
-                $response["message"] = "You don't have enough points";
+                $response["message"] = "Pricing error";
             }
         }
     }
