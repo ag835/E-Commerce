@@ -29,8 +29,8 @@ $logged_in = Common::is_logged_in(false);
                     <?php echo Common::get_username();?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo Common::url_for("profile");?>">Profile</a>
                     <a class="dropdown-item" href="<?php echo Common::url_for("order_history");?>">Order History</a>
-                    <a class="dropdown-item" href="<?php echo Common::url_for("edit_products");?>">Friends</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?php echo Common::url_for("edit_profile");?>">Edit Details</a>
                 </div>

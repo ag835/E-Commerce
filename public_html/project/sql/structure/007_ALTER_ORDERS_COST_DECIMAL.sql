@@ -1,0 +1,1 @@
+ALTER TABLE `Orders` CHANGE `cost` `cost` DECIMAL(6,2);
