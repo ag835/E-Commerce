@@ -70,7 +70,12 @@ class DBH{
             $query = file_get_contents(__DIR__ . "/../sql/queries/register.sql");
             $stmt = DBH::getDB()->prepare($query);
             $pass = password_hash($pass, PASSWORD_BCRYPT);
-            $result = $stmt->execute([":email" => $email, ":username" => $username, ":password" => $pass, ":country" => $country]);
+            $result = $stmt->execute([
+                ":email" => $email,
+                ":username" => $username,
+                ":password" => $pass,
+                ":country" => $country
+            ]);
             DBH::verify_sql($stmt);
             if($result){
                 return DBH::response(NULL,200, "Registration successful");
@@ -176,7 +181,7 @@ class DBH{
 
     public static function save_order($data){
         try {
-            $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql"); #max bc we're processing the newest order which will have the greatest value?
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute();
             DBH::verify_sql($stmt);
