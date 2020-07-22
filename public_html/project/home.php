@@ -21,10 +21,10 @@ if(Common::is_logged_in()){
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="images/Hellblade.jpg" alt="First slide">
+            <img class="d-block w-100" src="images/hellblade.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="..." alt="Second slide">
+            <img class="d-block w-100" src="images/Prey.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src="..." alt="Third slide">
