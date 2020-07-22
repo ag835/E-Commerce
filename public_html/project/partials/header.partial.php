@@ -32,12 +32,12 @@ $logged_in = Common::is_logged_in(false);
                     <a class="dropdown-item" href="<?php echo Common::url_for("create_questionnaire");?>">Order History</a>
                     <a class="dropdown-item" href="<?php echo Common::url_for("edit_products");?>">Friends</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Edit Details</a>
+                    <a class="dropdown-item" href="<?php echo Common::url_for("edit_profile");?>">Edit Details</a>
                 </div>
             </li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("shop");?>">Store</a>
+                <a class="nav-link" href="<?php echo Common::url_for("store");?>">Store</a>
             </li>
             <?php if (Common::has_role("Admin")):?>
                 <li class="nav-item dropdown">

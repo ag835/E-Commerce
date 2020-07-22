@@ -156,7 +156,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $.post("api/complete_purchase.php", {"order": JSON.stringify(data)}, function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
             //reload the page
-            window.location.replace("shop.php");
+            window.location.replace("store.php");
         });
     }
 </script>
