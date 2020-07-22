@@ -1,1 +1,1 @@
-INSERT INTO Orders (order_id, item_id, user_id, quantity, cost) VALUES(:order_id, :item_id, :user_id, :quantity, :cost)
+INSERT INTO Orders (order_id, product_id, user_id, quantity, cost) VALUES(:order_id, :item_id, :user_id, :quantity, :cost)
