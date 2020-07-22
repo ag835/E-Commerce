@@ -201,6 +201,7 @@ class DBH{
                         ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
                     ]);
                 }
+                DBH::verify_sql($stmt);
                 return DBH::response($result,200, "success");
             }
             else{
