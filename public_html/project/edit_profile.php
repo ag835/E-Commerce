@@ -4,7 +4,7 @@ if(Common::is_logged_in()){
 ?>
 <h1>Edit Details</h1>
 <div class="container-fluid">
-    <form method="POST">
+    <form class="form-inline" method="POST">
         <div class="form-group">
             <label for="new_username">Username</label>
             <input class="form-control" type="text" id="new_username" name="new_username"/>
