@@ -62,7 +62,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                                         </p>
                                         <button class="btn btn-sm btn-secondary"
                                         data-id="<?php echo Common::get($item, "id", -1);?>"
-                                        data-type="<?php echo Common::get($item, "stat","");?>"
                                         data-price="<?php echo Common::get($item, "price", 0);?>"
                                         data-name="<?php echo Common::get($item, "name");?>"
                                         onclick="addToCart(this);">Add</button>
@@ -109,7 +108,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     }
     function addToCart(ele){
 
-        let itemType = $(ele).data("type");
+        //let itemType = $(ele).data("type");
         let itemPrice = $(ele).data("price");
         let itemName = $(ele).data("name");
         let itemId = $(ele).data("id");
@@ -119,7 +118,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         //}
         let updated = false;
         $cart.find("li").each(function (index, item) {
-            let _itemType = $(item).data("type");
+            //let _itemType = $(item).data("type");
             let _itemName = $(item).data("name");
             if(_itemName == itemName){ //itemType -> itemName
                 let q = $(item).data("quantity");
@@ -151,11 +150,11 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
-            let itemType = $(item).data("type");
+            //let itemType = $(item).data("type");
             let itemQuantity = $(item).data("quantity");
             let itemPrice = $(item).data("price");
             let itemId = $(item).data("id");
-            data.push({type: itemType, quantity: itemQuantity, price: itemPrice, id: itemId}); //removed -> type: itemType,
+            data.push({quantity: itemQuantity, price: itemPrice, id: itemId}); //removed -> type: itemType,
         });
         console.log(data);
         console.log(JSON.stringify(data));
