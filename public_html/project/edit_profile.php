@@ -23,11 +23,11 @@ if(Common::is_logged_in()){
         <hr>
         <div class="form-group">
             <label for="new_pass">New Password</label>
-            <input class="form-control" type="text" id="new_pass" name="new_pass"/>
+            <input class="form-control" type="password" id="new_pass" name="new_pass"/>
         </div>
         <div class="form-group">
             <label for="confirm_newPass">Confirm New Password</label>
-            <input class="form-control" type="number" id="confirm_newPasse" name="confirm_newPass"/>
+            <input class="form-control" type="password" id="confirm_newPasse" name="confirm_newPass"/>
         </div>
         <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Reset Password"/>
