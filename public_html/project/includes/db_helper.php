@@ -184,6 +184,7 @@ class DBH{
             $query = file_get_contents(__DIR__ . "/../sql/queries/get_orders.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute();
+            DBH::verify_sql($stmt);
             if ($result) {
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return DBH::response($result,200, "success");

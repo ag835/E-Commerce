@@ -50,10 +50,10 @@ if(Common::is_logged_in()){
                                                 User: <?php echo Common::get($order, "username");?>
                                             </p>
                                             <p class="card-text">
-                                                <?php echo Common::get($order, "category");?>
+                                                <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "quantity");?> - <?php echo Common::get($order, "price");?>
                                             </p>
                                             <p class="card-text">
-                                                Price: <?php echo Common::get($order,"cost", 0);?>
+                                                Total: <?php echo Common::get($order,"cost", 0);?>
                                             </p>
                                             <!--<button class="btn btn-sm btn-secondary"
                                                     data-id="<?php echo Common::get($order, "id", -1);?>"
