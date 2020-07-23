@@ -199,6 +199,28 @@ class DBH{
         }
     }
 
+    public static function get_user_orders($user) {
+        try{
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_user_orders.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $result = $stmt->execute([
+                ":user_id" => $user,
+            ]);
+            DBH::verify_sql($stmt);
+            if ($result) {
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return DBH::response($result,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e) {
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
+
     public static function save_order($data){
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql");
