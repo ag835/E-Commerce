@@ -51,7 +51,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                                 <div class="card">
                                     <img class="card-img-top" src="images/<?php echo Common::get($item,"name");?>.jpg" alt="<?php echo Common::get($item,"name");?>">
                                     <div class="card-body">
-                                        <h5 class="card-title">
+                                        <h5 class="card-title" href="<?php echo Common::url_for("item_details");?>">
                                             <?php echo Common::get($item,"name");?></h5>
                                         <p class="card-text">
                                             <?php echo Common::get($item, "description");?>

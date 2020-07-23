@@ -33,6 +33,8 @@ if(Common::is_logged_in()){
             <input type="submit" name="submit" class="btn btn-primary" value="Reset Password"/>
         </div>
     </form>
+</div>
+
 
 <?php
 }

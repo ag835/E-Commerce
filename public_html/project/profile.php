@@ -5,7 +5,11 @@ if(Common::is_logged_in()){
 <h1>Profile</h1>
 
 <h3><?php echo $_SESSION["user"]["username"];?></h3>
+    <h5>User Since: TBD</h5>
 <hr>
+    <h3>Library:</h3>
+    <p>TBD</p>
+    <hr>
 <h3>Past Orders</h3>
 <p>TBD</p>
 <br>
