@@ -5,7 +5,7 @@ if(Common::is_logged_in()){
 ?>
 <h6>Back to store</h6>
 <hr>
-<h1>Product Name</h1>
+<h1>Product Name: <?php echo Common::get($item,"name");?></h1>
 <h6>Category</h6>
 <p>[images]</p>
 <p>[description]</p>

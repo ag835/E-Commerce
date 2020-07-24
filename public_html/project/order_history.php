@@ -39,7 +39,7 @@ if(Common::is_logged_in()){
                 <td>
                     <div class="card">
                         <div class="card-body">
-                            <h5><?php echo Common::get($order,"order_id");?></h5>
+                            <h5>Order ID: <?php echo Common::get($order,"order_id");?> - <?php echo Common::get($order,"created")->format('Y-m-d H:i:s');?></h5>
                             <p class="card-text">
                                 <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "category");?> (<?php echo Common::get($order, "quantity");?>)
                             </p>
