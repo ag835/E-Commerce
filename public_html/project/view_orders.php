@@ -29,7 +29,7 @@ if(Common::is_logged_in()){
             if($total > 0):?>
                 <?php
 
-                $rows = (int)($total/ 5) + 1;
+                $rows = (int)($total) + 1;
                 //echo "<br>Rows: $rows<br>";
                 ?>
                 <?php for($i = 0; $i < $rows; $i++):?>
