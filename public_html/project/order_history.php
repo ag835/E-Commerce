@@ -41,9 +41,6 @@ if(Common::is_logged_in()){
                         <div class="card-body">
                             <h5><?php echo Common::get($order,"order_id");?></h5>
                             <p class="card-text">
-                                User: <?php echo Common::get($order, "username");?>
-                            </p>
-                            <p class="card-text">
                                 <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "category");?> (<?php echo Common::get($order, "quantity");?>)
                             </p>
                             <p class="card-text">
