@@ -143,12 +143,12 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $(ele).closest("li").remove();
         updatePrice();
     }
-    /*function emptyCart(ele) {
+    function emptyCart(ele) {
         //do something
-        while $cart.has("li") {
+        while $cart.has(ele) {
             removeFromCart(ele);
         }
-    }*/
+    }
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
