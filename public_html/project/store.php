@@ -51,7 +51,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                                 <div class="card">
                                     <img class="card-img-top" src="images/<?php echo Common::get($item,"name");?>.jpg" alt="<?php echo Common::get($item,"name");?>">
                                     <div class="card-body">
-                                        <h5><a class="card-title" href="<?php echo Common::url_for("item_details");?>">
+                                        <h5><a class="card-title" href="products/<?php echo Common::get($item,"name");?>.php">
                                                 <?php echo Common::get($item,"name");?></a></h5>
                                         <p class="card-text">
                                             <?php echo Common::get($item, "description");?>
@@ -83,7 +83,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 
             </ul>
             <button class="btn btn-secondary" onclick="purchase();">Complete Purchase</button>
-            <button class="btn btn-sm btn-secondary" onclick="emptyCart(this);">Remove all Items</button>
+            <button class="btn btn-sm btn-danger" onclick="emptyCart(this);">Remove all Items</button>
         </div>
     </div>
 </div>
@@ -143,12 +143,12 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $(ele).closest("li").remove();
         updatePrice();
     }
-    function emptyCart(ele) {
+    /*function emptyCart(ele) {
         //do something
         while $cart.has(ele) {
             removeFromCart(ele);
         }
-    }
+    }*/
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
