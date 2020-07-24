@@ -34,7 +34,7 @@ if(Common::is_logged_in()){
                 ?>
                 <?php for($i = 0; $i < $rows; $i++):?>
                     <tr>
-                        <?php for($k = 0; $k < 1; $k++):?>
+                        <?php for($k = 0; $k < 5; $k++):?>
                             <?php $index = (($i) * 1) + ($k);
                             $order = null;
                             if($index < $total){
