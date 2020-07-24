@@ -45,7 +45,7 @@ if(Common::is_logged_in()){
                                 <td>
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5><?php echo Common::get($order,"order_id");?></h5>
+                                            <h5>OrderID: <?php echo Common::get($order,"order_id");?> - <?php echo Common::get($order,"created")?></h5>
                                             <p class="card-text">
                                                 User: <?php echo Common::get($order, "username");?>
                                             </p>

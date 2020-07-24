@@ -9,9 +9,6 @@ if(Common::is_logged_in()){
     if($_orders) {
         $orders = $_orders;
     }
-    else {
-        echo "No purchases on record. Check out the store!"; //probably a better way to do this...
-    }
 }
 ?>
 <h2>Past Purchases</h2>
@@ -39,7 +36,7 @@ if(Common::is_logged_in()){
                 <td>
                     <div class="card">
                         <div class="card-body">
-                            <h5>Order ID: <?php echo Common::get($order,"order_id");?> - <?php echo Common::get($order,"created")->format('Y-m-d H:i:s');?></h5>
+                            <h5>Order ID: <?php echo Common::get($order,"order_id");?> - <?php echo Common::get($order,"created")->format('Y-m-d');?></h5>
                             <p class="card-text">
                                 <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "category");?> (<?php echo Common::get($order, "quantity");?>)
                             </p>
