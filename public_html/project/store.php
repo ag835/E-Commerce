@@ -118,7 +118,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             if(_itemName == itemName){ //itemType -> itemName
                 let q = $(item).data("quantity");
                 q++;
-                $(item).data("quantity", q);
+                $(item).data("quantity", q); //find how to to sync quantity to input
                 $(item).find("span").text(_itemName + ": " + q);
                 updated = true;
             }
@@ -144,6 +144,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         updatePrice();
     }
     function emptyCart() {
+        //do something
 
     }
     function purchase(){
