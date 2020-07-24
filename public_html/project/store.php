@@ -126,8 +126,8 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         if(!updated){
             let $li = $("<li></li>");
             $li.attr("class", "list-group-item");
-            $li.append("<input class='cart-quantity-input' type='number' name='quantity' id='quantity' min='1' value='1'/>");
-            $li.append("<span></span><button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
+            $li.append("<span></span><input class='cart-quantity-input' type='number' name='quantity' id='quantity' min='1' value='1'/>");
+            $li.append("<button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
             //$li.data("type", itemType);
             $li.data("quantity", 1);
             $li.data("price", itemPrice);
