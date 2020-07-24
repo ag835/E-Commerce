@@ -29,13 +29,13 @@ if(Common::is_logged_in()){
             if($total > 0):?>
                 <?php
 
-                $rows = (int)($total) + 1;
+                $rows = (int)($total/ 5) + 1;
                 //echo "<br>Rows: $rows<br>";
                 ?>
                 <?php for($i = 0; $i < $rows; $i++):?>
                     <tr>
-                        <?php for($k = 0; $k < 5; $k++):?>
-                            <?php $index = (($i) * 5) + ($k);
+                        <?php for($k = 0; $k < 1; $k++):?>
+                            <?php $index = (($i) * 1) + ($k);
                             $order = null;
                             if($index < $total){
                                 $order = $orders[$index];
