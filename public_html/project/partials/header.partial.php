@@ -55,9 +55,9 @@ $logged_in = Common::is_logged_in(false);
                     <a class="nav-link" href="<?php echo Common::url_for("view_orders");?>">View Orders</a>
                 </li>
             <?php endif;?>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="<?php echo Common::url_for("surveys");?>">Surveys</a>
-            </li>
+            </li>-->
         <?php endif; ?>
         <?php if(!$logged_in):?>
             <li class="nav-item">
