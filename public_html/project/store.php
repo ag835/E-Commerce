@@ -83,7 +83,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 
             </ul>
             <button class="btn btn-secondary" onclick="purchase();">Complete Purchase</button>
-            <button class="btn btn-sm btn-secondary" onclick="emptyCart();">Remove all Items</button>
+            <button class="btn btn-sm btn-secondary" onclick="emptyCart(this);">Remove all Items</button>
         </div>
     </div>
 </div>
@@ -143,8 +143,11 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $(ele).closest("li").remove();
         updatePrice();
     }
-    function emptyCart() {
+    function emptyCart(ele) {
         //do something
+        while $cart.has("li") {
+            removeFromCart(ele);
+        }
 
     }
     function purchase(){
