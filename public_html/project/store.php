@@ -101,7 +101,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             sum += (q * p);
 
         });
-        total = (sum); //.toFixed(2); //CAUTION: RETURNS STRING
+        total = (sum); //.toFixed(2); //Caution: Returns string
         let $used = $("#used");
         $used.text(total);
     }
@@ -115,7 +115,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $cart.find("li").each(function (index, item) {
             let _itemName = $(item).data("name");
             if(_itemName == itemName){
-                let q = $(item).data("quantity");
+                let q = $(".cart-quantity-input").data("quantity");
                 q++;
                 let itemQuantity = q;
                 $(item).data("quantity", itemQuantity);
