@@ -117,8 +117,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             if(_itemName == itemName){
                 let q = $("#item_quantity").data("quantity");
                 q++;
-                let itemQuantity = q;
-                $(item).data("quantity", itemQuantity);
+                $(item).data("quantity", q);
                 $(item).find("span").text(_itemName + ": ");// + q);
                 updated = true;
             }
