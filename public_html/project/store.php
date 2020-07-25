@@ -117,7 +117,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             if(_itemName == itemName){
                 let q = $(item).data("quantity");
                 q++;
-                $(item).data("quantity", q); //find how to to sync quantity to input
+                $(item).data("quantity", q);
                 $(item).find("span").text(_itemName + ": " + q);
                 updated = true;
             }
@@ -125,14 +125,14 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         if(!updated){
             let $li = $("<li></li>");
             $li.attr("class", "list-group-item");
-            $li.append("<span></span><input class='cart-quantity-input' type='number' name='quantity' id='quantity' min='1' value='1'/>");
+            $li.append("<span></span><input class='cart-quantity-input' type='number' " +
+                "name='quantity' id='quantity' min='1' value='1'/>");
             $li.append("<button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
-            //$li.data("type", itemType);
-            $li.data("quantity");//, 1);
+            $li.data("quantity", 1);
             $li.data("price", itemPrice);
             $li.data("name", itemName);
             $li.data("id", itemId);
-            $li.find("span").text(itemName + ": " + 1);
+            $li.find("span").text(itemName + ": "); //+ 1);
 
             $cart.append($li);
         }
