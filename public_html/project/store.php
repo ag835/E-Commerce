@@ -128,7 +128,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $li.append("<span></span><input class='cart-quantity-input' type='number' name='quantity' id='quantity' min='1' value='1'/>");
             $li.append("<button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
             //$li.data("type", itemType);
-            $li.data("quantity", 1);
+            $li.data("quantity");//, 1);
             $li.data("price", itemPrice);
             $li.data("name", itemName);
             $li.data("id", itemId);
@@ -143,8 +143,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         updatePrice();
     }
     function emptyCart() {
-        //do something
-        //while $cart.has($li) {
+        //while $cart.has($li) { not needed apparently
         removeFromCart("li");
         //}
     }
