@@ -128,7 +128,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $li.append("<span></span><input class='cart-quantity-input' type='number' " +
                 "name='quantity' id='quantity' min='1' value='1'/>");
             $li.append("<button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
-            let itemQuantity = $("input").data("quantity");
+            let itemQuantity = $(".cart-quantity-input").data("quantity");
             $li.data("quantity", itemQuantity);
             $li.data("price", itemPrice);
             $li.data("name", itemName);
@@ -151,7 +151,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
-            //let itemType = $(item).data("type");
             let itemQuantity = $(item).data("quantity");
             let itemPrice = $(item).data("price");
             let itemId = $(item).data("id");
