@@ -145,7 +145,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     function emptyCart() {
         //do something
         //while $cart.has($li) {
-            removeFromCart($li);
+        removeFromCart("li");
         //}
     }
     function purchase(){
