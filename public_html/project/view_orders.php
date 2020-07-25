@@ -17,7 +17,7 @@ if(Common::is_logged_in()){
     <a class="navbar-brand text-white">View Orders</a>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="search orders" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
 <h2>Customer Orders</h2>

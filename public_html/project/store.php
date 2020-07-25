@@ -19,7 +19,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     <a class="navbar-brand text-white">Store</a>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="search the store" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
 <div>
@@ -128,7 +128,8 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $li.append("<span></span><input class='cart-quantity-input' type='number' " +
                 "name='quantity' id='quantity' min='1' value='1'/>");
             $li.append("<button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
-            $li.data("quantity", 1);
+            let itemQuantity = $("input").data("quantity");
+            $li.data("quantity", itemQuantity);
             $li.data("price", itemPrice);
             $li.data("name", itemName);
             $li.data("id", itemId);
