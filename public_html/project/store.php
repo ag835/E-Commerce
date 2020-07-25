@@ -83,7 +83,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 
             </ul>
             <button class="btn btn-secondary" onclick="purchase();">Complete Purchase</button>
-            <button class="btn btn-sm btn-danger" onclick="emptyCart(this);">Remove all Items</button>
+            <button class="btn btn-sm btn-danger" onclick="emptyCart();">Remove all Items</button>
         </div>
     </div>
 </div>
@@ -113,9 +113,8 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 
         let updated = false;
         $cart.find("li").each(function (index, item) {
-            //let _itemType = $(item).data("type");
             let _itemName = $(item).data("name");
-            if(_itemName == itemName){ //itemType -> itemName
+            if(_itemName == itemName){
                 let q = $(item).data("quantity");
                 q++;
                 $(item).data("quantity", q); //find how to to sync quantity to input
@@ -143,12 +142,12 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         $(ele).closest("li").remove();
         updatePrice();
     }
-    /*function emptyCart(ele) {
+    function emptyCart() {
         //do something
-        while $cart.has(ele) {
-            removeFromCart(ele);
-        }
-    }*/
+        //while $cart.has($li) {
+            removeFromCart($li);
+        //}
+    }
     function purchase(){
         let data = [];
         $cart.find("li").each(function(index, item){
