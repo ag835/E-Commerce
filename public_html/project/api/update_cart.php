@@ -25,8 +25,10 @@ if(isset($_POST["cart"])){
             echo var_export($items);
             foreach ($cart as $item) {
                 if (!in_array($item["id"], $items)) {
-                    DBH::remove_cart_item($item);
-                    echo "removed " + $item;
+                    $_response = DBH::remove_cart_item($item);
+                    if(Common::get($_response, "status", 400) == 200) {
+                        $response["status"] = 200;
+                        $response["message"] = "Removed item";
                 }
             }
             if(Common::get($response, "status", 400) == 200) {
