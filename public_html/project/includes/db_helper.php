@@ -276,11 +276,10 @@ class DBH{
             DBH::verify_sql($stmt);
             return DBH::response($result,200, "success"); //ehhhh
             $items = array();
-            $result = DBH::get_cart_items();
+            $result = DBH::get_cart();
             $_items = Common::get($result, "data", false);
             if($_items){
                 $items = $_items;
-                //echo var_export($items);
             }
             foreach ($data as $item) {
                 if (!in_array($item, $items)) {
