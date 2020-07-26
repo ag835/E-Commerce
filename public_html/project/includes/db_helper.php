@@ -200,6 +200,25 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function get_cart() {
+        try{
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_cart_items.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $result = $stmt->execute();
+            DBH::verify_sql($stmt);
+            if ($result) {
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return DBH::response($result,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e) {
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
 
     public static function get_orders() {
         try{
@@ -256,6 +275,40 @@ class DBH{
             }
             DBH::verify_sql($stmt);
             return DBH::response($result,200, "success"); //ehhhh
+            $items = array();
+            $result = DBH::get_cart_items();
+            $_items = Common::get($result, "data", false);
+            if($_items){
+                $items = $_items;
+                //echo var_export($items);
+            }
+            foreach ($data as $item) {
+                if (!in_array($item, $items)) {
+                    DBH::remove_cart_item($item);
+                }
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
+    public static function remove_cart_item($item) {
+        try {
+            $query = file_get_contents(__DIR__ . "/../sql/queries/remove_cart_item.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $user_id = Common::get_user_id();
+            $result = $stmt->execute([
+                ":product_id"=>$item["id"],
+                ":user_id"=>$user_id
+            ]);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
         }
         catch(Exception $e){
             error_log($e->getMessage());
