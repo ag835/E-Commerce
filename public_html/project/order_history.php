@@ -39,21 +39,16 @@ if(Common::is_logged_in()){
                 <td>
                     <div class="card">
                         <div class="card-body">
-                            <h5><?php echo Common::get($order,"order_id");?></h5>
+                            <h5>Order ID: <?php echo Common::get($order,"order_id");?></h5>
                             <p class="card-text">
-                                User: <?php echo Common::get($order, "username");?>
+                                <?php echo Common::get($order, "created");?>
                             </p>
                             <p class="card-text">
-                                <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "category");?> (<?php echo Common::get($order, "quantity");?>)
+                                <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "category");?>
                             </p>
                             <p class="card-text">
                                 Total: <?php echo Common::get($order,"cost", 0);?>
                             </p>
-                            <!--<button class="btn btn-sm btn-secondary"
-                                                    data-id="<?php echo Common::get($order, "id", -1);?>"
-                                                    data-price="<?php echo Common::get($order, "cost", 0);?>"
-                                                    data-name="<?php echo Common::get($order, "name");?>"
-                                                    onclick="addToCart(this);">Add</button>-->
                         </div>
 
                     </div>
