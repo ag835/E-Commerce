@@ -242,34 +242,20 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
-    public static function save_cart($data) {
+    public static function save_cart_items($data) {
         try {
-            $query = file_get_contents(__DIR__ . "/../sql/queries/get_max_order_id.sql");
+            $query =  file_get_contents(__DIR__ . "/../sql/queries/insert_cart_items.sql");
             $stmt = DBH::getDB()->prepare($query);
-            $result = $stmt->execute();
+            $user_id = Common::get_user_id();
+            foreach($data as $item){
+                $result = $stmt->execute([
+                    ":product_id"=>$item["id"],
+                    ":quantity"=>$item["quantity"],
+                    ":user_id"=>$user_id
+                ]);
+            }
             DBH::verify_sql($stmt);
-            if($result){
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $max = (int)$result["max"];
-                $max += 1;
-                $query =  file_get_contents(__DIR__ . "/../sql/queries/insert_order_item.sql");
-                $stmt = DBH::getDB()->prepare($query);
-                $user_id = Common::get_user_id();
-                foreach($data as $item){
-                    $result = $stmt->execute([
-                        ":order_id"=>$max,
-                        ":item_id"=>$item["id"],
-                        ":user_id"=>$user_id,
-                        ":quantity"=>$item["quantity"],
-                        ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
-                    ]);
-                }
-                DBH::verify_sql($stmt);
-                return DBH::response($result,200, "success");
-            }
-            else{
-                return DBH::response(NULL, 400, "error");
-            }
+            return DBH::response($result,200, "success"); //ehhhh
         }
         catch(Exception $e){
             error_log($e->getMessage());

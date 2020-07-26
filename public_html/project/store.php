@@ -141,6 +141,20 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $cart.append($li);
         }
         updatePrice();
+        updateCart();
+    }
+    function updateCart() {
+        let data = [];
+        $cart.find("li").each(function(index, item){
+            let itemQuantity = $(item).data("quantity");
+            let itemId = $(item).data("id");
+            data.push({quantity: itemQuantity, id: itemId});
+        });
+        console.log(data);
+        console.log(JSON.stringify(data));
+        $.post("api/update_cart.php", {"cart": JSON.stringify(data)}, function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
     }
     function removeFromCart(ele){
         $(ele).closest("li").remove();
