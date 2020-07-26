@@ -14,7 +14,7 @@ if(Common::is_logged_in()){
     }
 }
 ?>
-<h2>Past Purchases</h2>
+<h2>Order History</h2>
 <div class="row">
     <div class="col-1">
         <table class="table">

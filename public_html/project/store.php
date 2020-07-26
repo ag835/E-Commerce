@@ -171,7 +171,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             let itemQuantity = $(item).data("quantity");
             let itemPrice = $(item).data("price");
             let itemId = $(item).data("id");
-            data.push({quantity: itemQuantity, price: itemPrice, id: itemId}); //removed -> type: itemType,
+            data.push({quantity: itemQuantity, price: itemPrice, id: itemId});
         });
         console.log(data);
         console.log(JSON.stringify(data));

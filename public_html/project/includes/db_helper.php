@@ -204,7 +204,10 @@ class DBH{
         try{
             $query = file_get_contents(__DIR__ . "/../sql/queries/get_cart_items.sql");
             $stmt = DBH::getDB()->prepare($query);
-            $result = $stmt->execute();
+            $user_id = Common::get_user_id();
+            $result = $stmt->execute([
+                ":user_id" => $user_id
+            ]);
             DBH::verify_sql($stmt);
             if ($result) {
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -275,9 +278,9 @@ class DBH{
             }
             DBH::verify_sql($stmt);
             return DBH::response($result,200, "success"); //ehhhh
-            $items = array();
-            $result = DBH::get_cart();
-            $_items = Common::get($result, "data", false);
+            /*$items = array();
+            $_result = DBH::get_cart();
+            $_items = Common::get($_result, "data", false);
             if($_items){
                 $items = $_items;
             }
@@ -285,7 +288,7 @@ class DBH{
                 if (!in_array($item, $items)) {
                     DBH::remove_cart_item($item);
                 }
-            }
+            }*/
         }
         catch(Exception $e){
             error_log($e->getMessage());
