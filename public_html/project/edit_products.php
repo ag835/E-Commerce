@@ -15,9 +15,10 @@ if(Common::is_logged_in()){
         $items = Common::get($result, "data", []);
     }
     //echo var_export($items);
+    //format date so it's day/month/year
 }
 ?>
-<h2>Update or delete products</h2>
+<h2>Update or remove products</h2>
 <div class="container-fluid">
     <h4>Products</h4>
     <div class="list-group">
@@ -33,9 +34,9 @@ if(Common::is_logged_in()){
                     <div>Active</div>
                 <?php endif; ?>
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
-                <button class="btn btn-sm btn-secondary"
+                <button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
-                        onclick="deleteProduct(this);">Delete</button>
+                        onclick="deleteProduct(this);">Remove</button>
             </div>
         <?php endforeach; ?>
         <?php if(count($items) == 0):?>

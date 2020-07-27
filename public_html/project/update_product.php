@@ -18,6 +18,11 @@ else{
     Common::flash("Not a valid product", "warning");
     die(header("Location: edit_products.php"));
 }
+$result = DBH::get_item_by_id($product_id);
+$item = [];
+if(Common::get($result, "status", 400) == 200){
+    $item = Common::get($result, "data", []);
+}
 ?>
 <a href="edit_products.php" class="btn btn-small btn-secondary">Back to products</a>
 <h2>Update a product</h2>
@@ -25,27 +30,38 @@ else{
 <form method="POST">
     <div class="form-group">
         <label for="product_name">Product Name</label>
-        <input class="form-control" type="text" id="product_name" name="product_name" required/>
+        <input class="form-control" type="text" id="product_name" name="product_name"
+               value="<?php echo get($result, "name");?>" required/>
     </div>
     <div class="form-group">
         <label for="product_category">Category</label>
-        <input class="form-control" type="text" id="product_category" name="product_category" value="Game" required/>
+        <input class="form-control" type="text" id="product_category" name="product_category"
+               value="<?php echo get($result, "category");?>" required/>
     </div>
     <div class="form-group">
         <label for="product_quantity">Quantity</label>
-        <input class="form-control" type="number" id="product_quantity" name="product_quantity" required min="0"/>
+        <input class="form-control" type="number" id="product_quantity" name="product_quantity"
+               value="<?php echo get($result, "quantity");?>"required min="0"/>
     </div>
     <div class="form-group">
         <label for="product_price">Price</label>
-        <input class="form-control" type="number" id="product_price" name="product_price" value="0.00" step="0.01" min="0.00"/>
+        <input class="form-control" type="number" id="product_price" name="product_price"
+               value="<?php echo get($result, "price");?>" step="0.01" min="0.00"/>
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>
-        <textarea class="form-control" type="text" id="product_desc" name="product_desc"></textarea>
+        <textarea class="form-control" type="text" id="product_desc" name="product_desc">
+            <?php echo get($result, "name");?>"
+        </textarea>
     </div>
     <div class="form-group">
         <label for="active">Active?</label>
-        <input class="form-control" type="checkbox" id="active" name="active"/>
+        <?php if(Common::get($p, "active", false)): ?>
+            <input class="form-control" type="checkbox" id="active" name="active" checked/>
+        <?php else:?>
+            <input class="form-control" type="checkbox" id="active" name="active"/>
+        <?php endif; ?>
+        <!---<input class="form-control" type="checkbox" id="active" name="active"/>-->
     </div>
     <div class="form-group">
         <input type="submit" name="submit" class="btn btn-primary" value="Update Product"/>
