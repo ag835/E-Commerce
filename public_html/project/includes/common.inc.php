@@ -239,6 +239,9 @@ class Common {
             $_SESSION["last_sync"] = $last_sync;
         }
     }
+    public static function search_products(){
+        
+    }
 }
 
 $common = new Common();
