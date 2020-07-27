@@ -27,7 +27,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');?></p>
     <?php endif;?>
     <div class="row">
-        <div class="col-md-auto">
+        <div class="col-lg-8">
             <table class="table">
                 <tbody>
                 <?php $total = count($items);
