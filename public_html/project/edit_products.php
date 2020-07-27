@@ -12,7 +12,7 @@ if(Common::is_logged_in()){
     $result = DBH::get_shop_items();
     $items = [];
     if(Common::get($result, "status", 400) == 200){
-        $items = Common::get($response, "data", []);
+        $items = Common::get($result, "data", []);
     }
     //echo var_export($items);
 }

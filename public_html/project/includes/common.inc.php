@@ -240,7 +240,7 @@ class Common {
         }
     }
     public static function search_products(){
-        
+
     }
 }
 
