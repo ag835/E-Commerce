@@ -179,7 +179,9 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             alert("Data: " + data + "\nStatus: " + status);
             //reload the page
             window.location.replace("store.php");
-            //purchase complete flash alert
+            <?php //Common::flash("Purchase complete", "success");?>
+            //purchase complete flash alert, not sure if it works like this
+
         });
     }
 </script>
