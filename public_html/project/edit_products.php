@@ -39,9 +39,11 @@ if(Common::is_logged_in()){
                     <div>Inactive</div>
                 <?php endif; ?>
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
+                <?php if(Common::get($p, "is_active", false) == 1): ?>
                 <button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
                         onclick="removeProduct(this);">Remove from store</button>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
         <?php if(count($items) == 0):?>
@@ -64,7 +66,7 @@ if(Common::is_logged_in()){
             alert("Item id: " + itemId + "\nStatus: " + status);
             //reload the page
             window.location.replace("edit_products.php");
-            //Common::flash("Purchase complete", "success");?>
+            <?php Common::flash("Product deactivated", "success");?>
             //purchase complete flash alert, not sure if it works like this
         });
     }
