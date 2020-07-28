@@ -1,1 +1,1 @@
-SELECT * FROM Products WHERE id = :product_id
+SELECT * FROM Products WHERE id = :product_id LIMIT 1
