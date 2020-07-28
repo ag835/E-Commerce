@@ -55,10 +55,6 @@ if(isset($_POST["updated"])){
         //check to see if i can just pass $item array instead
         //not sure if it will have the updated values
         if(Common::get($response, "status", 400) == 200){
-        $item = Common::get($result, "data", []);
-        // echo var_export($item);
-        }
-        if(Common::get($response, "status", 400) == 200){
             //die(header("Location: edit_product.php"));
             // //or after message?
             Common::flash("Successfully updated product", "success");
