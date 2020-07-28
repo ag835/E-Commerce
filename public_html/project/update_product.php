@@ -106,7 +106,7 @@ if(Common::get($result, "status", 400) == 200){
     </div>
     <div class="form-group">
         <label for="active">Active?</label>
-        <?php if(Common::get($item, "active", false) == true): ?>
+        <?php if(Common::get($item, "is_active", false)): ?>
             <input class="form-control" type="checkbox" id="active" name="active" />
         <?php else:?>
             <input class="form-control" type="checkbox" id="active" name="active" checked/>

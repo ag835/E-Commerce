@@ -33,7 +33,7 @@ if(Common::is_logged_in()){
                 <p>Quantity: <?php echo Common::get($p, "quantity", 0); ?></p>
                 <p>Price: <?php echo Common::get($p, "price", ""); ?></p>
                 <p><?php echo Common::get($p, "description", ""); ?></p>
-                <?php if(Common::get($p, "active") == 1): ?>
+                <?php if(Common::get($p, "is_active", false) == 1): ?>
                     <div>Active</div>
                 <?php else:?>
                     <div>Inactive</div>
