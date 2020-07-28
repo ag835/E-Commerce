@@ -55,7 +55,7 @@ if(isset($_POST["updated"])){
     //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
     //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
     //so here we're just going to default to false if it's not present in $_POST
-    $active = Common::get($_POST, "is_active", false);
+    $active = Common::get($_POST, "active", false);
 
     if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
         $response = DBH::update_item($name, $category, $quantity, $price, $description, $active, $product_id);
