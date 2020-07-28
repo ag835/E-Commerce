@@ -39,7 +39,7 @@ if(Common::is_logged_in()){
                     <div>Inactive</div>
                 <?php endif; ?>
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
-                <a href="/api/set_inactive.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Remove from store</a>
+                <a href="set_inactive.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Remove from store</a>
                 <!--<button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
                         onclick="removeProduct(this);">Remove from store</button>-->
