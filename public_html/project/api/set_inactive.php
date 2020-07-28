@@ -1,6 +1,7 @@
 <?php
+require(__DIR__ . "/../includes/common.inc.php");
 if(isset($_GET["p"])){
-$product_id = $_GET["p"];
+    $product_id = $_GET["p"];
 }
 $response = DBH::deactivate_item($product_id);
 if(Common::get($response, "status", 400) == 200){
