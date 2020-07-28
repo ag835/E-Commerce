@@ -134,8 +134,8 @@ class DBH{
     }
     public static function update_item($name, $category, $quantity, $price, $description, $product_id) {
         try{
-            $query = file_get_contents(__DIR__ . "/sql/queries/update_item.sql");
-            $stmt = getDB()->prepare($query);
+            $query = file_get_contents(__DIR__ . "/../sql/queries/update_item.sql");
+            $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute(array(
                 ":name" => $name,
                 ":category" => $category,
