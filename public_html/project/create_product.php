@@ -7,6 +7,7 @@ include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in
     if(!Common::has_role("Admin")){
+        Common::flash("Access denied", "danger");
         die(header("Location: home.php"));
     }
 }
@@ -88,7 +89,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             //so here we're just going to default to false if it's not present in $_POST
             $active = Common::get($_POST, "active", false);//used to hard limit the number of attempts
             #use_max -> active, idk if this will do what I want it too
-            if(is_numeric($product_quantity) && (int)$product_quantity > 0){
+            if(is_numeric($product_quantity) && (int)$product_quantity >= 0){ #7/28 > 0 -> >= 0
                 $product_quantity = (int)$product_quantity;
             }
             else{
@@ -161,6 +162,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                 $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){
                     Common::flash("Successfully saved product", "success");
+                    die(header("Location: " . Common::url_for("create_product")));
                 }
                 else{
                     Common::flash("There was an error creating the product", "danger");
@@ -174,7 +176,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         if(!$is_valid){
             //this will erase the form since it's a page refresh, but we need it to show the session messages
             //this is a last resort as we should use JS/HTML5 for a better UX
-            die(header("Location: questionnaire.php"));
+            die(header("Location: create_product.php"));
         }
     }
 ?>

@@ -4,8 +4,7 @@
 //2) check if updated and if so update db
 //3) select product
 //4) form
-//ERROR: quantity won't set if form input is 0 (var stays at -1)
-//Idea: Integrate the JS form validation script? (week 6)
+//TODO: Integrate the JS form validation script? (week 6)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -22,7 +21,7 @@ if(isset($_GET["p"])){
     $product_id = $_GET["p"];
 }
 else{
-    Common::flash("Not a valid product", "warning"); //does this not work
+    Common::flash("Not a valid product", "warning");
     die(header("Location: " . Common::url_for("edit_products")));
 }
 ?>
@@ -39,7 +38,7 @@ if(isset($_POST["updated"])){
     }
     if(isset($_POST["product_quantity"])
         && (!empty($_POST["product_quantity"]) || $_POST["product_quantity"] == 0)){
-        if(is_numeric($_POST["product_quantity"])){ //something goes wrong with 0
+        if(is_numeric($_POST["product_quantity"])){
             $quantity = (int)$_POST["product_quantity"];
         }
     }
