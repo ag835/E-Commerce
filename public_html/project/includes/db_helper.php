@@ -142,7 +142,7 @@ class DBH{
                 ":quantity" => $quantity,
                 ":price" => $price,
                 ":description" => $description,
-                ":active" => $active,
+                ":active" => $active?1:0,//convert to tinyint
                 ":id" => $product_id
             ));
             DBH::verify_sql($stmt);
@@ -450,7 +450,6 @@ class DBH{
                 ":price"=>Common::get($product, "price", 1),
                 ":description"=>Common::get($product, "description", null),
                 ":active"=>Common::get($product, "active", false)?1:0//convert to tinyint
-                #":uid"=>Common::get_user_id() don't know if this is useful to me
             ]);
             DBH::verify_sql($stmt);
             if($result){

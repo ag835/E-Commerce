@@ -103,55 +103,11 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             else{
                 $is_valid = false;
                 Common::flash("Price must be a numerical value greater than or equal to zero, even if not used", "danger");
-            } #don't think I need the below, just for questions & answers
+            }
             if($is_valid){
-                //TODO here's where it gets a tad hacky and there are better ways to do it.
-                /*$index = 0;
-                $assumed_max_questions = 100;//this isn't a realistic limit, it's just to ensure
-                $questions = [];
-                //we don't get stuck in an infinite loop since while(true) is dangerous if not handled appropriately
-                for($index = 0; $index < $assumed_max_questions; $index++){
-                    $question = Common::get($_POST, "question_$index", false);
-                    if($question){
-                        $assumed_max_answers = 100;//same as $assumed_max_questions (var sits here so it resets each loop)
-                        $answers = [];//reset array each loop
-                        for($i = 0; $i < $assumed_max_answers; $i++){
-                            $check = "".join(["question_",$index, "_answer_", $i]);
-                            error_log("Checking for pattern $check");
-                            $answer = Common::get($_POST, $check, false);
-                            if($answer){
-                                $check2 = "".join(["question_",$index, "_answeroe_", $i]);
-                                //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
-                                //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
-                                //so here we're just going to default to false if it's not present in $_POST
-                                $oe = Common::get($_POST, $check2, false);
-                                //checkbox comes in as 'on'
-                                if($oe == 'on'){
-                                    $oe = true;
-                                }
-                                //TODO we don't ignore if false, it should be true or false so a default of false is perfectly fine
-                                array_push($answers, ["answer"=>$answer, "open_ended"=>$oe]);
-                            }
-                            else{
-                                //we can break this loop since we have no more answers to parse
-                                break;
-                            }
-                        }
-                        array_push($questions,[
-                            "question"=>$question,
-                            "answers"=>$answers
-                        ]);
-                    }
-                    else{
-                        //we don't have anymore questions in post, early terminate the loop
-                        break;
-                    }
-                }*/
-                //echo "<pre>" . var_export($questions, true) . "</pre>";
-                //echo "<pre>" . var_export($answers, true) . "</pre>";
                 //TODO going to try to do this with as few db calls as I can
                 //wrap it up so we can just pass one param to DBH
-                $product = [ #questionnaire -> product
+                $product = [
                     "name"=>$product_name,
                     "category"=>$product_category,
                     "quantity"=>$product_quantity,
@@ -162,7 +118,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                 $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){
                     Common::flash("Successfully saved product", "success");
-                    die(header("Location: " . Common::url_for("create_product")));
+                    //die(header("Location: " . Common::url_for("create_product"))); some error w/ this
                 }
                 else{
                     Common::flash("There was an error creating the product", "danger");

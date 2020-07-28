@@ -31,7 +31,7 @@ else{
 if(isset($_POST["updated"])){
     $name = "";
     $quantity = -1;
-    echo $_POST["product_quantity"];
+    //echo $_POST["product_quantity"];
     if(isset($_POST["product_name"]) && !empty($_POST["product_name"])){
         $name = $_POST["product_name"];
     }
