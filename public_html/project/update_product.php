@@ -30,24 +30,24 @@ else{
 if(isset($_POST["updated"])){
     $name = "";
     $quantity = -1; //THIS ISN'T WORKING, name and quantity are set to left values, rest are undefined
-    if(isset($_POST["name"]) && !empty($_POST["name"])){
-        $name = $_POST["name"];
+    if(isset($_POST["product_name"]) && !empty($_POST["product_name"])){
+        $name = $_POST["product_name"];
     }
-    if(isset($_POST["category"]) && !empty($_POST["category"])){
-        $category = $_POST["category"];
+    if(isset($_POST["product_category"]) && !empty($_POST["product_category"])){
+        $category = $_POST["product_category"];
     }
-    if(isset($_POST["quantity"]) && !empty($_POST["quantity"])){
-        if(is_numeric($_POST["quantity"])){
-            $quantity = (int)$_POST["quantity"];
+    if(isset($_POST["product_quantity"]) && !empty($_POST["product_quantity"])){
+        if(is_numeric($_POST["product_quantity"])){
+            $quantity = (int)$_POST["product_quantity"];
         }
     }
-    if(isset($_POST["price"]) && !empty($_POST["price"])){
-        if(is_numeric($_POST["price"])){
-            $price = (float)$_POST["price"];
+    if(isset($_POST["product_price"]) && !empty($_POST["product_price"])){
+        if(is_numeric($_POST["product_price"])){
+            $price = (float)$_POST["product_price"];
         }
     }
-    if(isset($_POST["description"]) && !empty($_POST["description"])){
-        $description = $_POST["description"];
+    if(isset($_POST["product_desc"]) && !empty($_POST["product_desc"])){
+        $description = $_POST["product_desc"];
     }
     if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
         $response = DBH::update_item($name, $category, $quantity, $price, $description, $product_id);
