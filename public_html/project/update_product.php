@@ -53,16 +53,15 @@ if(Common::get($result, "status", 400) == 200){
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>
-        <textarea class="form-control" type="text" id="product_desc" name="product_desc">
-            <?php echo Common::get($item, "description", ""); ?>"
+        <textarea class="form-control" type="text" id="product_desc" name="product_desc"><?php echo Common::get($item, "description", ""); ?>"
         </textarea>
     </div>
     <div class="form-group">
         <label for="active">Active?</label>
         <?php if(Common::get($item, "active", false)): ?>
-            <input class="form-control" type="checkbox" id="active" name="active" checked/>
+            <input class="form-control" type="checkbox" id="active" name="active" />
         <?php else:?>
-            <input class="form-control" type="checkbox" id="active" name="active"/>
+            <input class="form-control" type="checkbox" id="active" name="active" checked/>
         <?php endif; ?>
         <!---<input class="form-control" type="checkbox" id="active" name="active"/>-->
     </div>
