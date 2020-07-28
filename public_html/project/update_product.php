@@ -1,10 +1,10 @@
 <?php
 //steps:
 //1) get product id
-//2) select product (now 3)
-//3) check if updated and if so update db (now 2)
+//2) check if updated and if so update db
+//3) select product
 //4) form
-//check setting product_id = -1
+//ERROR: quantity won't set if form input is 0 (var stays at -1)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -29,6 +29,7 @@ else{
 if(isset($_POST["updated"])){
     $name = "";
     $quantity = -1;
+    echo $_POST["product_quantity"];
     if(isset($_POST["product_name"]) && !empty($_POST["product_name"])){
         $name = $_POST["product_name"];
     }
@@ -36,7 +37,7 @@ if(isset($_POST["updated"])){
         $category = $_POST["product_category"];
     }
     if(isset($_POST["product_quantity"]) && !empty($_POST["product_quantity"])){
-        if(is_numeric($_POST["product_quantity"])){
+        if(is_numeric($_POST["product_quantity"])){ //something goes wrong with 0
             $quantity = (int)$_POST["product_quantity"];
         }
     }
@@ -62,7 +63,6 @@ if(isset($_POST["updated"])){
     }
     else {
         echo $name, $category, $quantity, $price, $description;
-        echo "All fields must not be empty.";
         Common::flash("All fields must not be empty", "warning");
     }
 }
