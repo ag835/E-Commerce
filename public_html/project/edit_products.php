@@ -9,7 +9,7 @@ if(Common::is_logged_in()){
         die(header("Location: home.php"));
         //add access denied alert
     }
-    $result = DBH::get_shop_items();
+    $result = DBH::get_all_items();
     $items = [];
     if(Common::get($result, "status", 400) == 200){
         $items = Common::get($result, "data", []);
@@ -27,6 +27,8 @@ if(Common::is_logged_in()){
                 <h6><?php echo Common::get($p, "name", ""); ?></h6>
                 <p>Category: <?php echo Common::get($p, "category", ""); ?></p>
                 <p>Release Date: <?php echo Common::get($p, "Release_Date", ""); ?></p>
+                <p>Quantity: <?php echo Common::get($p, "quantity", ""); ?></p>
+                <p>Price: <?php echo Common::get($p, "price", ""); ?></p>
                 <p><?php echo Common::get($p, "description", ""); ?></p>
                 <?php if(Common::get($p, "active", false)): ?>
                     <div>Inactive</div>

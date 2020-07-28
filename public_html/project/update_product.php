@@ -107,6 +107,6 @@ if(isset($_POST["updated"])){
         <?php endif; ?>
     </div>
     <div class="form-group">
-        <input type="submit" name="submit" class="btn btn-primary" value="Update Product"/>
+        <input type="submit" name="updated" class="btn btn-primary" value="Update Product"/>
     </div>
 </form>
