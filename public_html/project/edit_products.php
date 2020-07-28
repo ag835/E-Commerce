@@ -71,12 +71,12 @@ if(Common::is_logged_in()){
         let itemId = $(element).data("id");
         console.log(itemId);
         console.log(JSON.stringify(itemId));
-        $.post("api/set_inactive.php", {"deactivate": JSON.stringify(itemId)}, function(itemId, status){
+        $.post("api/set_inactive.php", {"deactivate": JSON.stringify(itemId)}, function(itemId, status) {
             alert("Item id: " + itemId + "\nStatus: " + status);
             //reload the page
-            window.location.replace("store.php");
-            <?php //Common::flash("Purchase complete", "success");?>
+            window.location.replace("edit_products.php");
+            //Common::flash("Purchase complete", "success");?>
             //purchase complete flash alert, not sure if it works like this
-
+        });
     }
 </script>
