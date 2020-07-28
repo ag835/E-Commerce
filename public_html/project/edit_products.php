@@ -3,6 +3,7 @@
 //TODO: Format date (day/month/year)
 //TODO: Set inactive list items as disabled (javascript or php templating with if clause?)
 //TODO: Total purchases
+//TODO: Fix deactivate message
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -67,7 +68,7 @@ if(Common::is_logged_in()){
             //reload the page
             window.location.replace("edit_products.php");
             <?php Common::flash("Product deactivated", "success");?>
-            //purchase complete flash alert, not sure if it works like this
+            //works oddly -- will show up on edit and update pages when remove hasn't even been clicked
         });
     }
 </script>

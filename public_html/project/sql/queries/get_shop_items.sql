@@ -1,1 +1,1 @@
-SELECT * FROM Products WHERE quantity > 0
+SELECT * FROM Products WHERE quantity > 0 AND is_active = 1
