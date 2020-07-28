@@ -132,7 +132,7 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
-    public static function update_item($name, $category, $quantity, $price, $description, $product_id) {
+    public static function update_item($name, $category, $quantity, $price, $description, $active, $product_id) {
         try{
             $query = file_get_contents(__DIR__ . "/../sql/queries/update_item.sql");
             $stmt = DBH::getDB()->prepare($query);
@@ -142,6 +142,7 @@ class DBH{
                 ":quantity" => $quantity,
                 ":price" => $price,
                 ":description" => $description,
+                ":active" => $active,
                 ":id" => $product_id
             ));
             DBH::verify_sql($stmt);

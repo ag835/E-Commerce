@@ -5,6 +5,8 @@
 //3) select product
 //4) form
 //TODO: Integrate the JS form validation script? (week 6)
+//TODO: update form using common::get, see create_product
+//TODO: also see create_product for how to array
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -50,10 +52,14 @@ if(isset($_POST["updated"])){
     if(isset($_POST["product_desc"]) && !empty($_POST["product_desc"])){
         $description = $_POST["product_desc"];
     }
+    //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
+    //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
+    //so here we're just going to default to false if it's not present in $_POST
+    $active = Common::get($_POST, "is_active", false);
+
     if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
-        $response = DBH::update_item($name, $category, $quantity, $price, $description, $product_id);
-        //check to see if i can just pass $item array instead
-        //not sure if it will have the updated values
+        $response = DBH::update_item($name, $category, $quantity, $price, $description, $active, $product_id);
+        //check create for how to pass $item array instead
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully updated product", "success");
             die(header("Location: " . Common::url_for("edit_products")));
@@ -63,7 +69,7 @@ if(isset($_POST["updated"])){
         }
     }
     else {
-        echo $name, $category, $quantity, $price, $description;
+        echo $name, $category, $quantity, $price, $description, $active;
         Common::flash("All fields must not be empty", "warning");
     }
 }
@@ -106,10 +112,10 @@ if(Common::get($result, "status", 400) == 200){
     </div>
     <div class="form-group">
         <label for="active">Active?</label>
-        <?php if(Common::get($item, "is_active", false)): ?>
-            <input class="form-control" type="checkbox" id="active" name="active" />
-        <?php else:?>
+        <?php if(Common::get($item, "is_active", true)): ?>
             <input class="form-control" type="checkbox" id="active" name="active" checked/>
+        <?php else:?>
+            <input class="form-control" type="checkbox" id="active" name="active"/>
         <?php endif; ?>
     </div>
     <div class="form-group">

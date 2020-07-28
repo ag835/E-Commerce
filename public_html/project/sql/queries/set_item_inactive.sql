@@ -1,3 +1,3 @@
 UPDATE Products
-SET active = 0
+SET is_active = 0
 WHERE id = :id

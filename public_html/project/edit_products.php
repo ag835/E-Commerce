@@ -53,55 +53,14 @@ if(Common::is_logged_in()){
 </div>
 
 <!--
-<div class="row">
-    <div class="col-12">
-        <table class="table">
-            <tbody>
-            <?php $total = count($items);
-            if($total > 0):?>
-                <?php
+<div>
+    <button class="btn btn-sm btn-secondary"
+            data-id="<?php echo Common::get($item, "id", -1);?>"
+            data-price="<?php echo Common::get($item, "price", 0);?>"
+            data-name="<?php echo Common::get($item, "name");?>"
+            data-status="<?php echo Common::get($item, "is_active", true);?>"
+            onclick="removeProduct(this);">Delete</button>
 
-                $rows = (int)($total/ 5) + 1;
-                //echo "<br>Rows: $rows<br>";
-                ?>
-                <?php for($i = 0; $i < $rows; $i++):?>
-                    <tr>
-                        <?php for($k = 0; $k < 5; $k++):?>
-                            <?php $index = (($i) * 5) + ($k);
-                            $item = null;
-                            if($index < $total){
-                                $item = $items[$index];
-                            }
-                            ?>
-                            <?php if(isset($item)):?>
-                                <td>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <?php echo Common::get($item,"name");?></h5>
-                                            <p class="card-text">
-                                                <?php echo Common::get($item, "description");?>
-                                            </p>
-                                            <p class="card-text">
-                                                Price: <?php echo Common::get($item,"price", 0);?>
-                                            </p>
-                                            <button class="btn btn-sm btn-secondary"
-                                                    data-id="<?php echo Common::get($item, "id", -1);?>"
-                                                    data-price="<?php echo Common::get($item, "price", 0);?>"
-                                                    data-name="<?php echo Common::get($item, "name");?>"
-                                                    onclick="deleteProduct(this);">Delete</button>
-                                        </div>
-
-                                    </div>
-                                </td>
-                            <?php endif;?>
-                        <?php endfor;?>
-                    </tr>
-                <?php endfor;?>
-            <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
 </div>-->
 <script>
     function removeProduct(target) {
