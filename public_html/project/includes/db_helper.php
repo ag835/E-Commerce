@@ -136,7 +136,7 @@ class DBH{
         try{
             $query = file_get_contents(__DIR__ . "/../sql/queries/set_item_inactive.sql");
             $stmt = DBH::getDB()->prepare($query);
-            $result = $stmt->execute([":product+id" => $product_id]);
+            $result = $stmt->execute([":product_id" => $product_id]);
             DBH::verify_sql($stmt);
             if($result){
                 return DBH::response(NULL,200, "success");

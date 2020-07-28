@@ -51,17 +51,6 @@ if(Common::is_logged_in()){
         <?php endif; ?>
     </div>
 </div>
-
-<!--
-<div>
-    <button class="btn btn-sm btn-secondary"
-            data-id="<?php echo Common::get($item, "id", -1);?>"
-            data-price="<?php echo Common::get($item, "price", 0);?>"
-            data-name="<?php echo Common::get($item, "name");?>"
-            data-status="<?php echo Common::get($item, "is_active", true);?>"
-            onclick="removeProduct(this);">Delete</button>
-
-</div>-->
 <script>
     function removeProduct(element) {
         //set inactive

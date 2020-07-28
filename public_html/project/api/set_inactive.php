@@ -1,5 +1,4 @@
 <?php
-require(__DIR__ . "/../includes/common.inc.php");
 /*if(isset($_GET["p"])){
     $product_id = $_GET["p"];
 }
