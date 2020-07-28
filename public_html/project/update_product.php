@@ -54,7 +54,7 @@ if(isset($_POST["updated"])){
         //not sure if it will have the updated values
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully updated product", "success");
-            die(header("Location: " . Common::url_for("edit_product")));
+            die(header("Location: " . Common::url_for("edit_products")));
         }
         else{
             Common::flash("There was an error updating the product", "danger");
@@ -101,8 +101,7 @@ if(Common::get($result, "status", 400) == 200){
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>
-        <textarea class="form-control" type="text" id="product_desc" name="product_desc"><?php echo Common::get($item, "description", "");?>
-        </textarea>
+        <textarea class="form-control" type="text" id="product_desc" name="product_desc"><?php echo Common::get($item, "description", "");?></textarea>
     </div>
     <div class="form-group">
         <label for="active">Active?</label>
