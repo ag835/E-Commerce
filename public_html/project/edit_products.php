@@ -30,13 +30,13 @@ if(Common::is_logged_in()){
                 <h6><?php echo Common::get($p, "name", ""); ?></h6>
                 <p>Category: <?php echo Common::get($p, "category", ""); ?></p>
                 <p>Release Date: <?php echo Common::get($p, "Release_Date", ""); ?></p>
-                <p>Quantity: <?php echo Common::get($p, "quantity", ""); ?></p>
+                <p>Quantity: <?php echo Common::get($p, "quantity", 0); ?></p>
                 <p>Price: <?php echo Common::get($p, "price", ""); ?></p>
                 <p><?php echo Common::get($p, "description", ""); ?></p>
-                <?php if(Common::get($p, "active")): ?>
-                    <div>Inactive</div>
-                <?php else:?>
+                <?php if(Common::get($p, "active") == 1): ?>
                     <div>Active</div>
+                <?php else:?>
+                    <div>Inactive</div>
                 <?php endif; ?>
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
                 <button class="btn btn-secondary"
