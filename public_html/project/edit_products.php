@@ -39,9 +39,10 @@ if(Common::is_logged_in()){
                     <div>Inactive</div>
                 <?php endif; ?>
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
-                <button class="btn btn-secondary"
+                <a href="/api/set_inactive.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Remove from store</a>
+                <!--<button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
-                        onclick="removeProduct(this);">Remove from store</button>
+                        onclick="removeProduct(this);">Remove from store</button>-->
             </div>
         <?php endforeach; ?>
         <?php if(count($items) == 0):?>
@@ -63,8 +64,10 @@ if(Common::is_logged_in()){
 
 </div>-->
 <script>
-    function removeProduct(target) {
+    function removeProduct(element) {
         //set inactive
+        //make disabled
         //refresh page
+        //not necessarily in that order
     }
 </script>

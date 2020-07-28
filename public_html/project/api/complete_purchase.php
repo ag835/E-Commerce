@@ -1,4 +1,5 @@
 <?php
+//TODO: prevent page access? (redirect to home)
 $response = array("status"=>400, "message"=>"Unknown error");
 if(isset($_POST["order"])){
     $order = $_POST["order"];

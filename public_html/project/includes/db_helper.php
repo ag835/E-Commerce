@@ -132,6 +132,23 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function deactivate_item($product_id){
+        try{
+            $query = file_get_contents(__DIR__ . "/../sql/queries/set_item_inactive.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $result = $stmt->execute([":product+id" => $product_id]);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+    }
     public static function update_item($name, $category, $quantity, $price, $description, $active, $product_id) {
         try{
             $query = file_get_contents(__DIR__ . "/../sql/queries/update_item.sql");
