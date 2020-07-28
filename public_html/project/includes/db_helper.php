@@ -183,7 +183,7 @@ class DBH{
     }
     public static function get_all_items(){
         try {
-            $query = file_get_contents(__DIR__ . "/../sql/queries/get_shop_items.sql");
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_all_items.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute();
             DBH::verify_sql($stmt);

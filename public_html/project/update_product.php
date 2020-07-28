@@ -46,9 +46,7 @@ if(isset($_POST["updated"])){
         }
     }
     if(isset($_POST["description"]) && !empty($_POST["description"])){
-        if(is_numeric($_POST["price"])){
-            $description = $_POST["description"];
-        }
+        $description = $_POST["description"];
     }
     if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
         $response = DBH::update_item($name, $category, $quantity, $price, $description, $product_id);
@@ -64,6 +62,7 @@ if(isset($_POST["updated"])){
         }
     }
     else {
+        echo $name, $category, $quantity, $price, $description;
         echo "All fields must not be empty.";
         Common::flash("All fields must not be empty", "danger");
     }
