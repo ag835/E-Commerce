@@ -59,6 +59,8 @@ if(isset($_POST["updated"])){
         // echo var_export($item);
         }
         if(Common::get($response, "status", 400) == 200){
+            //die(header("Location: edit_product.php"));
+            // //or after message?
             Common::flash("Successfully updated product", "success");
         }
         else{
@@ -88,7 +90,7 @@ if(isset($_POST["updated"])){
     <div class="form-group">
         <label for="product_quantity">Quantity</label>
         <input class="form-control" type="number" id="product_quantity" name="product_quantity"
-               value="<?php echo Common::get($item, "quantity");?>"required min="0"/>
+               value="<?php echo Common::get($item, "quantity");?>" required min="0"/>
     </div>
     <div class="form-group">
         <label for="product_price">Price</label>
@@ -97,7 +99,7 @@ if(isset($_POST["updated"])){
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>
-        <textarea class="form-control" type="text" id="product_desc" name="product_desc"><?php echo Common::get($item, "description", ""); ?>"
+        <textarea class="form-control" type="text" id="product_desc" name="product_desc"><?php echo Common::get($item, "description", "");?>
         </textarea>
     </div>
     <div class="form-group">
