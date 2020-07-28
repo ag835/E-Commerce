@@ -157,7 +157,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                     "price"=>$product_price,
                     "description"=>$product_desc,
                     "active"=>$active
-                    #"questions"=>$questions//contains answers
                 ];
                 $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){

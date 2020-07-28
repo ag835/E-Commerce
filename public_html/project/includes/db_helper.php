@@ -132,6 +132,30 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function update_item($name, $category, $quantity, $price, $description, $product_id) {
+        try{
+            $query = file_get_contents(__DIR__ . "/sql/queries/update_item.sql");
+            $stmt = getDB()->prepare($query);
+            $result = $stmt->execute(array(
+                ":name" => $name,
+                ":category" => $category,
+                ":quantity" => $quantity,
+                ":price" => $price,
+                ":description" => $description,
+                ":id" => $product_id
+            ));
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch (Exception $e){
+            echo $e->getMessage();
+        }
+    }
     public static function update_user_stats($user_id, $level, $xp, $points, $wins, $losses){
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/update_user_stats.sql");

@@ -36,7 +36,7 @@ if(Common::is_logged_in()){
                 <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
                 <button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
-                        onclick="deleteProduct(this);">Remove</button>
+                        onclick="deleteProduct(this);">Remove from store</button>
             </div>
         <?php endforeach; ?>
         <?php if(count($items) == 0):?>
@@ -109,5 +109,6 @@ if(Common::is_logged_in()){
     }
     function deleteProduct(target) {
         //set inactive
+        //refresh page
     }
 </script>

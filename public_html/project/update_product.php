@@ -13,18 +13,62 @@ if(Common::is_logged_in()){
 }
 if(isset($_GET["p"])){
     $product_id = $_GET["p"];
-    echo $product_id;
-    echo var_export($product_id);
 }
 else{
-    Common::flash("Not a valid product", "warning");
+    Common::flash("Not a valid product", "warning"); //does this not work
     die(header("Location: edit_products.php"));
 }
 $result = DBH::get_item_by_id($product_id);
 $item = [];
 if(Common::get($result, "status", 400) == 200){
     $item = Common::get($result, "data", []);
-    echo var_export($item);
+   // echo var_export($item);
+}
+?>
+<?php
+if(isset($_POST["updated"])){
+    $name = "";
+    $quantity = -1;
+    if(isset($_POST["name"]) && !empty($_POST["name"])){
+        $name = $_POST["name"];
+    }
+    if(isset($_POST["category"]) && !empty($_POST["category"])){
+        $category = $_POST["category"];
+    }
+    if(isset($_POST["quantity"]) && !empty($_POST["quantity"])){
+        if(is_numeric($_POST["quantity"])){
+            $quantity = (int)$_POST["quantity"];
+        }
+    }
+    if(isset($_POST["price"]) && !empty($_POST["price"])){
+        if(is_numeric($_POST["price"])){
+            $price = (float)$_POST["price"];
+        }
+    }
+    if(isset($_POST["description"]) && !empty($_POST["description"])){
+        if(is_numeric($_POST["price"])){
+            $description = $_POST["description"];
+        }
+    }
+    if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
+        $response = DBH::update_item($name, $category, $quantity, $price, $description, $product_id);
+        //check to see if i can just pass $item array instead
+        //not sure if it will have the updated values
+        if(Common::get($response, "status", 400) == 200){
+        $item = Common::get($result, "data", []);
+        // echo var_export($item);
+        }
+        if(Common::get($response, "status", 400) == 200){
+            Common::flash("Successfully updated product", "success");
+        }
+        else{
+            Common::flash("There was an error updating the product", "danger");
+        }
+    }
+    else {
+        echo "All fields must not be empty.";
+        Common::flash("All fields must not be empty", "danger");
+    }
 }
 ?>
 <a href="edit_products.php" class="btn btn-small btn-secondary">Back to products</a>
@@ -63,7 +107,6 @@ if(Common::get($result, "status", 400) == 200){
         <?php else:?>
             <input class="form-control" type="checkbox" id="active" name="active" checked/>
         <?php endif; ?>
-        <!---<input class="form-control" type="checkbox" id="active" name="active"/>-->
     </div>
     <div class="form-group">
         <input type="submit" name="submit" class="btn btn-primary" value="Update Product"/>
