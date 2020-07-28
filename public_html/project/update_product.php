@@ -1,4 +1,10 @@
 <?php
+//steps:
+//1) get product id
+//2) select product (now 3)
+//3) check if updated and if so update db (now 2)
+//4) form
+//check setting product_id = -1
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,27 +14,22 @@ if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in
     if(!Common::has_role("Admin")){
         die(header("Location: home.php"));
-        //add access denied alert
+        Common::flash("Access denied", "warning");
     }
 }
 if(isset($_GET["p"])){
     $product_id = $_GET["p"];
 }
 else{
-    Common::flash("Not a valid product", "warning"); //does this not work
+    //Common::flash("Not a valid product", "warning"); //does this not work
     die(header("Location: edit_products.php"));
-}
-$result = DBH::get_item_by_id($product_id);
-$item = [];
-if(Common::get($result, "status", 400) == 200){
-    $item = Common::get($result, "data", []);
-   // echo var_export($item);
+    Common::flash("Not a valid product", "warning");
 }
 ?>
 <?php
 if(isset($_POST["updated"])){
     $name = "";
-    $quantity = -1;
+    $quantity = -1; //THIS ISN'T WORKING, name and quantity are set to left values, rest are undefined
     if(isset($_POST["name"]) && !empty($_POST["name"])){
         $name = $_POST["name"];
     }
@@ -66,6 +67,14 @@ if(isset($_POST["updated"])){
         echo "All fields must not be empty.";
         Common::flash("All fields must not be empty", "danger");
     }
+}
+?>
+<?php
+$result = DBH::get_item_by_id($product_id);
+$item = [];
+if(Common::get($result, "status", 400) == 200){
+    $item = Common::get($result, "data", []);
+   // echo var_export($item);
 }
 ?>
 <a href="edit_products.php" class="btn btn-small btn-secondary">Back to products</a>

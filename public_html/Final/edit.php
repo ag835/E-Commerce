@@ -1,4 +1,9 @@
 <?php
+//steps:
+//1) get product id
+//2) check if updated and if so update db
+//3) select product
+//4) form
 $productId = -1;
 if(isset($_GET["productId"]) && !empty($_GET["productId"])){
     $productId = $_GET["productId"];
