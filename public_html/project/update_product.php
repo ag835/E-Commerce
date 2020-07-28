@@ -13,23 +13,22 @@ include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in
     if(!Common::has_role("Admin")){
-        die(header("Location: home.php"));
-        Common::flash("Access denied", "warning");
+        Common::flash("Access denied", "danger");
+        die(header("Location: " . Common::url_for("home")));
     }
 }
 if(isset($_GET["p"])){
     $product_id = $_GET["p"];
 }
 else{
-    //Common::flash("Not a valid product", "warning"); //does this not work
-    die(header("Location: edit_products.php"));
-    Common::flash("Not a valid product", "warning");
+    Common::flash("Not a valid product", "warning"); //does this not work
+    die(header("Location: " . Common::url_for("edit_products")));
 }
 ?>
 <?php
 if(isset($_POST["updated"])){
     $name = "";
-    $quantity = -1; //THIS ISN'T WORKING, name and quantity are set to left values, rest are undefined
+    $quantity = -1;
     if(isset($_POST["product_name"]) && !empty($_POST["product_name"])){
         $name = $_POST["product_name"];
     }
@@ -54,9 +53,8 @@ if(isset($_POST["updated"])){
         //check to see if i can just pass $item array instead
         //not sure if it will have the updated values
         if(Common::get($response, "status", 400) == 200){
-            //die(header("Location: edit_product.php"));
-            // //or after message?
             Common::flash("Successfully updated product", "success");
+            die(header("Location: " . Common::url_for("edit_product")));
         }
         else{
             Common::flash("There was an error updating the product", "danger");
@@ -65,7 +63,7 @@ if(isset($_POST["updated"])){
     else {
         echo $name, $category, $quantity, $price, $description;
         echo "All fields must not be empty.";
-        Common::flash("All fields must not be empty", "danger");
+        Common::flash("All fields must not be empty", "warning");
     }
 }
 ?>
