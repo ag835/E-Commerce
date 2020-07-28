@@ -5,6 +5,7 @@
 //3) select product
 //4) form
 //ERROR: quantity won't set if form input is 0 (var stays at -1)
+//Idea: Integrate the JS form validation script? (week 6)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -36,7 +37,8 @@ if(isset($_POST["updated"])){
     if(isset($_POST["product_category"]) && !empty($_POST["product_category"])){
         $category = $_POST["product_category"];
     }
-    if(isset($_POST["product_quantity"]) && !empty($_POST["product_quantity"])){
+    if(isset($_POST["product_quantity"])
+        && (!empty($_POST["product_quantity"]) || $_POST["product_quantity"] == 0)){
         if(is_numeric($_POST["product_quantity"])){ //something goes wrong with 0
             $quantity = (int)$_POST["product_quantity"];
         }
