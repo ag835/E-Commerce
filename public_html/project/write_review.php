@@ -1,7 +1,7 @@
 <?php
 //TODO: Integrate the JS form validation script? (week 6)
 //TODO: see create_product for how to array
-//TODO: restrict reviewing if user doesnt own product
+//TODO: Fix restrict reviewing if user doesnt own product
 //TODO: Have rating form item be /5
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,13 +15,14 @@ else{
     die(header("Location: " . Common::url_for("store")));
 }
 if(Common::is_logged_in()){
-    if (DBH::has_ownership($product_id) == false) {
+    if (DBH::has_ownership($product_id) == false) { //this doesn't work at all
         Common::flash("You need to own the product before writing a review.", "warning");
         die(header("Location: item_details.php?p=$product_id"));
     }
 }
 ?>
 <?php
+echo DBH::has_ownership($product_id);
 $result = DBH::get_item_by_id($product_id);
 $item = [];
 if(Common::get($result, "status", 400) == 200){

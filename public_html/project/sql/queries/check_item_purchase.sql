@@ -1,1 +1,1 @@
-SELECT * FROM Orders where user_id = :user_id and product_id = :product_id
+SELECT * FROM Orders where user_id = :user_id and product_id = :product_id LIMIT 1

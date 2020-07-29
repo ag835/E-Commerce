@@ -537,7 +537,7 @@ class DBH{
                 ":product_id"=>$product_id
             ]);
             DBH::verify_sql($stmt);
-            if(!empty($result)){
+            if(!empty($result) || !is_null($result)){
                 return true;
             }
             else{
