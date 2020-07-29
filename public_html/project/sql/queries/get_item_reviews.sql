@@ -1,0 +1,1 @@
+SELECT * FROM Reviews where product_id = :product_id ORDER BY modified

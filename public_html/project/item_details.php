@@ -1,4 +1,5 @@
 <?php
+//TODO: Format date
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -22,7 +23,6 @@ if(Common::is_logged_in()){
         color: aliceblue;
     }
 </style>
-<button class="btn btn-sm btn-dark">Back to store</button>
 <h1><?php echo Common::get($item,"name", "");?> <span
             style="font-size: 50%;">(<?php echo Common::get($item,"category", "");?>)</span></h1>
 <h5>Release date: <?php echo Common::get($item,"Release_Date");?></h5>
@@ -34,3 +34,27 @@ if(Common::is_logged_in()){
 <br>
 <h3>Reviews</h3>
 <hr style="color: aquamarine">
+<?php
+$response = DBH::get_item_reviews($product_id);
+$reviews = [];
+if(Common::get($response, "status", 400) == 200){
+    $reviews = Common::get($response, "data", []);
+}
+?>
+<div class="container-fluid">
+    <h4>Reviews</h4>
+    <div class="list-group">
+        <?php foreach($reviews as $r): ?>
+            <div class="list-group-item">
+                <h6>(<?php echo Common::get($r, "rating", 0);?>/5) - <?php echo Common::get($r, "title", 0);?></h6>
+                <p style="color: dimgrey" ><i>Reviewed (<?php echo Common::get($r, "created");?></i></p>
+                <p><?php echo Common::get($r, "description", ""); ?></p>
+            </div>
+        <?php endforeach; ?>
+        <?php if(count($reviews) == 0):?>
+            <div class="list-group-item">
+                No surveys available, please check back later.
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
