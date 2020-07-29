@@ -538,11 +538,11 @@ class DBH{
             ]);
             DBH::verify_sql($stmt);
             //https://stackoverflow.com/questions/37583456/output-is-1-even-if-the-column-is-empty-for-some-entries-in-mysql-database
-            if(!empty((int)$result)){ //if varchar and not int, empty query returns 1 (???)
-                return true;
+            if($result){ //if varchar and not int, empty query returns 1 (???)
+                return DBH::response($result,200, "success");
             }
             else{
-                return false;
+                return DBH::response(NULL, 400, "error");
             }
         }
         catch(Exception $e){
