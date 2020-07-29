@@ -1,6 +1,7 @@
 <?php
 //TODO: Integrate the JS form validation script? (week 6)
 //TODO: see create_product for how to array
+//TODO: restrict reviewing if user doesnt own product
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

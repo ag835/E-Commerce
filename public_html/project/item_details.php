@@ -53,7 +53,7 @@ if(Common::get($response, "status", 400) == 200){
 
     <div class="text-right">
         <!--<button type="button" class="btn btn-light btn-sm">Write a Review</button>-->
-        <a href="update_product.php?p=<?php echo $product_id;?>" class="btn btn-small btn-light">Write a Review</a>
+        <a href="write_review.php?p=<?php echo $product_id;?>" class="btn btn-small btn-light">Write a Review</a>
 
     </div>
     <div class="list-group">
