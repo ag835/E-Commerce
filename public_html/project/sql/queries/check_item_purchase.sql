@@ -1,0 +1,1 @@
+SELECT * FROM Orders where user_id = :user_id and product_id = :product_id

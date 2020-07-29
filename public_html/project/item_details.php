@@ -1,5 +1,7 @@
 <?php
 //TODO: Format date
+//TODO: Review pagination
+//TODO: Add review button if user owns the product
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -22,11 +24,8 @@ if(Common::is_logged_in()){
         background-color: black;
         color: aliceblue;
     }
-    .list-group {
+    .list-group-item {
         background-color: black;
-        color: aliceblue;
-    }
-    hr {
         color: aliceblue;
     }
 </style>
@@ -48,6 +47,9 @@ if(Common::get($response, "status", 400) == 200){
 ?>
 <div class="container-fluid">
     <h3>Reviews</h3>
+    <div class="text-right">
+        <button type="button" class="btn btn-light btn-sm">Write a Review</button>
+    </div>
     <div class="list-group">
         <?php foreach($reviews as $r): ?>
             <div class="list-group-item">
@@ -58,7 +60,8 @@ if(Common::get($response, "status", 400) == 200){
         <?php endforeach; ?>
         <?php if(count($reviews) == 0):?>
             <div class="list-group-item">
-                No surveys available, please check back later.
+                No reviews yet. Try out the <?php echo Common::get($item,"category", "");?>
+                and tell us what you think!
             </div>
         <?php endif; ?>
     </div>
