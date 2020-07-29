@@ -22,6 +22,13 @@ if(Common::is_logged_in()){
         background-color: black;
         color: aliceblue;
     }
+    .list-group {
+        background-color: black;
+        color: aliceblue;
+    }
+    hr {
+        color: aliceblue;
+    }
 </style>
 <h1><?php echo Common::get($item,"name", "");?> <span
             style="font-size: 50%;">(<?php echo Common::get($item,"category", "");?>)</span></h1>
@@ -31,8 +38,6 @@ if(Common::is_logged_in()){
 <span style="font-size: 120%;">$<?php echo Common::get($item,"price");?></span>
 <button class="btn btn-success inline">Add to cart</button>
 <br>
-<br>
-<h3>Reviews</h3>
 <hr style="color: aquamarine">
 <?php
 $response = DBH::get_item_reviews($product_id);
@@ -42,7 +47,7 @@ if(Common::get($response, "status", 400) == 200){
 }
 ?>
 <div class="container-fluid">
-    <h4>Reviews</h4>
+    <h3>Reviews</h3>
     <div class="list-group">
         <?php foreach($reviews as $r): ?>
             <div class="list-group-item">
