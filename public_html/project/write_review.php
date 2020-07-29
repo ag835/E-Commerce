@@ -15,7 +15,7 @@ else{
     die(header("Location: " . Common::url_for("store")));
 }
 if(Common::is_logged_in()){
-    if (empty(DBH::has_ownership($product_id))) {
+    if (DBH::has_ownership($product_id) == false) {
         Common::flash("You need to own the product before writing a review.", "warning");
         die(header("Location: item_details.php?p=$product_id"));
     }

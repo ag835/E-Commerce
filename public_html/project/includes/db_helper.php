@@ -537,11 +537,11 @@ class DBH{
                 ":product_id"=>$product_id
             ]);
             DBH::verify_sql($stmt);
-            if($result){
-                return DBH::response($result,200, "success");
+            if(!empty($result)){
+                return true;
             }
             else{
-                return DBH::response(NULL, 400, "error");
+                return false;
             }
         }
         catch(Exception $e){
