@@ -401,6 +401,31 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function review_item($rating, $title, $description, $product_id) {
+        try {
+            $query = file_get_contents(__DIR__ . "/../sql/queries/insert_review.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $user_id = Common::get_user_id();
+            $result = $stmt->execute([
+                ":product_id"=>$product_id,
+                ":user_id"=>$user_id,
+                ":rating"=>$rating,
+                ":title"=>$title,
+                ":description"=>$description
+            ]);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
     public static function remove_cart_item($item) {
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/remove_cart_item.sql");

@@ -1,9 +1,10 @@
 <?php
-//TODO: Format date
+//TODO: Format release date
 //TODO: Reviews pagination
 //TODO: Add review button if user owns the product
 //TODO: Make it so user can only input rating up to 5 in backend:
 //https://stackoverflow.com/questions/12868213/is-it-possible-to-set-a-maximum-value-for-a-column-in-sql-server-2008-r2
+//TODO: Add a dropdown selector to sort reviews
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -51,13 +52,15 @@ if(Common::get($response, "status", 400) == 200){
     <h3>Reviews</h3>
 
     <div class="text-right">
-        <button type="button" class="btn btn-light btn-sm">Write a Review</button>
+        <!--<button type="button" class="btn btn-light btn-sm">Write a Review</button>-->
+        <a href="update_product.php?p=<?php echo $product_id;?>" class="btn btn-small btn-light">Write a Review</a>
+
     </div>
     <div class="list-group">
         <?php foreach($reviews as $r): ?>
             <div class="list-group-item">
                 <h6>(<?php echo Common::get($r, "rating", 0);?>/5) - <?php echo Common::get($r, "title", 0);?></h6>
-                <p style="color: darkgray" ><i>Reviewed (<?php echo Common::get($r, "created");?></i></p>
+                <p style="color: darkgray" ><i>Reviewed <?php echo Common::get($r, "created");?></i></p>
                 <p><?php echo Common::get($r, "description", ""); ?></p>
             </div>
         <?php endforeach; ?>
