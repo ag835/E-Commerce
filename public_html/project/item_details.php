@@ -1,7 +1,9 @@
 <?php
 //TODO: Format date
-//TODO: Review pagination
+//TODO: Reviews pagination
 //TODO: Add review button if user owns the product
+//TODO: Make it so user can only input rating up to 5 in backend:
+//https://stackoverflow.com/questions/12868213/is-it-possible-to-set-a-maximum-value-for-a-column-in-sql-server-2008-r2
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -25,7 +27,7 @@ if(Common::is_logged_in()){
         color: aliceblue;
     }
     .list-group-item {
-        background-color: black;
+        background-color: dimgrey;
         color: aliceblue;
     }
 </style>
@@ -47,6 +49,7 @@ if(Common::get($response, "status", 400) == 200){
 ?>
 <div class="container-fluid">
     <h3>Reviews</h3>
+
     <div class="text-right">
         <button type="button" class="btn btn-light btn-sm">Write a Review</button>
     </div>
@@ -54,7 +57,7 @@ if(Common::get($response, "status", 400) == 200){
         <?php foreach($reviews as $r): ?>
             <div class="list-group-item">
                 <h6>(<?php echo Common::get($r, "rating", 0);?>/5) - <?php echo Common::get($r, "title", 0);?></h6>
-                <p style="color: dimgrey" ><i>Reviewed (<?php echo Common::get($r, "created");?></i></p>
+                <p style="color: darkgray" ><i>Reviewed (<?php echo Common::get($r, "created");?></i></p>
                 <p><?php echo Common::get($r, "description", ""); ?></p>
             </div>
         <?php endforeach; ?>
