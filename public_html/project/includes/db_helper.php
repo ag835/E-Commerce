@@ -527,5 +527,27 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function has_ownership($product_id) {
+        try {
+            $query = file_get_contents(__DIR__ . "/../sql/queries/check_item_purchase.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $user_id = Common::get_user_id();
+            $result = $stmt->execute([
+                ":user_id"=>$user_id,
+                ":product_id"=>$product_id
+            ]);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response($result,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
 
 }

@@ -2,24 +2,23 @@
 //TODO: Integrate the JS form validation script? (week 6)
 //TODO: see create_product for how to array
 //TODO: restrict reviewing if user doesnt own product
+//TODO: Have rating form item be /5
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
-
-if(Common::is_logged_in()){
-    //this will auto redirect if user isn't logged in !!!change this to if has product
-    /*if(!Common::has_role("Admin")){
-        Common::flash("Access denied", "danger");
-        die(header("Location: " . Common::url_for("home")));
-    }*/
-}
 if(isset($_GET["p"])){
     $product_id = $_GET["p"];
 }
 else{
     Common::flash("Not a valid product", "warning");
     die(header("Location: " . Common::url_for("store")));
+}
+if(Common::is_logged_in()){
+    if (empty(DBH::has_ownership($product_id))) {
+        Common::flash("You need to own the product before writing a review.", "warning");
+        die(header("Location: item_details.php?p=$product_id"));
+    }
 }
 ?>
 <?php
@@ -29,7 +28,7 @@ if(Common::get($result, "status", 400) == 200){
     $item = Common::get($result, "data", []);
     // echo var_export($item);
 }
-$name = Common::get($item, "name");?>
+$name = Common::get($item, "name");
 ?>
 <a href="item_details.php?p=<?php echo $product_id?>" class="btn btn-small btn-secondary">Back to details</a>
 <h2>Review <?php echo $name;?></h2>
