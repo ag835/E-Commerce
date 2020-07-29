@@ -537,8 +537,8 @@ class DBH{
                 ":product_id"=>$product_id
             ]);
             DBH::verify_sql($stmt);
-            //https://stackoverflow.com/questions/37583456/output-is-1-even-if-the-column-is-empty-for-some-entries-in-mysql-database
-            if($result){ //if varchar and not int, empty query returns 1 (???)
+            if($result){
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 return $result;
             }
             else{
