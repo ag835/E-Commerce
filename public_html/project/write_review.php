@@ -22,7 +22,9 @@ if(Common::is_logged_in()){
 }
 ?>
 <?php
-echo DBH::has_ownership($product_id);
+echo "user: " . Common::get_user_id();
+echo "product: " . $product_id;
+echo "result: " . DBH::has_ownership($product_id);
 $result = DBH::get_item_by_id($product_id);
 $item = [];
 if(Common::get($result, "status", 400) == 200){
