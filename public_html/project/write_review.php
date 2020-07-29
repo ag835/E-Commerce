@@ -15,16 +15,14 @@ else{
     die(header("Location: " . Common::url_for("store")));
 }
 if(Common::is_logged_in()){
-    if (empty(DBH::has_ownership($product_id))) { //this doesn't work at all
+    //could changed this akin to response == 200 in other uses
+    if (empty(DBH::has_ownership($product_id))) {
         Common::flash("You need to own the product before writing a review.", "warning");
         die(header("Location: item_details.php?p=$product_id"));
     }
 }
 ?>
 <?php
-echo "user: " . Common::get_user_id();
-echo "product: " . $product_id;
-echo "result: " . DBH::has_ownership($product_id);
 $result = DBH::get_item_by_id($product_id);
 $item = [];
 if(Common::get($result, "status", 400) == 200){
@@ -92,3 +90,4 @@ if(isset($_POST["submit"])){
     }
 }
 ?>
+</div>

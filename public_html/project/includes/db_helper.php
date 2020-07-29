@@ -174,6 +174,76 @@ class DBH{
             echo $e->getMessage();
         }
     }
+    public static function update_credentials($credential, $type) {
+        $user_id = Common::get_user_id();
+        if ($type == 'username') {
+            try {
+                $query = file_get_contents(__DIR__ . "/../sql/queries/update_username.sql");
+                $stmt = DBH::getDB()->prepare($query);
+                $result = $stmt->execute([
+                    ":user_id" => $user_id,
+                    ":username" => $credential
+                ]);
+                DBH::verify_sql($stmt);
+                if($result){
+                    return DBH::response(NULL,200, "success");
+                }
+                else{
+                    return DBH::response(NULL, 400, "error");
+                }
+            }
+            catch(Exception $e){
+                error_log($e->getMessage());
+                return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+            }
+        }
+        else if ($type == 'email') {
+            try {
+                $query = file_get_contents(__DIR__ . "/../sql/queries/update_email.sql");
+                $stmt = DBH::getDB()->prepare($query);
+                $result = $stmt->execute([
+                    ":user_id" => $user_id,
+                    ":email" => $credential
+                ]);
+                DBH::verify_sql($stmt);
+                if($result){
+                    return DBH::response(NULL,200, "success");
+                }
+                else{
+                    return DBH::response(NULL, 400, "error");
+                }
+            }
+            catch(Exception $e){
+                error_log($e->getMessage());
+                return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+            }
+        }
+        else if ($type == 'password') {
+            try {
+                $query = file_get_contents(__DIR__ . "/../sql/queries/update_password.sql");
+                $stmt = DBH::getDB()->prepare($query);
+                $password = password_hash($credential, PASSWORD_BCRYPT);
+                $result = $stmt->execute([
+                    ":user_id" => $user_id,
+                    ":password" => $password
+                ]);
+                DBH::verify_sql($stmt);
+                if($result){
+                    return DBH::response(NULL,200, "success");
+                }
+                else{
+                    return DBH::response(NULL, 400, "error");
+                }
+            }
+            catch(Exception $e){
+                error_log($e->getMessage());
+                return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+            }
+        }
+        else {
+            echo "Invalid type";
+        }
+    }
     public static function update_user_stats($user_id, $level, $xp, $points, $wins, $losses){
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/update_user_stats.sql");
