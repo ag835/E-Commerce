@@ -18,7 +18,7 @@ if(isset($_POST["search"])){
 //---------------
 $items = array();
 //this will auto redirect if user isn't logged in
-$result = DBH::get_search_results();
+$result = DBH::get_search_results($search, $_POST["sort"]);
 $_items = Common::get($result, "data", false);
 if($_items){
     $items = $_items;
