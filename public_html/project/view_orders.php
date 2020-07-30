@@ -24,11 +24,11 @@ if(Common::is_logged_in()){
             <option value="Hardware">Hardware</option>
             <option value="Mod">Mod</option>
         </select>
-        <select class="form-control form-control-sm mr-sm-2" name="Newest">
+        <select class="form-control form-control-sm mr-sm-2" name="time">
             <option value="created DESC">Newest</option>
             <option value="created ASC">Oldest</option>
         </select>
-        <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Sort"/>
+        <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Filter"/>
     </form>
 </nav>
 <h2>Customer Orders</h2>
@@ -80,6 +80,9 @@ if(Common::is_logged_in()){
                         <?php endfor;?>
                     </tr>
                 <?php endfor;?>
+            <?php else:?>
+            <br>
+            <h4>No Results</h4>
             <?php endif; ?>
             </tbody>
         </table>

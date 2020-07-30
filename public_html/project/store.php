@@ -101,6 +101,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                 </tr>
                 <?php endfor;?>
                 <?php else:?>
+                <br>
                 <h4>No results</h4>
                 <?php endif; ?>
                 </tbody>
