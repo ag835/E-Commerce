@@ -21,8 +21,8 @@ echo "search: " . $search . "sort: " . $sort;
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
     <form class="form-inline" method="POST">
-        <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="search the store"
-               aria-label="Search" value="<?php echo $search;?>">
+        <input class="form-control form-control-sm mr-sm-2" name="search" type="search"
+               placeholder="search the store" aria-label="Search" value="<?php echo $search;?>">
         <select class="form-control form-control-sm mr-sm-2" name="sort">
             <option value="name DESC">Alphabetical A-Z</option>
             <option value="name ASC">Alphabetical Z-A</option>
@@ -34,8 +34,7 @@ echo "search: " . $search . "sort: " . $sort;
             <option value="price DESC">Highest Price</option>
         </select>
         <!--<button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
-        <input type="submit" name="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0"
-               value="Search"/>
+        <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Search"/>
     </form>
 </nav>
 <?php
