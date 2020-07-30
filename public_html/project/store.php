@@ -33,7 +33,9 @@ echo "search: " . $search . "sort: " . $sort;
             <option value="price ASC">Lowest Price</option>
             <option value="price DESC">Highest Price</option>
         </select>
-        <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <!--<button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
+        <input type="submit" name="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0"
+               value="Search"/>
     </form>
 </nav>
 <?php
@@ -41,11 +43,11 @@ echo "search: " . $search . "sort: " . $sort;
 $items = array();
 if (isset($search)) {
     $result = DBH::get_search_results($search, $sort);
-    echo "Results: " . var_export($result) . "/n";
+    //echo "Results: " . var_export($result) . "/n";
     $_items = Common::get($result, "data", false);
     if($_items){
         $items = $_items;
-        echo "Items: " . var_export($items);
+        //echo "Items: " . var_export($items);
     }
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
