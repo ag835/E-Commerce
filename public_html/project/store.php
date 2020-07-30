@@ -1,7 +1,6 @@
 <?php
-//TODO: make sure nicer, use array:
+//TODO: make search nicer:
 //https://stackoverflow.com/questions/1336353/how-do-i-set-the-selected-item-in-a-drop-down-box
-#TODO: search
 #get search if set
 #search/sort html form
 #query
@@ -17,16 +16,6 @@ if(isset($_POST["search"])){
     $search = $_POST["search"];
     $sort = $_POST["sort"];
 }
-//---------------
-$items = array();
-//this will auto redirect if user isn't logged in
-$result = DBH::get_search_results($search, $sort);
-$_items = Common::get($result, "data", false);
-if($_items){
-    $items = $_items;
-    //echo var_export($items);
-}
-$last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
@@ -46,7 +35,18 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
-
+<?php
+//---------------
+$items = array();
+//this will auto redirect if user isn't logged in
+$result = DBH::get_search_results($search, $sort);
+$_items = Common::get($result, "data", false);
+if($_items){
+    $items = $_items;
+    //echo var_export($items);
+}
+$last_updated = Common::get($_SESSION, "last_sync", false);
+?>
 <div>
     <?php if($last_updated):?>
         <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');?></p>
