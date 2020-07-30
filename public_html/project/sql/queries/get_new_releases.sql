@@ -1,0 +1,1 @@
+SELECT * FROM Products WHERE is_active = 1 ORDER BY created DESC LIMIT 5
