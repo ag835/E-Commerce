@@ -9,7 +9,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 //----------------
-#search stuff
+$search = "";
+if(isset($_POST["search"])){
+    $search = $_POST["search"];
+}
 //---------------
 $items = array();
 if(Common::is_logged_in()){
@@ -27,7 +30,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     <a class="navbar-brand text-white">Store</a>
     <form class="form-inline" method="POST">
         <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="search the store"
-               aria-label="Search">
+               aria-label="Search" value="<?php echo $search;?>">
         <select class="form-control form-control-sm mr-sm-2" name="sort">
             <option value="name DESC">Alphabetical A-Z</option>
             <option value="name ASC">Alphabetical Z-A</option>
