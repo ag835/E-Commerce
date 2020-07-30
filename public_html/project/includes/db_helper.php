@@ -269,6 +269,49 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function get_search_results($search, $post_sort) {
+        try {
+            //this is ok since we're in a try/catch block
+            $order = $_POST["order"];
+            $col = $_POST["col"];
+            echo var_dump($order);
+            //Potential Solutions since we can't just bindValue or bindParam column names and asc/desc
+            //https://stackoverflow.com/questions/2542410/how-do-i-set-order-by-params-using-prepared-pdo-statement
+            //https://stackoverflow.com/questions/38478654/unable-to-run-named-placeholder-for-order-by-asc-in-php-pdo
+            //Map variable to hard coded values here so we can safely inject them into the raw SQL query.
+            //this is safer than just putting $col blindly in case there's SQL Injection data included.
+            $mapped_col = "name";//default to name
+            if($col == "name"){
+                $mapped_col = "name";
+            }
+            else if($col == "quantity"){
+                $mapped_col = "quantity";
+            }
+            else if($col == "created"){
+                $mapped_col = "created";
+            }
+            else if($col == "modified"){
+                $mapped_col = "modified";
+            }
+            $query = "SELECT * FROM Things where name like CONCAT('%', :thing, '%') ORDER BY $mapped_col";
+            //same as above, safely map data from client to hard coded value to prevent sql injection
+            if((int)$order == 1){
+                $query .= " ASC";
+            }
+            else{
+                $query .= " DESC";
+            }
+
+            $stmt = getDB()->prepare($query);
+            //Note: With a LIKE query, we must pass the % during the mapping
+            $stmt->execute([":thing"=>$search]);
+            echo var_export($stmt->errorInfo());
+            //Note the fetchAll(), we need to use it over fetch() if we expect >1 record
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     public static function get_all_items(){
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/get_all_items.sql");

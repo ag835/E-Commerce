@@ -15,14 +15,12 @@ if(isset($_POST["search"])){
 }
 //---------------
 $items = array();
-if(Common::is_logged_in()){
-    //this will auto redirect if user isn't logged in
-    $result = DBH::get_shop_items();
-    $_items = Common::get($result, "data", false);
-    if($_items){
-        $items = $_items;
-        //echo var_export($items);
-    }
+//this will auto redirect if user isn't logged in
+$result = DBH::get_shop_items();
+$_items = Common::get($result, "data", false);
+if($_items){
+    $items = $_items;
+    //echo var_export($items);
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
@@ -44,6 +42,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
+
 <div>
     <?php if($last_updated):?>
         <p>Points Last Updated: <?php echo $last_updated->format('Y-m-d H:i:s');?></p>
@@ -94,6 +93,8 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                     <?php endfor;?>
                 </tr>
                 <?php endfor;?>
+                <?php else:?>
+                <h4>No results</h4>
                 <?php endif; ?>
                 </tbody>
             </table>
