@@ -24,8 +24,9 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
     <form class="form-inline" method="POST">
-        <input class="form-control mr-sm-2" type="search" placeholder="search the store" aria-label="Search">
-        <select class="form-control" name="sort">
+        <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="search the store"
+               aria-label="Search">
+        <select class="form-control form-control-sm" name="sort">
             <option value="name DESC">Alphabetical A-Z</option>
             <option value="name ASC">Alphabetical Z-A</option>
             <option value="created ASC">Newest</option>
@@ -35,7 +36,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             <option value="price ASC">Lowest Price</option>
             <option value="price DESC">Highest Price</option>
         </select>
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
 <div>
