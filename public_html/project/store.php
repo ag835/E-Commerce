@@ -1,4 +1,10 @@
 <?php
+#TODO: search
+#get search if set
+#search/sort html form
+#query
+#$items = search results
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -17,8 +23,18 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
-    <form class="form-inline">
+    <form class="form-inline" method="POST">
         <input class="form-control mr-sm-2" type="search" placeholder="search the store" aria-label="Search">
+        <select class="form-control" name="sort">
+            <option value="ASC">Alphabetical A-Z</option>
+            <option value="ASC">Alphabetical Z-A</option>
+            <option value="ASC">Newest</option>
+            <option value="ASC">Oldest</option>
+            <option value="ASC">Most Popular</option>
+            <option value="ASC">Least Popular</option>
+            <option value="ASC">Lowest Price</option>
+            <option value="DESC">Highest Price</option>
+        </select>
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
