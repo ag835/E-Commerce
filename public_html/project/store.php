@@ -39,13 +39,14 @@ echo "search: " . $search . "sort: " . $sort;
 <?php
 //---------------
 $items = array();
-//this will auto redirect if user isn't logged in
-$result = DBH::get_search_results($search, $sort);
-echo var_export($result);
-$_items = Common::get($result, "data", false);
-if($_items){
-    $items = $_items;
-    echo var_export($items);
+if (isset($search)) {
+    $result = DBH::get_search_results($search, $sort);
+    echo "Results: " . var_export($result) . "/n";
+    $_items = Common::get($result, "data", false);
+    if($_items){
+        $items = $_items;
+        echo "Items: " . var_export($items);
+    }
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
