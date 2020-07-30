@@ -272,44 +272,57 @@ class DBH{
     public static function get_search_results($search, $post_sort) {
         try {
             //this is ok since we're in a try/catch block
-            $order = $_POST["order"];
-            $col = $_POST["col"];
-            echo var_dump($order);
+            $sort = $post_sort;
+            echo var_dump($sort);
             //Potential Solutions since we can't just bindValue or bindParam column names and asc/desc
             //https://stackoverflow.com/questions/2542410/how-do-i-set-order-by-params-using-prepared-pdo-statement
             //https://stackoverflow.com/questions/38478654/unable-to-run-named-placeholder-for-order-by-asc-in-php-pdo
             //Map variable to hard coded values here so we can safely inject them into the raw SQL query.
             //this is safer than just putting $col blindly in case there's SQL Injection data included.
-            $mapped_col = "name";//default to name
-            if($col == "name"){
-                $mapped_col = "name";
+            $mapped_col = " name DESC";//default to name
+            if($sort == "name DESC"){
+                $mapped_col = " name DESC";
             }
-            else if($col == "quantity"){
-                $mapped_col = "quantity";
+            else if($sort == "name ASC"){
+                $mapped_col = " name ASC";
             }
-            else if($col == "created"){
-                $mapped_col = "created";
+            else if($sort == "created ASC"){
+                $mapped_col = " created ASC";
             }
-            else if($col == "modified"){
-                $mapped_col = "modified";
+            else if($sort == "created DESC"){
+                $mapped_col = " created DESC";
             }
-            $query = "SELECT * FROM Things where name like CONCAT('%', :thing, '%') ORDER BY $mapped_col";
+            else if($sort == "popular DESC"){ //most popular
+                $mapped_col = " popular DESC";
+            }
+            else if($sort == "popular ASC"){ //least popular
+                $mapped_col = " popular ASC"; //have to do some join for these..............
+            }
+            else if($sort == "price ASC"){
+                $mapped_col = " price ASC";
+            }
+            else if($sort == "price DESC"){
+                $mapped_col = " price DESC";
+            }
+            $query = file_get_contents(__DIR__ . "/../sql/queries/get_shop_items.sql");
             //same as above, safely map data from client to hard coded value to prevent sql injection
-            if((int)$order == 1){
-                $query .= " ASC";
-            }
-            else{
-                $query .= " DESC";
-            }
-
+            $query .= $mapped_col;
             $stmt = getDB()->prepare($query);
             //Note: With a LIKE query, we must pass the % during the mapping
-            $stmt->execute([":thing"=>$search]);
-            echo var_export($stmt->errorInfo());
-            //Note the fetchAll(), we need to use it over fetch() if we expect >1 record
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            echo $e->getMessage();
+            $result = $stmt->execute([":search"=>$search]);
+            DBH::verify_sql($stmt);
+            if($result){
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                return DBH::response($result,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
     public static function get_all_items(){

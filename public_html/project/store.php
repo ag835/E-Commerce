@@ -1,4 +1,6 @@
 <?php
+//TODO: make sure nicer, use array:
+//https://stackoverflow.com/questions/1336353/how-do-i-set-the-selected-item-in-a-drop-down-box
 #TODO: search
 #get search if set
 #search/sort html form
@@ -16,7 +18,7 @@ if(isset($_POST["search"])){
 //---------------
 $items = array();
 //this will auto redirect if user isn't logged in
-$result = DBH::get_shop_items();
+$result = DBH::get_search_results();
 $_items = Common::get($result, "data", false);
 if($_items){
     $items = $_items;
