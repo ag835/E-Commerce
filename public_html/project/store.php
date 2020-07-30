@@ -16,7 +16,6 @@ if(isset($_POST["search"])){
     $search = $_POST["search"];
     $sort = $_POST["sort"];
 }
-echo "search: " . $search . "sort: " . $sort;
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
@@ -26,8 +25,8 @@ echo "search: " . $search . "sort: " . $sort;
         <select class="form-control form-control-sm mr-sm-2" name="sort">
             <option value="name DESC">Alphabetical A-Z</option>
             <option value="name ASC">Alphabetical Z-A</option>
-            <option value="created ASC">Newest</option>
-            <option value="created DESC">Oldest</option>
+            <option value="created DESC">Newest</option>
+            <option value="created ASC">Oldest</option>
             <option value="ASC">Most Popular</option>
             <option value="ASC">Least Popular</option>
             <option value="price ASC">Lowest Price</option>

@@ -285,11 +285,11 @@ class DBH{
             else if($sort == "name ASC"){
                 $mapped_col = " name ASC";
             }
-            else if($sort == "created ASC"){
-                $mapped_col = " created ASC";
-            }
             else if($sort == "created DESC"){
                 $mapped_col = " created DESC";
+            }
+            else if($sort == "created ASC"){
+                $mapped_col = " created ASC";
             }
             else if($sort == "popular DESC"){ //most popular
                 $mapped_col = " popular DESC";
