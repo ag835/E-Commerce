@@ -4,11 +4,13 @@
 #search/sort html form
 #query
 #$items = search results
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
+//----------------
+#search stuff
+//---------------
 $items = array();
 if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in
@@ -26,7 +28,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     <form class="form-inline" method="POST">
         <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="search the store"
                aria-label="Search">
-        <select class="form-control form-control-sm" name="sort">
+        <select class="form-control form-control-sm mr-sm-2" name="sort">
             <option value="name DESC">Alphabetical A-Z</option>
             <option value="name ASC">Alphabetical Z-A</option>
             <option value="created ASC">Newest</option>
