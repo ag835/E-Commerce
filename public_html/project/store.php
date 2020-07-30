@@ -16,6 +16,7 @@ if(isset($_POST["search"])){
     $search = $_POST["search"];
     $sort = $_POST["sort"];
 }
+echo "search: " . $search . "sort: " . $sort;
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand text-white">Store</a>
@@ -40,10 +41,11 @@ if(isset($_POST["search"])){
 $items = array();
 //this will auto redirect if user isn't logged in
 $result = DBH::get_search_results($search, $sort);
+echo var_export($result);
 $_items = Common::get($result, "data", false);
 if($_items){
     $items = $_items;
-    //echo var_export($items);
+    echo var_export($items);
 }
 $last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
