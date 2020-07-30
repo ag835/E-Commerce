@@ -1,4 +1,6 @@
 <?php
+//TODO: Have to click twice for warning alerts to show up
+//TODO: Make user confirm current pass to reset password (direct to new form?)
 include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()) {
     //will boot if not
@@ -50,11 +52,13 @@ if(isset($_POST["change_username"])){
         }
         else{
             Common::flash("Username is already taken", "warning");
+            die(header("Location: " . Common::url_for("edit_profile")));
         }
     }
     else {
         //echo $name, $rating, $title, $description;
         Common::flash("Please choose a username of appropriate length", "warning");
+        die(header("Location: " . Common::url_for("edit_profile")));
     }
 }
 else if (isset($_POST['change_email'])) {
@@ -70,11 +74,13 @@ else if (isset($_POST['change_email'])) {
         }
         else{
             Common::flash("Email is already in use", "warning");
+            die(header("Location: " . Common::url_for("edit_profile")));
         }
     }
     else {
         //echo $name, $rating, $title, $description;
         Common::flash("Please choose an email of appropriate length", "warning");
+        die(header("Location: " . Common::url_for("edit_profile")));
     }
 }
 else if (isset($_POST['change_pass'])) {
@@ -98,11 +104,13 @@ else if (isset($_POST['change_pass'])) {
         }
         else{
             Common::flash("Error updating password", "warning");
+            die(header("Location: " . Common::url_for("edit_profile")));
         }
     }
     else {
         //echo $name, $rating, $title, $description;
         Common::flash("Please choose a password of appropriate length", "warning");
+        die(header("Location: " . Common::url_for("edit_profile")));
     }
 }
 ?>
