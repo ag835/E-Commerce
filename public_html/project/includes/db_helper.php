@@ -273,7 +273,6 @@ class DBH{
         try {
             //this is ok since we're in a try/catch block
             $sort = $post_sort;
-            echo var_dump($sort);
             //Potential Solutions since we can't just bindValue or bindParam column names and asc/desc
             //https://stackoverflow.com/questions/2542410/how-do-i-set-order-by-params-using-prepared-pdo-statement
             //https://stackoverflow.com/questions/38478654/unable-to-run-named-placeholder-for-order-by-asc-in-php-pdo
@@ -307,7 +306,7 @@ class DBH{
             $query = file_get_contents(__DIR__ . "/../sql/queries/get_shop_items.sql");
             //same as above, safely map data from client to hard coded value to prevent sql injection
             $query .= $mapped_col;
-            $stmt = getDB()->prepare($query);
+            $stmt = DBH::getDB()->prepare($query);
             //Note: With a LIKE query, we must pass the % during the mapping
             $result = $stmt->execute([":search"=>$search]);
             DBH::verify_sql($stmt);

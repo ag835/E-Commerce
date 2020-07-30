@@ -12,13 +12,15 @@ error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 //----------------
 $search = "";
+$sort = " name DESC";
 if(isset($_POST["search"])){
     $search = $_POST["search"];
+    $sort = $_POST["sort"];
 }
 //---------------
 $items = array();
 //this will auto redirect if user isn't logged in
-$result = DBH::get_search_results($search, $_POST["sort"]);
+$result = DBH::get_search_results($search, $sort);
 $_items = Common::get($result, "data", false);
 if($_items){
     $items = $_items;
