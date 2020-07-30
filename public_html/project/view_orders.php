@@ -14,10 +14,21 @@ if(Common::is_logged_in()){
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand text-white">View Orders</a>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="search orders" aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    <a class="navbar-brand text-white">Store</a>
+    <form class="form-inline" method="POST">
+        <label>Category: </label>
+        <select class="form-control form-control-sm mr-sm-2" name="category">
+            <option value="Demo">Demo</option>
+            <option value="DLC">DLC</option>
+            <option value="Game">Game</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Mod">Mod</option>
+        </select>
+        <select class="form-control form-control-sm mr-sm-2" name="Newest">
+            <option value="created DESC">Newest</option>
+            <option value="created ASC">Oldest</option>
+        </select>
+        <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Sort"/>
     </form>
 </nav>
 <h2>Customer Orders</h2>
