@@ -26,14 +26,14 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
     <form class="form-inline" method="POST">
         <input class="form-control mr-sm-2" type="search" placeholder="search the store" aria-label="Search">
         <select class="form-control" name="sort">
-            <option value="ASC">Alphabetical A-Z</option>
-            <option value="ASC">Alphabetical Z-A</option>
-            <option value="ASC">Newest</option>
-            <option value="ASC">Oldest</option>
+            <option value="name DESC">Alphabetical A-Z</option>
+            <option value="name ASC">Alphabetical Z-A</option>
+            <option value="created ASC">Newest</option>
+            <option value="created DESC">Oldest</option>
             <option value="ASC">Most Popular</option>
             <option value="ASC">Least Popular</option>
-            <option value="ASC">Lowest Price</option>
-            <option value="DESC">Highest Price</option>
+            <option value="price ASC">Lowest Price</option>
+            <option value="price DESC">Highest Price</option>
         </select>
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
