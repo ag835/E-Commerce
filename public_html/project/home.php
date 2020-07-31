@@ -6,7 +6,7 @@ $_items = Common::get($result, "data", false);
 if($_items){
     $items = $_items;
     //echo "Items: " . var_export($items);
-    echo var_export($item[0]);
+    echo var_export($items);
 }
 ?>
 <style>
