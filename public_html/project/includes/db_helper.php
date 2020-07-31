@@ -654,9 +654,10 @@ class DBH{
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute([
                 ":name"=>Common::get($product, "name", null),
-                ":category"=>Common::get($product, "category", null),
+                ":category"=>Common::get($product, "category", "Game"),
                 ":quantity"=>Common::get($product, "quantity", 1),
                 ":price"=>Common::get($product, "price", 1),
+                ":trailer"=>Common::get($product, "trailer", null),
                 ":description"=>Common::get($product, "description", null),
                 ":active"=>Common::get($product, "active", false)?1:0//convert to tinyint
             ]);

@@ -123,7 +123,8 @@ if(Common::get($result, "status", 400) == 200){
     </div>
     <div class="form-group">
         <label for="product_category">Trailer</label>
-        <input class="form-control" type="url" id="product_trailer" name="product_trailer" required/>
+        <input class="form-control" type="url" id="product_trailer" name="product_trailer"
+               value="<?php echo Common::get($item, "trailer");?>" required/>
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>

@@ -35,7 +35,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <input class="form-control" type="number" id="product_price" name="product_price" value="0.00" step="0.01" min="0.00"/>
     </div>
     <div class="form-group">
-        <label for="product_category">Trailer</label>
+        <label for="product_trailer">Trailer</label>
         <input class="form-control" type="url" id="product_trailer" name="product_trailer" required/>
     </div>
     <div class="form-group">
@@ -89,6 +89,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             $product_category = Common::get($_POST, "product_category", "Game");
             $product_desc = Common::get($_POST, "product_desc", ''); #q_desc -> product_desc
             $product_quantity = Common::get($_POST, "product_quantity", 0); #attempts_per_day -> product_quantity
+            $product_trailer = Common::get($_POST, "product_trailer", "");
             //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
             //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
             //so here we're just going to default to false if it's not present in $_POST
@@ -117,6 +118,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                     "category"=>$product_category,
                     "quantity"=>$product_quantity,
                     "price"=>$product_price,
+                    "trailer"=>$product_trailer,
                     "description"=>$product_desc,
                     "active"=>$active
                 ];
