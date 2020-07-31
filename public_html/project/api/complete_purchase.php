@@ -31,6 +31,7 @@ if(isset($_POST["order"])){
                     if(Common::get($response, "status", 400) == 200) {
                         $response["status"] = 200;
                         $response["message"] = "Purchase complete";
+                        Common::flash("Purchase complete", "success");
                     }
                 }
                 else {

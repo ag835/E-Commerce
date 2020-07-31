@@ -67,7 +67,7 @@ if(Common::is_logged_in()){
             alert("Item id: " + itemId + "\nStatus: " + status);
             //reload the page
             window.location.replace("edit_products.php");
-            <?php Common::flash("Product deactivated", "success");?>
+            <?php //Common::flash("Product deactivated", "success");?>
             //works oddly -- will show up on edit and update pages when remove hasn't even been clicked
         });
     }

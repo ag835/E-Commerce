@@ -22,6 +22,7 @@ if(isset($_POST["deactivate"])){
                 if(Common::get($response, "status", 400) == 200) {
                     $response["status"] = 200;
                     $response["message"] = "Item deactivated";
+                    Common::flash("Product deactivated", "success");
 
                 }
                 else {
