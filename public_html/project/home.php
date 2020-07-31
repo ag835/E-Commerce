@@ -26,7 +26,7 @@ if($_items){
     </ol>
     <?php $total = count($items);
     if($total > 0):?>
-    <?php for($i = 1; $i <= 5; $i++):
+    <?php for($i = 0; $i <= 4; $i++):
     $item = null;
     if($i < $total){
         $item = $items[$i];
