@@ -24,11 +24,22 @@ if($_items){
         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
     </ol>
+    <?php $total = count($items);
+    if($total > 0):?>
+    <?php for($i = 1; $i <= 5; $i++):
+    $item = null;
+    if($i < $total){
+        $item = $items[$i];
+    }
+        ?>
+        <?php if(isset($item)):?>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="images/Hellblade.jpg" alt="Hellblade">
+            <img class="d-block w-100" src="images/<?php echo Common::get($item,"name");?>.jpg"
+                 alt="<?php echo Common::get($item,"name");?>">
         </div>
-        <div class="carousel-item">
+        <!--<div class="carousel-item">
+
             <img class="d-block w-100" src="images/Prey.jpg" alt="Prey">
         </div>
         <div class="carousel-item">
@@ -39,8 +50,11 @@ if($_items){
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
-        </div>
+        </div>-->
     </div>
+        <?php endif;?>
+        <?php endfor;?>
+    <?php endif;?>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
