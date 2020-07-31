@@ -109,7 +109,7 @@ if (isset($search)) {
             <ul class="list-group" id="cart">
 
             </ul>
-            <?php if (Common::is_logged_in()):?>
+            <?php if (Common::is_logged_in(false)):?>
             <button class="btn btn-secondary" onclick="purchase();">Complete Purchase</button>
             <?php else:?>
             <a href="register.php" class="btn btn-secondary" >
