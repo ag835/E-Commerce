@@ -35,10 +35,10 @@ if($_items){
                 }
                 ?>
                 <?php if(isset($item)):?>
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="images/<?php echo Common::get($item,"name");?>.jpg"
-                 alt="<?php echo Common::get($item,"name");?>">
-        </div>
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="images/<?php echo Common::get($item,"name");?>.jpg"
+                             alt="<?php echo Common::get($item,"name");?>">
+                    </div>
         <!--<div class="carousel-item">
 
             <img class="d-block w-100" src="images/Prey.jpg" alt="Prey">
