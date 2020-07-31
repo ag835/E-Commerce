@@ -8,7 +8,16 @@ if($_items){
     //echo "Items: " . var_export($items);
 }
 ?>
-
+<style>
+    body {
+        background-color: black;
+        color: aliceblue;
+    }
+    .list-group-item {
+        background-color: dimgrey;
+        color: aliceblue;
+    }
+</style>
 <div>
     <h1>Home</h1>
     <?php if (Common::is_logged_in()): ?>
