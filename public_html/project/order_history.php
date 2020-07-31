@@ -7,6 +7,7 @@ if(Common::is_logged_in()){
     $_orders = Common::get($result, "data", false);
     if($_orders) {
         $orders = $_orders;
+        echo var_export($orders);
     }
 }
 ?>
@@ -18,10 +19,8 @@ if(Common::is_logged_in()){
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
-                <?php foreach($o as $item):?>
-                    <p><?php echo Common::get($item, "name");?> - <?php echo Common::get($item, "quantity");?>
-                        - <?php echo Common::get($item, "price");?></p>
-                <?php endforeach;?>
+                <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
+                    - <?php echo Common::get($o, "price");?></p>
                 <br>
                 <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
             </div>
