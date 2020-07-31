@@ -32,58 +32,26 @@ if(Common::is_logged_in()){
     </form>
 </nav>
 <h2>Customer Orders</h2>
-<div class="row">
-    <div class="col-1">
-        <table class="table">
-            <tbody>
-            <?php $total = count($orders);
-            if($total > 0):?>
-                <?php
-
-                $rows = (int)($total/ 5) + 1;
-                //echo "<br>Rows: $rows<br>";
-                ?>
-                <?php for($i = 0; $i < $rows; $i++):?>
-                    <tr>
-                        <?php for($k = 0; $k < 5; $k++):?>
-                            <?php $index = (($i) * 5) + ($k);
-                            $order = null;
-                            if($index < $total){
-                                $order = $orders[$index];
-                            }
-                            ?>
-                            <?php if(isset($order)):?>
-                                <td>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5>OrderID: <?php echo Common::get($order,"order_id");?> (<?php echo Common::get($order,"created")?>)</h5>
-                                            <p class="card-text">
-                                                User: <?php echo Common::get($order, "username");?>
-                                            </p>
-                                            <p class="card-text">
-                                                <?php echo Common::get($order, "name");?> - <?php echo Common::get($order, "quantity");?> - <?php echo Common::get($order, "price");?>
-                                            </p>
-                                            <p class="card-text">
-                                                Total: <?php echo Common::get($order,"cost", 0);?>
-                                            </p>
-                                            <!--<button class="btn btn-sm btn-secondary"
-                                                    data-id="<?php echo Common::get($order, "id", -1);?>"
-                                                    data-price="<?php echo Common::get($order, "cost", 0);?>"
-                                                    data-name="<?php echo Common::get($order, "name");?>"
-                                                    onclick="addToCart(this);">Add</button>-->
-                                        </div>
-
-                                    </div>
-                                </td>
-                            </div>
-                            <?php endif;?>
-                        <?php endfor;?>
-                    </tr>
-                <?php endfor;?>
-            <?php else:?>
-            <br>
-            <h4>No Results</h4>
-            <?php endif; ?>
-            </tbody>
-        </table>
+<div class="container-fluid">
+    <h4>Products</h4>
+    <div class="list-group">
+        <?php foreach($orders as $o): ?>
+            <div class="list-group-item">
+                <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
+                <p><small><?php echo Common::get($o, "created");?></small></p>
+                <!--get individual items-->
+                <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
+                    - <?php echo Common::get($o, "cost");?></p>
+                <!--sum the total-->
+                <br>
+                <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
+            </div>
+        <?php endforeach; ?>
+        <?php if(count($orders) == 0):?>
+            <div class="list-group-item">
+                No orders exist, sad.
+            </div>
+        <?php endif; ?>
     </div>
+</div>
+
