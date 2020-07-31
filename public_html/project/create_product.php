@@ -39,7 +39,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <input class="form-control" type="url" id="product_trailer" name="product_trailer" required/>
     </div>
     <div class="form-group">
-        <label for="product_desc">Product Description</label>
+        <label for="product_desc">Description</label>
         <textarea class="form-control" type="text" id="product_desc" name="product_desc"></textarea>
     </div>
     <div class="form-group">

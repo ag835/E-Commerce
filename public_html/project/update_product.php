@@ -49,6 +49,9 @@ if(isset($_POST["updated"])){
             $price = (float)$_POST["product_price"];
         }
     }
+    if(isset($_POST["product_trailer"]) && !empty($_POST["product_trailer"])){
+        $trailer = $_POST["product_trailer"];
+    }
     if(isset($_POST["product_desc"]) && !empty($_POST["product_desc"])){
         $description = $_POST["product_desc"];
     }
@@ -57,8 +60,20 @@ if(isset($_POST["updated"])){
     //so here we're just going to default to false if it's not present in $_POST
     $active = Common::get($_POST, "active", false);
 
-    if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($description)){
-        $response = DBH::update_item($name, $category, $quantity, $price, $description, $active, $product_id);
+    if(!empty($name) && !empty($category) && $quantity > -1 && $price > -1 && !empty($trailer)
+    && !empty($description)){
+        $product = [
+            "name"=>$name,
+            "category"=>$category,
+            "quantity"=>$quantity,
+            "price"=>$price,
+            "trailer"=>$trailer,
+            "description"=>$description,
+            "active"=>$active,
+            "id"=>$product_id
+        ];
+        $response = DBH::update_item($product);
+        //$response = DBH::update_item($name, $category, $quantity, $price, $description, $active, $product_id);
         //check create for how to pass $item array instead
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully updated product", "success");
@@ -105,6 +120,10 @@ if(Common::get($result, "status", 400) == 200){
         <label for="product_price">Price</label>
         <input class="form-control" type="number" id="product_price" name="product_price"
                value="<?php echo Common::get($item, "price");?>" step="0.01" min="0.00"/>
+    </div>
+    <div class="form-group">
+        <label for="product_category">Trailer</label>
+        <input class="form-control" type="url" id="product_trailer" name="product_trailer" required/>
     </div>
     <div class="form-group">
         <label for="product_desc">Product Description</label>

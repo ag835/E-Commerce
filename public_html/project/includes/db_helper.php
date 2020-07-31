@@ -149,18 +149,19 @@ class DBH{
             echo $e->getMessage();
         }
     }
-    public static function update_item($name, $category, $quantity, $price, $description, $active, $product_id) {
+    public static function update_item($product) {
         try{
             $query = file_get_contents(__DIR__ . "/../sql/queries/update_item.sql");
             $stmt = DBH::getDB()->prepare($query);
             $result = $stmt->execute(array(
-                ":name" => $name,
-                ":category" => $category,
-                ":quantity" => $quantity,
-                ":price" => $price,
-                ":description" => $description,
-                ":active" => $active?1:0,//convert to tinyint
-                ":id" => $product_id
+                ":name" => $product["name"],
+                ":category" => $product["category"],
+                ":quantity" => $product["quantity"],
+                ":price" => $product["price"],
+                ":trailer"=> $product["trailer"],
+                ":description" => $product["description"],
+                ":active" => $product["active"]?1:0, //$active?1:0,//convert to tinyint
+                ":id" => $product["id"]
             ));
             DBH::verify_sql($stmt);
             if($result){
