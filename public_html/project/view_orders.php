@@ -13,9 +13,10 @@ if(Common::is_logged_in()){
     }
     $total = 0;
     for ($i = 0; $i < count($orders); $i++) {
-        echo orders[$i]["cost"];
+        //echo orders[$i]["cost"]; outputs nothing but the var $total works..
         $total += $orders[$i]["cost"];
     }
+    $profit = number_format($total, 2, ".", ",");
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
@@ -38,7 +39,7 @@ if(Common::is_logged_in()){
 </nav>
 <h2>Customer Orders</h2>
 <div class="container-fluid">
-    <h4>Profit: $<?php echo $total?></h4>
+    <h4>Profit: $<?php echo $profit?></h4>
     <div class="list-group">
         <?php foreach($orders as $o): ?>
             <div class="list-group-item">
