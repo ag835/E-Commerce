@@ -17,16 +17,19 @@ if(Common::is_logged_in()){
         <?php $total = count($orders);
         if($total > 0):?>
         <?php for ($i = 0; $i <= count($orders); $i++):
-            echo var_export($orders[$i]);?>
+            echo var_export($orders[$i])
+            ;?>
         <?php foreach($orders as $o):
-                $order_id = $o["order_id"];
+                $order_id = $o["order_id"]; //gets 1, 1, 2, 3, 4
                 echo $order_id;
             //echo var_export($o);?>
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
+                <!--get individual items-->
                 <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
                     - <?php echo Common::get($o, "cost");?></p>
+                <!--sum the total-->
                 <br>
                 <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
             </div>
