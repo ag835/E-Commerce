@@ -114,7 +114,9 @@ if (isset($search)) {
             <?php else:?>
             <a href="register.php" class="btn btn-secondary" >
                     Register</a>
-            <p>Register to complete your purchase</p>
+                <a href="login.php" class="btn btn-secondary" >
+                    Login</a>
+            <p>Register or Login to place your order</p>
             <?php endif;?>
             <button class="btn btn-sm btn-danger" onclick="emptyCart();">Remove all Items</button>
         </div>

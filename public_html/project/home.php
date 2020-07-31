@@ -19,7 +19,7 @@ if($_items){
 </style>
 <div>
     <h1>Home</h1>
-    <?php if (Common::is_logged_in()): ?>
+    <?php if (Common::is_logged_in(false)): ?>
         <p>Welcome, <?php echo Common::get_username();?></p>
     <?php endif;?>
 </div>
@@ -66,6 +66,6 @@ if($_items){
         <span class="sr-only">Next</span>
     </a>
 </div>
-<?php if (!Common::is_logged_in()): ?>
+<?php if (!Common::is_logged_in(false)): ?>
     <h4><i>Register or log in to purchase items and access more features</i></h4>
 <?php endif;?>
