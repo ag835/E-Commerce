@@ -192,9 +192,9 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         updatePrice();
     }
     function emptyCart() {
-        //while $cart.has("li") { not needed apparently
-        removeFromCart("li");
-        //}
+        while $cart.has("li") { //not needed apparently
+            removeFromCart("li");
+        }
     }
     function purchase(){
         let data = [];
