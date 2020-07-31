@@ -21,6 +21,8 @@ if($_items){
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -28,6 +30,12 @@ if($_items){
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src="images/Prey.jpg" alt="Prey">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
