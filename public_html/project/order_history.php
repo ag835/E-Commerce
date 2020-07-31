@@ -19,6 +19,8 @@ if(Common::is_logged_in()){
         <?php for ($i = 0; $i <= count($orders); $i++):
             echo var_export($orders[$i]);?>
         <?php foreach($orders as $o):
+                $order_id = $o["order_id"];
+                echo $order_id;
             //echo var_export($o);?>
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
