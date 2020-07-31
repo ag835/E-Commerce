@@ -278,7 +278,7 @@ class DBH{
             //https://stackoverflow.com/questions/38478654/unable-to-run-named-placeholder-for-order-by-asc-in-php-pdo
             //Map variable to hard coded values here so we can safely inject them into the raw SQL query.
             //this is safer than just putting $col blindly in case there's SQL Injection data included.
-            $mapped_col = " name DESC";//default to name
+            $mapped_col = " id DESC";//default to id
             if($sort == "name DESC"){
                 $mapped_col = " name DESC";
             }

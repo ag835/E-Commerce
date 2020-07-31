@@ -14,6 +14,8 @@ if(Common::is_logged_in()){
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
+        <?php $total = count($orders);
+        if($total > 0):?>
         <?php for ($i = 0; $i <= count($orders); $i++):
             echo var_export($orders[$i]);?>
         <?php foreach($orders as $o):
@@ -33,5 +35,6 @@ if(Common::is_logged_in()){
                 No purchases on record. Check out the store!
             </div>
         <?php endif; ?>
+        <?php endif;?>
     </div>
 </div>

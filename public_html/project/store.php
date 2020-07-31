@@ -23,8 +23,8 @@ if(isset($_POST["search"])){
         <input class="form-control form-control-sm mr-sm-2" name="search" type="search"
                placeholder="search the store" aria-label="Search" value="<?php echo $search;?>">
         <select class="form-control form-control-sm mr-sm-2" name="sort">
-            <option value="name DESC">Alphabetical A-Z</option>
-            <option value="name ASC">Alphabetical Z-A</option>
+            <option value="name ASC">Alphabetical A-Z</option>
+            <option value="name DESC">Alphabetical Z-A</option>
             <option value="created DESC">Newest</option>
             <option value="created ASC">Oldest</option>
             <option value="ASC">Most Popular</option>
