@@ -31,8 +31,8 @@ if($_items){
     if($i < $total){
         $item = $items[$i];
     }
-        ?>
-        <?php if(isset($item)):?>
+    ?>
+    <?php if(isset($item)):?>
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100" src="images/<?php echo Common::get($item,"name");?>.jpg"
@@ -51,10 +51,10 @@ if($_items){
         <div class="carousel-item">
             <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
         </div>-->
-    </div>
         <?php endif;?>
         <?php endfor;?>
-    <?php endif;?>
+        <?php endif;?>
+    </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
