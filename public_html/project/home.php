@@ -35,10 +35,22 @@ if($_items){
                 }
                 ?>
                 <?php if(isset($item)):?>
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <img class="d-block w-100" src="images/<?php echo Common::get($item,"name");?>.jpg"
                              alt="<?php echo Common::get($item,"name");?>">
                     </div>
+        <!--<div class="carousel-item">
+            <img class="d-block w-100" src="images/Prey.jpg" alt="Prey">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="images/outlast2_1.jpg" alt="Outlast 2">
+        </div>-->
                 <?php endif;?>
             <?php endfor;?>
         <?php endif;?>
