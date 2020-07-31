@@ -33,13 +33,15 @@ if(Common::is_logged_in()){
 </nav>
 <h2>Customer Orders</h2>
 <div class="container-fluid">
-    <h4>Products</h4>
+    <h4>Profit:</h4>
     <div class="list-group">
         <?php foreach($orders as $o): ?>
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
+                <p>User: <?php echo Common::get($o, "username");?></p>
                 <!--get individual items-->
+                <h6>Items:</h6>
                 <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
                     - <?php echo Common::get($o, "cost");?></p>
                 <!--sum the total-->
