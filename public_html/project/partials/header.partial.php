@@ -23,6 +23,9 @@ $logged_in = Common::is_logged_in(false);
         <li class="nav-item">
             <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo Common::url_for("store");?>">Store</a>
+        </li>
         <?php if($logged_in):?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="<?php echo Common::url_for("profile");?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,9 +38,6 @@ $logged_in = Common::is_logged_in(false);
                     <a class="dropdown-item" href="<?php echo Common::url_for("edit_profile");?>">Edit Details</a>
                 </div>
             </li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("store");?>">Store</a>
             </li>
             <?php if (Common::has_role("Admin")):?>
                 <li class="nav-item dropdown">
@@ -55,9 +55,6 @@ $logged_in = Common::is_logged_in(false);
                     <a class="nav-link" href="<?php echo Common::url_for("view_orders");?>">View Orders</a>
                 </li>
             <?php endif;?>
-            <!--<li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("surveys");?>">Surveys</a>
-            </li>-->
         <?php endif; ?>
         <?php if(!$logged_in):?>
             <li class="nav-item">

@@ -112,7 +112,7 @@ if (isset($search)) {
             <?php if (Common::is_logged_in()):?>
             <button class="btn btn-secondary" onclick="purchase();">Complete Purchase</button>
             <?php else:?>
-            <a class="btn btn-secondary" href="register.php">
+            <a href="register.php" class="btn btn-secondary" >
                     Register</a>
             <p>Register to complete your purchase</p>
             <?php endif;?>

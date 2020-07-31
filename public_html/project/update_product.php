@@ -6,7 +6,6 @@
 //4) form
 //TODO: Integrate the JS form validation script? (week 6)
 //TODO: update form using common::get, see create_product
-//TODO: also see create_product for how to array
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

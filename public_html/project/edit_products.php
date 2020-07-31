@@ -39,7 +39,8 @@ if(Common::is_logged_in()){
                 <?php else:?>
                     <div>Inactive</div>
                 <?php endif; ?>
-                <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>" class="btn btn-small btn-secondary">Update</a>
+                <a href="update_product.php?p=<?php echo Common::get($p, 'id', -1);?>"
+                   class="btn btn-small btn-secondary">Update</a>
                 <?php if(Common::get($p, "is_active", false) == 1): ?>
                 <button class="btn btn-secondary"
                         data-id="<?php echo Common::get($p, "id", -1);?>"
