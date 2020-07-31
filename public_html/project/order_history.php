@@ -14,8 +14,10 @@ if(Common::is_logged_in()){
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
+        <?php for ($i = 0; $i <= count($orders); $i++):
+            echo var_export($orders[$i]);?>
         <?php foreach($orders as $o):
-            echo var_export($o);?>
+            //echo var_export($o);?>
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
@@ -25,6 +27,7 @@ if(Common::is_logged_in()){
                 <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
             </div>
         <?php endforeach; ?>
+        <?php endfor;?>
         <?php if(count($orders) == 0):?>
             <div class="list-group-item">
                 No purchases on record. Check out the store!
