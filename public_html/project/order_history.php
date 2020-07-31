@@ -9,12 +9,29 @@ if(Common::is_logged_in()){
     if($_orders) {
         $orders = $_orders;
     }
-    else {
-        echo "No purchases on record. Check out the store!"; //probably a better way to do this...
-    }
 }
 ?>
-<h2>Order History</h2>
+<div class="container-fluid">
+    <h4>Order History</h4>
+    <div class="list-group">
+        <?php foreach($orders as $o): ?>
+            <div class="list-group-item">
+                <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
+                <p><small><i><?php echo Common::get($o, "created");?></i></small></p>
+                <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "category");?></p>
+                <br>
+                <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
+            </div>
+        <?php endforeach; ?>
+        <?php if(count($items) == 0):?>
+            <div class="list-group-item">
+                No purchases on record. Check out the store!
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+--------
+<!--<h2>Order History</h2>
 <div class="row">
     <div class="col-1">
         <table class="table">
@@ -61,4 +78,4 @@ if(Common::is_logged_in()){
     <?php endif; ?>
     </tbody>
     </table>
-</div>
+</div>-->

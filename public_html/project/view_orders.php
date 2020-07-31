@@ -14,7 +14,7 @@ if(Common::is_logged_in()){
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand text-white">Store</a>
+    <a class="navbar-brand text-white">Orders</a>
     <form class="form-inline" method="POST">
         <label style="color: aliceblue">Category:  </label>
         <select class="form-control form-control-sm mr-sm-2" name="category">
