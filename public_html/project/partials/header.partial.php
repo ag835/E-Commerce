@@ -20,10 +20,10 @@ $logged_in = Common::is_logged_in(false);
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
+        </li>
         <?php if($logged_in):?>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo Common::url_for("home");?>">Home</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="<?php echo Common::url_for("profile");?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php echo Common::get_username();?>

@@ -1,14 +1,19 @@
 <?php
 include_once(__DIR__."/partials/header.partial.php");
-
-if(Common::is_logged_in()){
-    //this will auto redirect if user isn't logged in
-
+$items = array();
+$result = DBH::get_new_releases();
+$_items = Common::get($result, "data", false);
+if($_items){
+    $items = $_items;
+    //echo "Items: " . var_export($items);
 }
 ?>
+
 <div>
     <h1>Home</h1>
-    <p>Welcome, <?php echo Common::get_username();?></p>
+    <?php if (Common::is_logged_in()): ?>
+        <p>Welcome, <?php echo Common::get_username();?></p>
+    <?php endif;?>
 </div>
 <p><strong>FEATURED AND RECOMMENDED</strong></p>
 <div id="carouselExampleIndicators" class="carousel slide" style="width: 800px; margin: 0 auto" data-ride="carousel">
@@ -37,3 +42,6 @@ if(Common::is_logged_in()){
         <span class="sr-only">Next</span>
     </a>
 </div>
+<?php if (!Common::is_logged_in()): ?>
+    <h4><i>Register or log in to purchase items and access more features</i></h4>
+<?php endif;?>
