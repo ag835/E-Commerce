@@ -37,10 +37,12 @@ if($_items){
     </ol>
     <div class="carousel-inner">
         <?php $total = count($items);
-        if($total > 0):?>
+        if($total > 0):
+        $firstItem = $items[0];
+        ?>
             <div class="carousel-item active">
-                <img class="d-block w-100" src="images/<?php echo Common::get($items[0],"name");?>.jpg"
-                     alt="<?php echo Common::get($item[0],"name");?>">
+                <img class="d-block w-100" src="images/<?php echo Common::get($firstItem,"name");?>.jpg"
+                     alt="<?php echo Common::get($firstItem,"name");?>">
             </div>
             <?php for($i = 1; $i < 5; $i++):
                 $item = null;
