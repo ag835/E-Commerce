@@ -9,13 +9,13 @@ if(Common::is_logged_in()){
         $orders = $_orders;
         echo var_export($orders);
     }
+    echo $orders["order_id"];
 }
 ?>
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
-        <?php $total = count($orders);
-        if($total > 0):?>
+        <?php if (count($orders) > 0):?>
         <?php for ($i = 0; $i <= count($orders); $i++):
             echo var_export($orders[$i])
             ;?>
