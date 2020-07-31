@@ -35,7 +35,7 @@ if(Common::is_logged_in()){
 <h1><?php echo Common::get($item,"name", "");?> <span
             style="font-size: 50%;">(<?php echo Common::get($item,"category", "");?>)</span></h1>
 <h5>Release date: <?php echo Common::get($item,"Release_Date");?></h5>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PRQgOfb9EGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="<?php echo Common::get($item,"trailer");?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p><?php echo Common::get($item,"description");?></p>
 <span style="font-size: 120%;">$<?php echo Common::get($item,"price");?></span>
 <button class="btn btn-success inline">Add to cart</button>

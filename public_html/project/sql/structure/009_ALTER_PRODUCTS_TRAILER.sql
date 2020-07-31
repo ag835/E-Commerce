@@ -1,0 +1,2 @@
+ALTER TABLE Products
+    ADD COLUMN trailer VARCHAR(255) UNIQUE
