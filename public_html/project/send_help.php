@@ -17,9 +17,10 @@ if(Common::is_logged_in()){
     <h4>Order History</h4>
     <div class="list-group">
         <?php $length = count($orders);
-        if($length > 0):?>
+        if($length > 0):
+            echo "\$orders[0][\"order_id\"]: " . $orders[0]["order_id"]; ?>
             <?php foreach($orders as $row):
-                echo $row["order_id"]; //$row //Outputs Array Array Array Array Array?>
+                echo "\$row[\"order_id\"]" . $row["order_id"]; //1 1 2 3 4 //$row //Outputs Array Array Array Array Array?>
                 <?php foreach($row as $innerArray):
                     echo null; //$innerArray;
                 //1 1 Prey 1 29.99 2020-07-22 21:53:38 2 1 Outlast 2 2.99 2020-07-22 21:53:38 8 2 Prey 1 29.99 2020-07-26 18:37:05 9 3 Headset 1 49.99 2020-07-26 19:04:14 10 4 Headset 1 49.99 2020-07-26 21:07:09?>
