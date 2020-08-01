@@ -38,6 +38,6 @@ if(isset($_POST["deactivate"])){
         error_log($e->getMessage());
     }
 }
-//echo json_encode($response);
+echo json_encode($response);
 ?>
 
