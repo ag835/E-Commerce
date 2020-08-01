@@ -496,7 +496,7 @@ class DBH{
                     return DBH::response(NULL, 400, "error");
                 }
             }
-            else {
+            else { //well this ended up being worthless, can't treat a select like a search
                 $time = $post_time;
                 $mapped_time = " DESC";
                 if($time == "Newest"){
