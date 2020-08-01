@@ -72,8 +72,6 @@ if(isset($_POST["updated"])){
             "id"=>$product_id
         ];
         $response = DBH::update_item($product);
-        //$response = DBH::update_item($name, $category, $quantity, $price, $description, $active, $product_id);
-        //check create for how to pass $item array instead
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully updated product", "success");
             die(header("Location: " . Common::url_for("edit_products")));

@@ -1,7 +1,8 @@
 <?php
 //TODO: Integrate the JS form validation script? (week 6)
-//TODO: see create_product for how to array
+//TODO: see create/update product for array
 //TODO: Fix restrict reviewing if user doesnt own product
+//think i did the abvoe and forgot to delete it but just in case
 //TODO: Have rating form item be /5
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -48,10 +49,6 @@ $name = Common::get($item, "name");
             <label for="review_desc">Text</label>
             <textarea class="form-control" type="text" id="review_desc" name="review_desc"></textarea>
         </div>
-        <!--<div class="form-group">
-            <label for="active">Active?</label>
-            <input class="form-control" type="checkbox" id="active" name="active"/>
-        </div>-->
         <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Post Review"/>
         </div>

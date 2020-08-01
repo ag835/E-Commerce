@@ -80,4 +80,3 @@ if(Common::is_logged_in()){
         <?php endif; ?>
     </div>
 </div>
-

@@ -1,4 +1,5 @@
 <?php
+//TODO: use js to append products in the same order to list-group-item
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -31,7 +32,7 @@ if(Common::is_logged_in()){
                 <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
                     - $<?php echo Common::get($row, "cost");?></p>
             <?php else:
-                $i++; //this doesn't increment properly
+                $i++; //this doesn't increment as intended
                 $total = Common::get($row, "cost", 0);?>
                 <!--create new list group-->
                 <div class="list-group-item">

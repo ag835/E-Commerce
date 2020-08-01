@@ -57,7 +57,7 @@ if(Common::is_logged_in()){
 <script>
     function removeProduct(element) {
         //set inactive
-        //make disabled
+        //make disabled -- WIP
         //refresh page
         //not necessarily in that order
         let itemId = $(element).data("id");
@@ -67,7 +67,6 @@ if(Common::is_logged_in()){
             //alert("Item id: " + itemId + "\nStatus: " + status);
             //reload the page
             window.location.replace("edit_products.php");
-            //works oddly -- will show up on edit and update pages when remove hasn't even been clicked
         });
     }
 </script>

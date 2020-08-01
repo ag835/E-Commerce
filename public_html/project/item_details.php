@@ -5,9 +5,9 @@
 //TODO: Make it so user can only input rating up to 5 in backend:
 //https://stackoverflow.com/questions/12868213/is-it-possible-to-set-a-maximum-value-for-a-column-in-sql-server-2008-r2
 //TODO: Add a dropdown selector to sort reviews
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 include_once(__DIR__."/partials/header.partial.php");
 $item = [];
 if(Common::is_logged_in()){
@@ -52,7 +52,6 @@ if(Common::get($response, "status", 400) == 200){
     <h3>Reviews</h3>
 
     <div class="text-right">
-        <!--<button type="button" class="btn btn-light btn-sm">Write a Review</button>-->
         <a href="write_review.php?p=<?php echo $product_id;?>" class="btn btn-small btn-light">Write a Review</a>
 
     </div>

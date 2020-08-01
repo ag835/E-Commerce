@@ -1,5 +1,4 @@
 <?php
-//TODO: Have to click twice for warning alerts to show up
 //TODO: Make user confirm current pass to reset password (direct to new form?)
 include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()) {

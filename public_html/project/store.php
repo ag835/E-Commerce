@@ -212,7 +212,7 @@ if (isset($search)) {
         console.log(data);
         console.log(JSON.stringify(data));
         $.post("api/complete_purchase.php", {"order": JSON.stringify(data)}, function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+            //alert("Data: " + data + "\nStatus: " + status);
             //reload the page
             window.location.replace("store.php");
         });
