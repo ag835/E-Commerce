@@ -68,5 +68,5 @@ if($_items){
 </div>
 <?php if (!Common::is_logged_in(false)): ?>
     <hr>
-    <h2><i>Register or log in to purchase items and access more features</i></h2>
+    <h4><i>Register or log in to purchase items and access more features</i></h4>
 <?php endif;?>

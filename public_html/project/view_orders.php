@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 $category = null;
-$time = "DESC";
+$time = "Newest";
 if(isset($_POST["category"])){
     $category = $_POST["category"];
 }
@@ -13,7 +13,7 @@ if(isset($_POST["time"])){
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand text-white">Filtered by: <?php echo $category . "|" . $time;?></a>
+    <a class="navbar-brand text-white">Filtered by: <?php echo $category . " | " . $time;?></a>
     <form class="form-inline" method="POST">
         <label style="color: aliceblue">Category:  </label>
         <select class="form-control form-control-sm mr-sm-2" name="category">
@@ -24,7 +24,7 @@ if(isset($_POST["time"])){
             <option value="Mod">Mod</option>
         </select>
         <select class="form-control form-control-sm mr-sm-2" name="time">
-            <option value="DESC">Newest</option>
+            <option value="Newest">Newest</option>
             <option value="ASC">Oldest</option>
         </select>
         <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Filter"/>

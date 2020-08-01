@@ -476,7 +476,7 @@ class DBH{
                 else if($category == "Mod"){
                     $mapped_category = "Mod";
                 }
-                if($time == "DESC"){
+                if($time == "Newest"){
                     $mapped_time = " DESC";
                 }
                 else if($time == "ASC"){
@@ -499,7 +499,7 @@ class DBH{
             else {
                 $time = $post_time;
                 $mapped_time = " DESC";
-                if($time == "DESC"){
+                if($time == "Newest"){
                     $mapped_time = " DESC";
                 }
                 else if($time == "ASC"){
