@@ -62,8 +62,9 @@ if(Common::is_logged_in()){
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
                 <p>User: <?php echo Common::get($o, "username");?></p>
-                <!--get individual items-->
                 <h6>Items:</h6>
+                <!--get individual items-->
+                <!-- if order id = order id -->
                 <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
                     - <?php echo Common::get($o, "cost");?></p>
                 <!--sum the total-->

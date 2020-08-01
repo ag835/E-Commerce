@@ -18,8 +18,10 @@ if(Common::is_logged_in()){
     <div class="list-group">
         <?php $length = count($orders);
         if($length > 0):
-            echo "\$orders[0][\"order_id\"]: " . $orders[0]["order_id"]; ?>
+            //echo "\$orders[0][\"order_id\"]: " . $orders[0]["order_id"]; ?>
             <?php foreach($orders as $row):
+            $outerID = $orders[0]["order_id"];
+            echo "Outer ID: " . $outerID + "\n";
                 echo "\$row[\"order_id\"]" . $row["order_id"]; //1 1 2 3 4 //$row //Outputs Array Array Array Array Array?>
                 <?php foreach($row as $innerArray):
                     echo null; //$innerArray;
