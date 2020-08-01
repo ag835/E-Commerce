@@ -12,7 +12,6 @@ if(Common::is_logged_in()){
 
 }
 ?>
-
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
@@ -21,10 +20,10 @@ if(Common::is_logged_in()){
             <?php $i = -1; //starts null for initial list group
             //$outerID = $orders[$i]["order_id"];?>
             <?php foreach($orders as $row):
-                $outerID = $orders[$i]["order_id"];
+                $outerID = $orders[$i]["order_id"]; //increments if innerID doesn't match (meaning a new order)
                 $innerID = $row["order_id"]; //equals 1,1,2,3,4?>
                 <?php if ($innerID == $outerID):
-                            $total += Common::get($row, "cost");?>
+                            //nope - $total += Common::get($row, "cost");?>
                     <!--add to list group-->
                     <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
                         - $<?php echo Common::get($row, "cost");?></p>
@@ -49,4 +48,5 @@ if(Common::is_logged_in()){
                 No purchases on record. Check out the store!
             </div>
         <?php endif;?>
-
+    </div>
+</div>
