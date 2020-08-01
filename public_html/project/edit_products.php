@@ -3,10 +3,9 @@
 //TODO: Format date (day/month/year)
 //TODO: Set inactive list items as disabled (javascript or php templating with if clause?)
 //TODO: Total purchases
-//TODO: Fix deactivate message
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()){
     //this will auto redirect if user isn't logged in

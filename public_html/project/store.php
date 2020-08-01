@@ -32,12 +32,10 @@ if(isset($_POST["search"])){
             <option value="price ASC">Lowest Price</option>
             <option value="price DESC">Highest Price</option>
         </select>
-        <!--<button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
         <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Search"/>
     </form>
 </nav>
 <?php
-//---------------
 $items = array();
 if (isset($search)) {
     $result = DBH::get_search_results($search, $sort);
@@ -59,7 +57,6 @@ if (isset($search)) {
                     <?php
 
                         $rows = (int)($total/ 5) + 1;
-                        //echo "<br>Rows: $rows<br>";
                     ?>
                 <?php for($i = 0; $i < $rows; $i++):?>
                 <tr>
@@ -163,6 +160,7 @@ if (isset($search)) {
         if(!updated){
             let $li = $("<li></li>");
             $li.attr("class", "list-group-item");
+            //quantity selector zzzzzz see email 07/2020
             //$li.append("<span></span><input class='cart-quantity-input'  type='number' " +
                 //"name='item_quantity' id='item_quantity' min='1' data-quantity value='1'/>");
             $li.append("<span></span><button onclick='removeFromCart(this);' class='btn btn-sm btn-danger'>X</button>");
@@ -197,6 +195,11 @@ if (isset($search)) {
     }
     function emptyCart() {
         removeFromCart($cart.find("li"));
+        //could also try something like this from create_questionnaire.php:
+        /*let $children = $lg.children(".list-group-item");
+        if($children.length > 1){
+            $li.remove();
+        }*/
     }
     function purchase(){
         let data = [];
@@ -212,9 +215,6 @@ if (isset($search)) {
             alert("Data: " + data + "\nStatus: " + status);
             //reload the page
             window.location.replace("store.php");
-            <?php //Common::flash("Purchase complete", "success");?>
-            //purchase complete flash alert, not sure if it works like this
-
         });
     }
 </script>

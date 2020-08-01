@@ -1,5 +1,5 @@
 <?php
-//TODO: Clean extra code
+//TODO: note -- there is a lot of js to look at in the original file
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -116,91 +116,4 @@ if(Common::is_logged_in()){
         }
     }
 ?>
-<script>
-    function update_names_and_ids($ele){
-        let $lis = $ele.children(".list-group-item");
-        //loop over all list-group-items of list-group
-        $lis.each(function(index, item){
-           let $fg = $(item).find(".form-group");
-           let liIndex = index;
-           //loop over all form-groups inside list-group-item
-           $fg.each(function(index, item){
-               let $label = $(item).find("label");
-               if(typeof($label) !== 'undefined' && $label != null){
-                   let forAttr = $label.attr("for");
-                   let pieces = forAttr.split('_');
-                   //Note this is different since it's a plain array not a jquery object
-                   pieces.forEach(function(item, index){
-                       if(!isNaN(item)){
-                           pieces[index] = liIndex;
-                       }
-                   });
-                   let updatedRef = pieces.join("_");
-                   $label.attr("for", updatedRef);
-                   let $input = $(item).find(":input");
-                   if(typeof($input) !== 'undefined' && $input != null){
-                       $input.attr("id", updatedRef);
-                       $input.attr("name", updatedRef);
-                   }
-               }
-           });
-           //See if we have any children list-groups (this would be our answers)
-           let $child_lg = $(item).find(".list-group");//probably doesn't need an each loop but it's fine
-           $child_lg.each(function(index, item){
-               let $childlis = $(item).find(".list-group-item");
-               $childlis.each(function (index, item) {
-                   let $fg = $(item).find(".form-group");
-                   let childLiIndex = index;
-                   //loop over all form-groups inside list-group-item
-                   $fg.each(function(index, item){
-                       let $label = $(item).find("label");
-                       if(typeof($label) !== 'undefined' && $label != null){
-                           let forAttr = $label.attr("for");
-                           let pieces = forAttr.split('_');
-                           //Note this is different since it's a plain array not a jquery object
-                           let lastIndex = -1;
-                           pieces.forEach(function(item, index){
-                               if(!isNaN(item)){
-                                   //question_#_answer_#
-                                   if(lastIndex == -1) {
-                                       //question_#
-                                       pieces[index] = liIndex;//replace the first # with the parent outer loop index
-                                       lastIndex = index;
-                                   }
-                                   else{
-                                       //question_#_answer_#
-                                       pieces[index] = childLiIndex;//replace the second # with the child loop index
-                                   }
-                               }
-                           });
-                           let updatedRef = pieces.join("_");
-                           $label.attr("for", updatedRef);
-                           let $input = $(item).find(":input");
-                           if(typeof($input) !== 'undefined' && $input != null){
-                               $input.attr("id", updatedRef);
-                               $input.attr("name", updatedRef);
-                           }
-                       }
-                   });
-               });
-           });
-        });
-    }
-    function cloneThis(ele){ //creates additional text boxes?
-        let $lg = $(ele).siblings(".list-group");
-        let $li = $lg.find(".list-group-item:first");
-        let $clone = $li.clone();
-        $lg.append($clone);
-        update_names_and_ids($(".list-group:first"));
-    }
-    function deleteMe(ele){ //deletes additional text boxes?
-        let $li = $(ele).closest(".list-group-item");
-        let $lg = $li.closest(".list-group");
-        let $children = $lg.children(".list-group-item");
-        if($children.length > 1){
-            $li.remove();
-            update_names_and_ids($(".list-group:first"));
-        }
-    }
-</script>
-</div> <!-- Why the heck is there a div here -->
+</div> <!-- Why is the div here -->
