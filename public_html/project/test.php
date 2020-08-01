@@ -18,7 +18,7 @@ if(Common::is_logged_in()){
     <h4>Order History</h4>
     <div class="list-group">
         <?php $length = count($orders);
-        if($length > 0):?> //maybe add more php tags like store
+        if($length > 0):?>
             <?php $i = -1; //starts null for initial list group
             //$outerID = $orders[$i]["order_id"];?>
             <?php foreach($orders as $row):
@@ -28,7 +28,7 @@ if(Common::is_logged_in()){
                     <!--add to list group-->
                     <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
                         - <?php echo Common::get($row, "cost");?></p>
-                <?php else: $i++;?>
+                <?php else: ++$i;?>
                     <!--create new list group-->
                     <div class="list-group-item">
                         <p><?php echo $outerID;?></p>
