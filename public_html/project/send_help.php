@@ -19,9 +19,9 @@ if(Common::is_logged_in()){
         <?php $length = count($orders);
         if($length > 0):?>
             <?php foreach($orders as $row):
-                echo $row;?>
+                echo null; //$row; Outputs Array Array Array Array Array?>
                 <?php foreach($row as $innerArray):
-                    echo null; //$innerArray;?>
+                    echo $innerArray;?>
                     <?php echo null; //$innerArray["order_id"];?>
                 <?php endforeach;?>
             <?php endforeach;?>
