@@ -16,11 +16,29 @@ if(Common::is_logged_in()){
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
-        <?php $total = count($orders);
-        if($total > 0):?>
-        <?php $orders["order_id"];?>
+        <?php $length = count($orders);
+        if($length > 0):?>
+            <?php foreach($orders as $row):
+                echo $row;?>
+                <?php foreach($row as $innerArray):
+                    echo $innerArray?>
+                    <?php echo $innerArray["order_id"];?>
+                <?php endforeach;?>
+            <?php endforeach;?>
+        <?php endif;?>
 
-<div class="container-fluid">
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
         <?php $total = count($orders);
@@ -33,12 +51,12 @@ if(Common::is_logged_in()){
                 //echo var_export($o);?>
                 <div class="list-group-item">
                     <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
-                    <p><small><?php echo Common::get($o, "created");?></small></p>
+                    <p><small><?php echo Common::get($o, "created");?></small></p>-->
                     <!--get individual items-->
                     <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
                         - <?php echo Common::get($o, "cost");?></p>
                     <!--sum total-->
-                    <br>
+                    <!--<br>
                     <p>Total: <?php echo Common::get($o,"cost", 0);?></p>
                 </div>
             <?php endforeach; ?>
@@ -50,4 +68,4 @@ if(Common::is_logged_in()){
             <?php endif; ?>
         <?php endif;?>
     </div>
-</div>
+</div>-->
