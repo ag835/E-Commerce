@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 $orders = array();
 if(Common::is_logged_in()){
@@ -19,7 +19,7 @@ if(Common::is_logged_in()){
     <div class="list-group">
         <?php $length = count($orders);
         if($length > 0):?>
-            <?php $i = -1; //starts null for initial list group
+            <?php $i = -1; //starts null for initial list group BUT it causes errors, still kinda works
             //$outerID = $orders[$i]["order_id"];?>
             <?php foreach($orders as $row):
                 $outerID = $orders[$i]["order_id"]; //increments if innerID doesn't match (meaning a new order)

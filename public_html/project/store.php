@@ -1,10 +1,10 @@
 <?php
 //TODO: make search nicer:
 //https://stackoverflow.com/questions/1336353/how-do-i-set-the-selected-item-in-a-drop-down-box
-#get search if set
-#search/sort html form
-#query
-#$items = search results
+#1 get search if set
+#2 search/sort html form
+#3 query
+#4 $items = search results
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -196,7 +196,9 @@ if (isset($search)) {
         updatePrice();
     }
     function emptyCart() {
-        removeFromCart("li");
+        $cart.find("li").each(function(index, item){
+            removeFromCart(item);
+        }
     }
     function purchase(){
         let data = [];

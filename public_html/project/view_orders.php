@@ -1,9 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//TODO: if i ever fix order history, fix it here too
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
-$category = null;
+$category = null; //this is a load of barnacles
 $time = "Newest";
 if(isset($_POST["category"])){
     $category = $_POST["category"];
@@ -47,7 +48,7 @@ if(Common::is_logged_in()){
     //get total profit based on result set
     $total = 0;
     for ($i = 0; $i < count($orders); $i++) {
-        //echo orders[$i]["cost"]; outputs nothing, maybe use var_export instead?
+        //echo orders[$i]["cost"]; outputs nothing, maybe use var_export instead
         $total += $orders[$i]["cost"];
     }
     $profit = number_format($total, 2, ".", ",");
