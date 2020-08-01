@@ -1,26 +1,19 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
-$orders = array();
-if(Common::is_logged_in()){
-    //this will auto redirect if user isn't logged in
-    if(!Common::has_role("Admin")){
-        die(header("Location: home.php"));
-    }
-    $result = DBH::get_orders();
-    $_orders = Common::get($result, "data", false);
-    if($_orders) {
-        $orders = $_orders;
-    }
-    $total = 0;
-    for ($i = 0; $i < count($orders); $i++) {
-        //echo orders[$i]["cost"]; outputs nothing but the var $total works..
-        $total += $orders[$i]["cost"];
-    }
-    $profit = number_format($total, 2, ".", ",");
+$category = null;
+$time = "DESC";
+if(isset($_POST["category"])){
+    $category = $_POST["category"];
+}
+if(isset($_POST["time"])){
+    $time = $_POST["time"];
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand text-white">Orders</a>
+    <a class="navbar-brand text-white">Filtered by: <?php echo $category . "|" . $time;?></a>
     <form class="form-inline" method="POST">
         <label style="color: aliceblue">Category:  </label>
         <select class="form-control form-control-sm mr-sm-2" name="category">
@@ -31,12 +24,35 @@ if(Common::is_logged_in()){
             <option value="Mod">Mod</option>
         </select>
         <select class="form-control form-control-sm mr-sm-2" name="time">
-            <option value="created DESC">Newest</option>
-            <option value="created ASC">Oldest</option>
+            <option value="DESC">Newest</option>
+            <option value="ASC">Oldest</option>
         </select>
         <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Filter"/>
     </form>
 </nav>
+<?php
+$orders = array();
+if(Common::is_logged_in()){
+    //this will auto redirect if user isn't logged in
+    if(!Common::has_role("Admin")){
+        die(header("Location: home.php"));
+    }
+    if (isset($category) || isset($time)) {
+        $result = DBH::get_order_results($category, $time);
+        $_orders = Common::get($result, "data", false);
+        if($_orders) {
+            $orders = $_orders;
+        }
+    }
+    //get total profit based on result set
+    $total = 0;
+    for ($i = 0; $i < count($orders); $i++) {
+        //echo orders[$i]["cost"]; outputs nothing, maybe use var_export instead?
+        $total += $orders[$i]["cost"];
+    }
+    $profit = number_format($total, 2, ".", ",");
+}
+?>
 <h2>Customer Orders</h2>
 <div class="container-fluid">
     <h4>Profit: $<?php echo $profit?></h4>

@@ -453,6 +453,78 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function get_order_results($post_category, $post_time) {
+        try {
+            if (isset($post_category)) {
+                $category = $post_category;
+                $time = $post_time;
+
+                $mapped_category = "Game";//default to Game? or maybe nothing?
+                $mapped_time = " DESC";
+                if($category == "Demo"){
+                    $mapped_category = "Demo";
+                }
+                else if($category == "DLC"){
+                    $mapped_category = "DLC";
+                }
+                else if($category == "Game"){
+                    $mapped_category = "Game";
+                }
+                else if($category == "Hardware"){
+                    $mapped_category = "Hardware";
+                }
+                else if($category == "Mod"){
+                    $mapped_category = "Mod";
+                }
+                if($time == "DESC"){
+                    $mapped_time = " DESC";
+                }
+                else if($time == "ASC"){
+                    $mapped_time = " ASC";
+                }
+                $query = file_get_contents(__DIR__ . "/../sql/queries/get_orders_category.sql");
+                $query .= $mapped_time;
+                $stmt = DBH::getDB()->prepare($query);
+                $result = $stmt->execute([":category"=>$mapped_category]);
+                DBH::verify_sql($stmt);
+                if($result){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    return DBH::response($result,200, "success");
+                }
+                else{
+                    return DBH::response(NULL, 400, "error");
+                }
+            }
+            else {
+                $time = $post_time;
+                $mapped_time = " DESC";
+                if($time == "DESC"){
+                    $mapped_time = " DESC";
+                }
+                else if($time == "ASC"){
+                    $mapped_time = " ASC";
+                }
+                $query = file_get_contents(__DIR__ . "/../sql/queries/get_orders_search.sql");
+                $query .= $mapped_time;
+                $stmt = DBH::getDB()->prepare($query);
+                $result = $stmt->execute();
+                DBH::verify_sql($stmt);
+                if($result){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return DBH::response($result,200, "success");
+                }
+                else{
+                    return DBH::response(NULL, 400, "error");
+                }
+
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
 
     public static function get_orders() {
         try{
