@@ -19,9 +19,10 @@ if(Common::is_logged_in()){
     <div class="list-group">
         <?php $length = count($orders);
         if($length > 0):?> //maybe add more php tags like store
-            <?php $i = 0; //starts null for initial list group
-            $outerID = $orders[$i]["order_id"];?>
+            <?php $i = -1; //starts null for initial list group
+            //$outerID = $orders[$i]["order_id"];?>
             <?php foreach($orders as $row):
+                $outerID = $orders[$i]["order_id"];
                 $innerID = $row["order_id"]; //equals 1,1,2,3,4?>
                 <?php if ($innerID == $outerID):?>
                     <!--add to list group-->
