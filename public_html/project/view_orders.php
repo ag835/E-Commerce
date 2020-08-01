@@ -13,7 +13,7 @@ if(isset($_POST["time"])){
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand text-white">Filtered by: <?php echo $category . " | " . $time;?></a>
+    <a class="navbar-brand text-white">Filtered by: <?php echo $category . " " . $time;?></a>
     <form class="form-inline" method="POST">
         <label style="color: aliceblue">Category:  </label>
         <select class="form-control form-control-sm mr-sm-2" name="category">
@@ -25,7 +25,7 @@ if(isset($_POST["time"])){
         </select>
         <select class="form-control form-control-sm mr-sm-2" name="time">
             <option value="Newest">Newest</option>
-            <option value="ASC">Oldest</option>
+            <option value="Oldest">Oldest</option>
         </select>
         <input type="submit" class="btn btn-sm btn-outline-primary my-2 my-sm-0" value="Filter"/>
     </form>

@@ -479,7 +479,7 @@ class DBH{
                 if($time == "Newest"){
                     $mapped_time = " DESC";
                 }
-                else if($time == "ASC"){
+                else if($time == "Oldest"){
                     $mapped_time = " ASC";
                 }
                 $query = file_get_contents(__DIR__ . "/../sql/queries/get_orders_category.sql");
@@ -502,7 +502,7 @@ class DBH{
                 if($time == "Newest"){
                     $mapped_time = " DESC";
                 }
-                else if($time == "ASC"){
+                else if($time == "Oldest"){
                     $mapped_time = " ASC";
                 }
                 $query = file_get_contents(__DIR__ . "/../sql/queries/get_orders_search.sql");
