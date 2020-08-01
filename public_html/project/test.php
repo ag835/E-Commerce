@@ -13,7 +13,6 @@ if(Common::is_logged_in()){
 }
 ?>
 
-----
 <div class="container-fluid">
     <h4>Order History</h4>
     <div class="list-group">
@@ -24,19 +23,25 @@ if(Common::is_logged_in()){
             <?php foreach($orders as $row):
                 $outerID = $orders[$i]["order_id"];
                 $innerID = $row["order_id"]; //equals 1,1,2,3,4?>
-                <?php if ($innerID == $outerID):?>
+                <?php if ($innerID == $outerID):
+                            $total += Common::get($row, "cost");?>
                     <!--add to list group-->
                     <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
-                        - <?php echo Common::get($row, "cost");?></p>
-                <?php else: ++$i;?>
+                        - $<?php echo Common::get($row, "cost");?></p>
+                <?php else:
+                        $i++; //this doesn't increment properly
+                        $total = Common::get($row, "cost", 0);?>
                     <!--create new list group-->
                     <div class="list-group-item">
                         <p><?php echo $outerID;?></p>
                         <h6>Order ID: <?php echo Common::get($row,"order_id");?></h6>
                         <p><small><?php echo Common::get($row, "created");?></small></p>
                         <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
-                            - <?php echo Common::get($row, "cost");?></p>
+                            - $<?php echo Common::get($row, "cost");?></p>
+                        <br>
+                        <p>Total: <?php echo $total;?></p>
                     </div>
+            <!-- yeah I might need js to tack items on zzzz-->
                 <?php endif;?>
         <?php endforeach;?>
         <?php else:?>
