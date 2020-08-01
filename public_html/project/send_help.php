@@ -21,8 +21,9 @@ if(Common::is_logged_in()){
             <?php foreach($orders as $row):
                 echo null; //$row; Outputs Array Array Array Array Array?>
                 <?php foreach($row as $innerArray):
-                    echo $innerArray;?>
-                    <?php echo null; //$innerArray["order_id"];?>
+                    echo null; //$innerArray;
+                //1 1 Prey 1 29.99 2020-07-22 21:53:38 2 1 Outlast 2 2.99 2020-07-22 21:53:38 8 2 Prey 1 29.99 2020-07-26 18:37:05 9 3 Headset 1 49.99 2020-07-26 19:04:14 10 4 Headset 1 49.99 2020-07-26 21:07:09?>
+                    <?php echo $innerArray["order_id"];?>
                 <?php endforeach;?>
             <?php endforeach;?>
         <?php endif;?>
