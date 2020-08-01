@@ -19,7 +19,7 @@ if(Common::is_logged_in()){
         <?php $length = count($orders);
         if($length > 0):
             //echo "\$orders[0][\"order_id\"]: " . $orders[0]["order_id"];
-            $i = 0;
+            $i = -1;
             $outerID = $orders[$i]["order_id"];
             echo "Outer id: " . $outerID;?>
             <?php foreach($orders as $row):
