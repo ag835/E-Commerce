@@ -18,19 +18,22 @@ if(Common::is_logged_in()){
     <div class="list-group">
         <?php $length = count($orders);
         if($length > 0):
-            $i = 0; //start at -1
-            $outerID = $orders[$i]["order_id"]; //equals 1 ?>
-            <?php foreach($orders as $row) {
-                $innerID = $row["order_id"]; //equals 1,1,2,3,4
-                if ($innerID == $outerID) {
-                    //add to list group
-                }
-                else {
-                    //create new list group
-                    $i++;
-                }
-        }
-            //$i++;?>
-        <?php //endforeach?>
+            $i = -1; //starts null for initial list group
+            $outerID = $orders[$i]["order_id"];?>
+            <?php foreach($orders as $row):
+                $innerID = $row["order_id"]; //equals 1,1,2,3,4?>
+                <?php if ($innerID == $outerID):?>
+                    <!--add to list group-->
+                    <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
+                        - <?php echo Common::get($row, "cost");?></p>
+                <?php else: $i++;?>
+                    <!--create new list group-->
+                    <h6>Order ID: <?php echo Common::get($row,"order_id");?></h6>
+                    <p><small><?php echo Common::get($row, "created");?></small></p>
+                    <!--get individual items-->
+                    <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
+                        - <?php echo Common::get($row, "cost");?></p>
+                <?php endif;?>
+        <?php endforeach?>
         <?php endif;?>
 
