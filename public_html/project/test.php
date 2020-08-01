@@ -27,7 +27,7 @@ if(Common::is_logged_in()){
                     <!--add to list group-->
                     <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
                         - <?php echo Common::get($row, "cost");?></p>
-                <?php else: $i++;?>
+                <?php else: echo $outerID; $i++;?>
                     <!--create new list group-->
                     <div class="list-group-item">
                         <h6>Order ID: <?php echo Common::get($row,"order_id");?></h6>
