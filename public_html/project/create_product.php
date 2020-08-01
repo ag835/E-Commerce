@@ -1,8 +1,8 @@
 <?php
 //TODO: Clean extra code
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 
 if(Common::is_logged_in()){
@@ -12,7 +12,6 @@ if(Common::is_logged_in()){
         die(header("Location: home.php"));
     }
 }
-$last_updated = Common::get($_SESSION, "last_sync", false);
 ?>
 <h2>Add a product</h2>
 <hr>
@@ -46,31 +45,6 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
         <label for="active">Active?</label>
         <input class="form-control" type="checkbox" id="active" name="active"/>
     </div>
-   <!-- <div class="list-group">
-        <div class="list-group-item">
-            <div class="form-group">
-                <label for="question_0">Question</label>
-                <input class="form-control" type="text" id="question_0" name="question_0" required/>
-            </div>
-            <button class="btn btn-danger" onclick="event.preventDefault(); deleteMe(this);">X</button>
-            <div class="list-group">
-                <div class="list-group-item">
-                    <div class="form-group">
-                        <label for="question_0_answer_0">Answer</label>
-                        <input class="form-control" type="text" id="question_0_answer_0" name="question_0_answer_0" required/>
-                    </div>
-                    <button class="btn btn-danger" onclick="event.preventDefault(); deleteMe(this);">X</button>
-                    <div class="form-group">
-                        <label for="question_0_answeroe_0">Allow Open Ended?</label>
-                        <input class="form-control" type="checkbox" id="question_0_answeroe_0" name="question_0_answeroe_0"/>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Answer</button>
-        </div>
-    </div>
-    <button class="btn btn-secondary" onclick="event.preventDefault(); cloneThis(this);">Add Question</button> -->
-
     <div class="form-group">
         <input type="submit" name="submit" class="btn btn-primary" value="Create Product"/>
     </div>
@@ -93,8 +67,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
             //TODO important to note, if a checkbox isn't toggled/checked it won't be sent with the request.
             //Checkboxes have a poor design and usually need a hidden form and/or JS magic to work for unchecked values
             //so here we're just going to default to false if it's not present in $_POST
-            $active = Common::get($_POST, "active", false);//used to hard limit the number of attempts
-            #use_max -> active, idk if this will do what I want it too
+            $active = Common::get($_POST, "active", false);
             if(is_numeric($product_quantity) && (int)$product_quantity >= 0){ #7/28 > 0 -> >= 0
                 $product_quantity = (int)$product_quantity;
             }
@@ -102,7 +75,7 @@ $last_updated = Common::get($_SESSION, "last_sync", false);
                 $is_valid = false;
                 Common::flash("Product quantity must be a numerical value greater than zero", "danger");
             }
-            $product_price = Common::get($_POST, "product_price", 0); #max_attempts -> product_price
+            $product_price = Common::get($_POST, "product_price", 0);
             if(is_numeric($product_price) && (int)$product_price >= 0){
                 $product_price = (int)$product_price;
             }

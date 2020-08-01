@@ -196,9 +196,7 @@ if (isset($search)) {
         updatePrice();
     }
     function emptyCart() {
-        $cart.find("li").each(function(index, item){
-            removeFromCart(item);
-        }
+        removeFromCart($cart.find("li"));
     }
     function purchase(){
         let data = [];
