@@ -21,8 +21,8 @@ if(Common::is_logged_in()){
             <?php foreach($orders as $row):
                 echo $row;?>
                 <?php foreach($row as $innerArray):
-                    echo $innerArray?>
-                    <?php echo $innerArray["order_id"];?>
+                    //echo $innerArray?>
+                    <?php echo //$innerArray["order_id"];?>
                 <?php endforeach;?>
             <?php endforeach;?>
         <?php endif;?>
