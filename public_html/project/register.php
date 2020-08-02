@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 include_once(__DIR__."/partials/header.partial.php");
 ?>
     <div>
@@ -56,10 +56,13 @@ if (Common::get($_POST, "submit", false)){
     }
     if(!empty($email) && !empty($username) && !empty($password) && !empty($country)){
         $result = DBH::register($email, $username, $password, $country);
-        echo var_export($result, true);
+        //echo var_export($result, true);
         if(Common::get($result, "status", 400) == 200){
             Common::flash("Successfully registered, please login", "success");
             die(header("Location: " . Common::url_for("login")));
+        }
+        else {
+            Common::flash("Username or email already in use", "warning");
         }
     }
     else{
