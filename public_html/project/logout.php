@@ -1,7 +1,5 @@
 <?php
 include_once(__DIR__."/partials/header.partial.php");
-Common::flash("You have successfully logged out");
-header("Location: login.php");
 session_unset();
 session_destroy();
 //get session cookie and delete/clear it for this session
@@ -15,5 +13,6 @@ if (ini_get("session.use_cookies")) {
     );
 }
 //This won't work since it's a different session, we just destroyed our original session.
-
+Common::flash("You have successfully logged out");
+header("Location: login.php");
 ?>
