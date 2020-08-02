@@ -1,6 +1,13 @@
 <?php
 include_once(__DIR__."/partials/header.partial.php");
 if(Common::is_logged_in()):?>
+<style>
+   body {
+        background-color: black;
+        color: aliceblue;
+    }
+</style>
+
 <h1>Profile</h1>
 
 <h3><?php echo $_SESSION["user"]["username"];?>'s Profile</h3>
