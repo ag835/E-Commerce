@@ -135,7 +135,7 @@ if (isset($search)) {
             sum += (q * p);
 
         });
-        total = (sum); //.toFixed(2); //Caution: Returns string
+        total = (sum).toFixed(2); //Caution: Returns string
         let $used = $("#used");
         $used.text(total);
 

@@ -108,7 +108,7 @@ if(Common::is_logged_in()){
         }
         else{
             $is_valid = false;
-            Common::flash("A product name must be provided", "danger");
+            Common::flash("A product name must be provided", "warning");
         }
         if(!$is_valid){
             //this will erase the form since it's a page refresh, but we need it to show the session messages
