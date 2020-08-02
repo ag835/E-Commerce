@@ -10,23 +10,23 @@ include_once(__DIR__."/partials/header.partial.php");
         <form method="POST">
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input class="form-control" type="email" id="email" name="email" required/>
+                <input type="email" id="email" name="email" required/>
             </div>
             <div class="form-group">
                 <label for="username">Account Name</label>
-                <input class="form-control" type="username" id="username" name="username" required min="2"/>
+                <input type="username" id="username" name="username" required min="2"/>
             </div>
             <div class="form-group">
                 <label for="password">Choose password</label>
-                <input class="form-control" type="password" id="password" name="password" required min="3"/>
+                <input type="password" id="password" name="password" required min="3"/>
             </div>
             <div class="form-group">
                 <label for="cpassword">Re-enter password</label>
-                <input class="form-control" type="password" id="cpassword" name="cpassword" required min="3"/>
+                <input type="password" id="cpassword" name="cpassword" required min="3"/>
             </div>
             <div class="form-group">
                 <label>Country of Residence</label>
-                <select class="form-control" name="country">
+                <select name="country">
                     <option value="Australia">Australia</option>
                     <option value="Canada">Canada</option>
                     <option value="New Zealand">New Zealand</option>
@@ -34,7 +34,11 @@ include_once(__DIR__."/partials/header.partial.php");
                     <option value="United States" selected>United States</option>
                 </select>
             </div>
-            <input type="submit" name="submit" class="btn btn-primary" value="Register"/>
+            <div class="form-group">
+                <input type="checkbox" id="robot" name="robot" required>
+                <label for="robot">I am not a robot</label>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary" value="Sign up"/>
         </form>
         </div>
     </div>
