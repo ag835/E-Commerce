@@ -192,6 +192,7 @@ if (isset($search)) {
     function removeFromCart(ele){
         $(ele).closest("li").remove();
         updatePrice();
+        updateCart();
     }
     function emptyCart() {
         removeFromCart($cart.find("li"));
