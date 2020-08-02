@@ -1,5 +1,5 @@
 <?php
-
+//all these functions do the same thing barring a few tweaks......
 class DBH{
     private static function getDB(){
         global $common;
@@ -769,5 +769,4 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//Kept the prof's functions in case I can use them later
 class Common {
     private $db;
 
@@ -228,7 +228,7 @@ class Common {
         }
     }
     public static function search_products(){
-
+        //forgot what this was for exactly
     }
 }
 
