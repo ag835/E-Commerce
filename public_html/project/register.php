@@ -10,23 +10,23 @@ include_once(__DIR__."/partials/header.partial.php");
         <form method="POST">
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" id="email" name="email" required/>
+                <input class="form-control" type="email" id="email" name="email" required/>
             </div>
             <div class="form-group">
                 <label for="username">Account Name</label>
-                <input type="username" id="username" name="username" required min="2"/>
+                <input class="form-control" type="username" id="username" name="username" required min="2"/>
             </div>
             <div class="form-group">
                 <label for="password">Choose password</label>
-                <input type="password" id="password" name="password" required min="3"/>
+                <input class="form-control" type="password" id="password" name="password" required min="3"/>
             </div>
             <div class="form-group">
                 <label for="cpassword">Re-enter password</label>
-                <input type="password" id="cpassword" name="cpassword" required min="3"/>
+                <input class="form-control" type="password" id="cpassword" name="cpassword" required min="3"/>
             </div>
             <div class="form-group">
                 <label>Country of Residence</label>
-                <select name="country">
+                <select class="form-control" name="country">
                     <option value="Australia">Australia</option>
                     <option value="Canada">Canada</option>
                     <option value="New Zealand">New Zealand</option>
