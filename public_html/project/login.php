@@ -3,14 +3,12 @@ include_once(__DIR__."/partials/header.partial.php");
 ?>
     <div>
         <h4>SIGN IN</h4>
-        <hr>
-        <div class="container-sm"
         <form method="POST">
-            <div class="form-group">
+            <div>
                 <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required/>
             </div>
-            <div class="form-group">
+            <div>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required min="3"/>
             </div>
