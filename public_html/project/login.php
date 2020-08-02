@@ -1,7 +1,28 @@
 <?php
 include_once(__DIR__."/partials/header.partial.php");
 ?>
-    <div>
+<div>
+    <h4>SIGN IN</h4>
+    <hr>
+    <div class="container-sm">
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required min="3"/>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="remember" name="remember" required>
+                <label for="remember">Remember Me</label>
+            </div>
+            <input type="submit" name="submit" value="Login"/>
+        </form>
+    </div>
+</div>
+    <!--<div>
         <h4>SIGN IN</h4>
         <form method="POST">
             <div>
@@ -14,7 +35,7 @@ include_once(__DIR__."/partials/header.partial.php");
             </div>
             <input type="submit" name="submit" value="Login"/>
         </form>
-    </div>
+    </div>-->
 <?php
 if (Common::get($_POST, "submit", false)){
     $email = Common::get($_POST, "email", false);
