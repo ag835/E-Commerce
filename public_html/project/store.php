@@ -78,7 +78,7 @@ if (isset($search)) {
                                             <?php echo Common::get($item, "description");?>
                                         </p>
                                         <p class="card-text">
-                                            Price: <?php echo Common::get($item,"price", 0);?>
+                                            Price: $<?php echo Common::get($item,"price", 0);?>
                                         </p>
                                         <button class="btn btn-sm btn-secondary"
                                         data-id="<?php echo Common::get($item, "id", -1);?>"
@@ -137,7 +137,7 @@ if (isset($search)) {
         });
         total = (sum).toFixed(2); //Caution: Returns string
         let $used = $("#used");
-        $used.text(total);
+        $used.text(" $" . total);
 
     }
     function addToCart(ele){
