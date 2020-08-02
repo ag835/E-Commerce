@@ -1,4 +1,6 @@
 <?php
+//TODO: remember me
+//https://stackoverflow.com/questions/244882/what-is-the-best-way-to-implement-remember-me-for-a-website
 include_once(__DIR__."/partials/header.partial.php");
 ?>
 <div>
@@ -15,10 +17,10 @@ include_once(__DIR__."/partials/header.partial.php");
                 <input type="password" id="password" name="password" required min="3"/>
             </div>
             <div class="form-group">
-                <input type="checkbox" id="remember" name="remember" required>
+                <input type="checkbox" id="remember" name="remember">
                 <label for="remember">Remember Me</label>
             </div>
-            <input type="submit" name="submit" value="Login"/>
+            <input type="submit" name="submit" class="btn btn-primary" value="Login"/>
         </form>
     </div>
 </div>
@@ -54,6 +56,7 @@ if (Common::get($_POST, "submit", false)){
                 $_SESSION["system_id"] = Common::get($result, "id", -1);
                 error_log("Got system_id " . $_SESSION["system_id"]);
             }
+            Common::flash(Common::get($result, "message", "Successfully signed in"));
             die(header("Location: " . Common::url_for("home")));
         }
         else{
