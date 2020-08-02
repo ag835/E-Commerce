@@ -3,17 +3,24 @@ include_once(__DIR__."/partials/header.partial.php");
 ?>
     <div>
         <h4>SIGN IN</h4>
+        <hr>
+        <div class="container-sm"
         <form method="POST">
-            <div>
+            <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required/>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required min="3"/>
             </div>
-            <input type="submit" name="submit" value="Login"/>
+            <div class="form-group">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary" value="Login"/>
         </form>
+    </div>
     </div>
 <?php
 if (Common::get($_POST, "submit", false)){

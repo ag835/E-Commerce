@@ -6,6 +6,7 @@ include_once(__DIR__."/partials/header.partial.php");
 ?>
     <div>
         <h4>Create an account</h4>
+        <hr>
         <div class="container-sm">
         <form method="POST">
             <div class="form-group">
