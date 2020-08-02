@@ -60,7 +60,7 @@ if (Common::get($_POST, "submit", false)){
             die(header("Location: " . Common::url_for("home")));
         }
         else{
-            Common::flash(Common::get($result, "message", "Error logging in"));
+            Common::flash("Invalid credentials", "warning");
             die(header("Location: " . Common::url_for("login")));
         }
     }
