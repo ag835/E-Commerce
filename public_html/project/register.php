@@ -1,4 +1,5 @@
 <?php
+//TODO: wrap user info in an array to pass to function
 /*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
@@ -63,6 +64,7 @@ if (Common::get($_POST, "submit", false)){
         }
         else {
             Common::flash("Username or email already in use", "warning");
+            die(header("Location: register.php"));
         }
     }
     else{

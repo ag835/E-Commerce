@@ -14,13 +14,8 @@ include_once(__DIR__."/partials/header.partial.php");
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required min="3"/>
             </div>
-            <div class="form-group">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember me</label>
-            </div>
-            <input type="submit" name="submit" class="btn btn-primary" value="Login"/>
+            <input type="submit" name="submit" value="Login"/>
         </form>
-    </div>
     </div>
 <?php
 if (Common::get($_POST, "submit", false)){
