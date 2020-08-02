@@ -50,7 +50,7 @@ class DBH{
                     $stmt->execute([":user_id"=>$user["id"]]);
                     DBH::verify_sql($stmt);
                     $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    error_log(var_export($roles, true));
+                    //error_log(var_export($roles, true));
                     $user["roles"] = $roles;
                     return DBH::response($user);
                 } else {
@@ -70,11 +70,13 @@ class DBH{
             $query = file_get_contents(__DIR__ . "/../sql/queries/register.sql");
             $stmt = DBH::getDB()->prepare($query);
             $pass = password_hash($pass, PASSWORD_BCRYPT);
+            $user_id = Common::get_user_id();
             $result = $stmt->execute([
                 ":email" => $email,
                 ":username" => $username,
                 ":password" => $pass,
-                ":country" => $country
+                ":country" => $country,
+                ":user_id" => $user_id
             ]);
             DBH::verify_sql($stmt);
             if($result){
