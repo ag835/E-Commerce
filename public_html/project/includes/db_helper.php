@@ -668,6 +668,30 @@ class DBH{
             return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
         }
     }
+    public static function verify_item($item) {
+        try {
+            $query = file_get_contents(__DIR__ . "/../sql/queries/check_items.sql");
+            $stmt = DBH::getDB()->prepare($query);
+            $user_id = Common::get_user_id();
+            $result = $stmt->execute([
+                ":item_id"=>$item["id"],
+                //":user_id"=>$user_id, have to fix the query to integrate carts
+                ":quantity"=>$item["quantity"],
+                ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
+            ]);
+            DBH::verify_sql($stmt);
+            if($result){
+                return DBH::response(NULL,200, "success");
+            }
+            else{
+                return DBH::response(NULL, 400, "error");
+            }
+        }
+        catch(Exception $e){
+            error_log($e->getMessage());
+            return DBH::response(NULL, 400, "DB Error: " . $e->getMessage());
+        }
+    }
     public static function verify_items($order) {
         try {
             $query = file_get_contents(__DIR__ . "/../sql/queries/check_items.sql");
