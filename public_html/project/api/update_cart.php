@@ -4,7 +4,6 @@ if(isset($_POST["cart"])){
     $cart = $_POST["cart"];
     $cart = json_decode($cart, true);
     echo var_export($cart);
-
     try {
         require(__DIR__ . "/../includes/common.inc.php");
         if (Common::is_logged_in(false)) {
@@ -17,7 +16,7 @@ if(isset($_POST["cart"])){
             //insert items, get cart
             // if db item IS NOT IN $cart
             //remove item
-            $items = array();
+            /*$items = array();
             $_result = DBH::get_cart();
             $_items = Common::get($_result, "data", false);
             if($_items){
@@ -32,7 +31,7 @@ if(isset($_POST["cart"])){
                         $response["message"] = "Removed item";
                     }
                 }
-            }
+            }*/
             if(Common::get($response, "status", 400) == 200) {
                 $response["status"] = 200;
                 $response["message"] = "Update complete";

@@ -4,9 +4,10 @@
 //TODO: Fix restrict reviewing if user doesnt own product
 //think i did the abvoe and forgot to delete it but just in case
 //TODO: Have rating form item be /5
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//TODO: check error for modifying header, still works though
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 include_once(__DIR__."/partials/header.partial.php");
 if(isset($_GET["p"])){
     $product_id = $_GET["p"];
@@ -75,7 +76,7 @@ if(isset($_POST["submit"])){
         //check create for how to pass $review array instead
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully reviewed " . $name, "success");
-            die(header("Location: item_details.php?p=$product_id"));
+            //die(header("Location: item_details.php?p=$product_id"));
         }
         else{
             Common::flash("There was an error reviewing " . $name, "danger");
