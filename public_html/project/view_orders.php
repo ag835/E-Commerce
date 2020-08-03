@@ -58,7 +58,8 @@ if(Common::is_logged_in()){
 <div class="container-fluid">
     <h4>Profit: $<?php echo $profit?></h4>
     <div class="list-group">
-        <?php foreach($orders as $o): ?>
+        <?php foreach($orders as $o):
+            $quantity = Common::get($o, "quantity");?>
             <div class="list-group-item">
                 <h6>Order ID: <?php echo Common::get($o,"order_id");?></h6>
                 <p><small><?php echo Common::get($o, "created");?></small></p>
@@ -66,8 +67,8 @@ if(Common::is_logged_in()){
                 <h6>Items:</h6>
                 <!--get individual items-->
                 <!-- if order id = order id -->
-                <p><?php echo Common::get($o, "name");?> - <?php echo Common::get($o, "quantity");?>
-                    - <?php echo Common::get($o, "cost");?></p>
+                <p><?php echo Common::get($o, "name");?> - <?php echo $quantity;?>
+                    - $<?php echo ($quantity*Common::get($o, "cost"));?></p>
                 <!--sum the total-->
                 <br>
                 <p>Total: <?php echo Common::get($o,"cost", 0);?></p>

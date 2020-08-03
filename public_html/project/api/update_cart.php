@@ -14,7 +14,7 @@ if(isset($_POST["cart"])){
             }
             $response = DBH::save_cart_items($cart);
             //insert items, get cart
-            // if db item IS NOT IN $cart
+            //if db item IS NOT IN $cart
             //remove item
             /*$items = array();
             $_result = DBH::get_cart();
