@@ -705,6 +705,7 @@ class DBH{
                     ":quantity"=>$item["quantity"],
                     ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
                 ]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (!($result) || empty($result) || !isset($result) || is_null($result)) {
                     return DBH::response(NULL, 400, "error");
                 }
