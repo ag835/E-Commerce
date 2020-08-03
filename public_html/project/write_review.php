@@ -76,7 +76,7 @@ if(isset($_POST["submit"])){
         //check create for how to pass $review array instead
         if(Common::get($response, "status", 400) == 200){
             Common::flash("Successfully reviewed " . $name, "success");
-            //die(header("Location: item_details.php?p=$product_id"));
+            die(header("Location: item_details.php?p=$product_id"));
         }
         else{
             Common::flash("There was an error reviewing " . $name, "danger");

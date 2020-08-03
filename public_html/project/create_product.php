@@ -69,7 +69,7 @@ if(Common::is_logged_in()){
             //so here we're just going to default to false if it's not present in $_POST
             $active = Common::get($_POST, "active", false);
             if(is_numeric($product_quantity) && (int)$product_quantity >= 0){ #7/28 > 0 -> >= 0
-                $product_quantity = (int)$product_quantity;
+                $product_quantity = (float)$product_quantity;
             }
             else{
                 $is_valid = false;
@@ -98,7 +98,7 @@ if(Common::is_logged_in()){
                 $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){
                     Common::flash("Successfully saved product", "success");
-                    die(header("Location: register.php"));
+                    die(header("Location: edit_products.php"));
                     //die(header("Location: " . Common::url_for("create_product"))); some error w/ this
                 }
                 else{
