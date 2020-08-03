@@ -63,7 +63,7 @@ if(isset($_POST["submit"])){
     }
     if(isset($_POST["review_rating"])
         && (!empty($_POST["review_rating"]) || $_POST["review_rating"] == 0)){
-        if(is_numeric($_POST["review_rating"])){
+        if(is_numeric($_POST["review_rating"]) && $_POST["review_rating"] <= 5){
             $rating = (int)$_POST["review_rating"];
         }
     }
