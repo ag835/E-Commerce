@@ -186,7 +186,7 @@ if (isset($search)) {
         console.log(data);
         console.log(JSON.stringify(data));
         $.post("api/update_cart.php", {"cart": JSON.stringify(data)}, function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+            //alert("Data: " + data + "\nStatus: " + status);
         });
     }
     function removeFromCart(ele){
