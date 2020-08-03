@@ -1,5 +1,5 @@
 <?php
-//TODO: do i need to prevent page access?
+//TODO: prevent page access?
 $response = array("status"=>400, "message"=>"Unknown error");
 if(isset($_POST["order"])){
     $order = $_POST["order"];
