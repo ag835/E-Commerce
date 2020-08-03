@@ -1,3 +1,2 @@
 SELECT * FROM Products
-WHERE id IN (SELECT product_id FROM Carts)
-  AND quantity > 1
+WHERE id = :item_id AND quantity > :quantity and price = :cost

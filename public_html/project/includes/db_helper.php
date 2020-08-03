@@ -681,11 +681,11 @@ class DBH{
                     ":cost"=>$item["price"] #switched cost and price bc I did so in my tables
                 ]);
                 if (empty($result)) {
-                    unset($order[$item]);
+                    return DBH::response(NULL, 400, "error");
                 }
             }
             DBH::verify_sql($stmt);
-            if($result){
+            if($order){
                 return DBH::response($order,200, "success");
             }
             else{
