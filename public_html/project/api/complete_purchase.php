@@ -36,6 +36,7 @@ if(isset($_POST["order"])){
                 }
                 else {
                     $response["message"] = "Item unavailable or in error";
+                    Common::flash("Item unavailable or in error", "warning");
                 }
                 /*$response = DBH::save_order($order);
                 if(Common::get($response, "status", 400) == 200) {
