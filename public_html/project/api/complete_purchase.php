@@ -25,6 +25,8 @@ if(isset($_POST["order"])){
                 //TODO should really validate that the ordered items match what's in the DB
                 //can be done either 1 by 1 or by using an IN clause, but it requires special crafting for PDO
                 //since it's not breaking data if something gets corrupted in my scenario I'm going to omit the check
+
+                //this is where it gets messy (but it works)
                 foreach ($order as $item) {
                     if (empty(DBH::verify_item($item))) {
                         $response["message"] = "Item unavailable or in error";
