@@ -98,10 +98,11 @@ if(Common::is_logged_in()){
                 $response = DBH::save_product($product);
                 if(Common::get($response, "status", 400) == 200){
                     Common::flash("Successfully saved product", "success");
-                    die(header("Location: edit_products.php"));
+                    //die(header("Location: edit_products.php"));
                     //die(header("Location: " . Common::url_for("create_product"))); some error w/ this
                 }
                 else{
+                    //die(header("Location: create_product.php"));
                     Common::flash("There was an error creating the product", "danger");
                 }
             }
