@@ -24,13 +24,14 @@ if(Common::is_logged_in()){
             //$outerID = $orders[$i]["order_id"];?>
             <?php foreach($orders as $row):
                 $outerID = $orders[$i]["order_id"]; //increments if innerID doesn't match (meaning a new order)
-                $innerID = $row["order_id"]; //equals 1,1,2,3,4?>
+                $innerID = $row["order_id"]; //equals 1,1,2,3,4
+                $quantity = Common::get($row, "quantity");?>
                 <?php if ($innerID == $outerID):
                 //the else probably isn't saved for this to work:
                 //$total += Common::get($row, "cost");?>
                 <!--add to list group-->
-                <p><?php echo Common::get($row, "name");?> - <?php echo Common::get($row, "quantity");?>
-                    - $<?php echo Common::get($row, "cost");?></p>
+                <p><?php echo Common::get($row, "name");?> - <?php echo $quantity ;?>
+                    - $<?php echo ($quantity*Common::get($row, "cost"));?></p>
             <?php else:
                 $i++; //this doesn't increment as intended
                 $total = Common::get($row, "cost", 0);?>
