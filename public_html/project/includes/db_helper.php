@@ -681,7 +681,8 @@ class DBH{
             ]);
             DBH::verify_sql($stmt);
             if($result){
-                return DBH::response(NULL,200, "success");
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return DBH::response($result,200, "success");
             }
             else{
                 return DBH::response(NULL, 400, "error");
